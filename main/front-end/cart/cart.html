@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+  <!-- Header -->
+  <header class="bg-black text-white text-center p-2">
+    <p>Sign up and get 20% off to your first order: <a href="#" class="underline">Sign Up Now</a></p>
+  </header>
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center px-4 py-3">
+      <a href="#" class="text-2xl font-bold flex items-center mb-2 sm:mb-0">
+        <img src="/main/front-end/image/DO-removebg-preview 3.png" alt="DOko Logo" class="h-20 w-20 mr-2"> 
+      </a>
+      <ul class="flex flex-wrap space-x-4">
+        <li><a href="#" class="text-gray-700 hover:text-gray-900">Home</a></li>
+        <li><a href="#" class="text-gray-700 hover:text-gray-900">Contact</a></li>
+        <li><a href="#" class="text-gray-700 hover:text-gray-900">About</a></li>
+        <li><a href="#" class="text-gray-700 hover:text-gray-900">Sign Up</a></li>
+      </ul>
+      <div class="flex flex-wrap items-center space-x-4 mt-2 sm:mt-0">
+        <input type="text" placeholder="What are you looking for?" class="border px-2 py-1 rounded w-full sm:w-auto">
+        <a href="#" class="text-gray-700 hover:text-gray-900">❤️</a>
+        <a href="#" class="text-gray-700 hover:text-gray-900">🛒</a>
+        <a href="#" class="text-gray-700 hover:text-gray-900">👤</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto my-8 px-4">
+    <!-- Breadcrumb -->
+    <div class="text-sm text-gray-600 mb-6">
+      <a href="#" class="hover:underline">Home</a> / <span>Cart</span>
+    </div>
+
+    <!-- Cart Table -->
+    <div class="bg-white shadow-md rounded p-6 overflow-x-auto">
+      <table class="w-full text-left">
+        <thead>
+          <tr class="border-b">
+            <th class="py-2">Product</th>
+            <th class="py-2">Price</th>
+            <th class="py-2">Quantity</th>
+            <th class="py-2">Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b">
+            <td class="py-4 flex items-center">
+              <img src="/main/front-end/image/image 19.png" alt="Nepali Paper" class="h-12 w-12 rounded mr-4">
+              Nepali Paper
+            </td>
+            <td class="py-4">650</td>
+            <td class="py-4">
+              <select class="border rounded px-2 py-1">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </td>
+            <td class="py-4">650</td>
+          </tr>
+          <tr>
+            <td class="py-4 flex items-center">
+              <img src="/main/front-end/image/Monitor-Cart-Small.png" alt="T-Shirt" class="h-12 w-12 rounded mr-4">
+              T-Shirt
+            </td>
+            <td class="py-4">1550</td>
+            <td class="py-4">
+              <select class="border rounded px-2 py-1">
+                <option value="1">1</option>
+                <option value="2" selected>2</option>
+                <option value="3">3</option>
+              </select>
+            </td>
+            <td class="py-4">1550</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="flex flex-wrap justify-between mt-6">
+        <a href="#" class="bg-gray-200 text-gray-700 px-4 py-2 rounded">Return To Shop</a>
+        <button class="bg-gray-800 text-white px-4 py-2 rounded mt-2 sm:mt-0">Update Cart</button>
+      </div>
+    </div>
+
+    <!-- Coupon and Cart Total -->
+    <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+      <!-- Coupon Section -->
+      <div class="md:col-span-2">
+        <div class="bg-white shadow-md rounded p-6">
+          <div class="flex flex-wrap">
+            <input type="text" placeholder="Coupon Code" class="border w-full sm:w-auto px-4 py-2 rounded">
+            <button class="bg-red-600 text-white px-6 py-2 rounded mt-2 sm:mt-0 sm:ml-4">Apply Coupon</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cart Total Section -->
+      <div>
+        <div class="bg-white shadow-md rounded p-6">
+          <h3 class="text-lg font-bold mb-4">Cart Total</h3>
+          <div class="flex justify-between py-2 border-b">
+            <span>Subtotal</span>
+            <span>2220</span>
+          </div>
+          <div class="flex justify-between py-2 border-b">
+            <span>Shipping</span>
+            <span>Free</span>
+          </div>
+          <div class="flex justify-between py-4 font-bold">
+            <span>Total</span>
+            <span>2200</span>
+          </div>
+          <button class="bg-red-600 text-white w-full py-2 rounded">Process to Checkout</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white mt-8">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-4 px-4 py-8">
+      <div>
+        <h4 class="font-bold mb-4">DOko</h4>
+        <p>Subscribe</p>
+        <p>Get 10% off your first order</p>
+        <input type="email" placeholder="Enter your email" class="w-full px-4 py-2 rounded mt-2">
+      </div>
+      <div>
+        <h4 class="font-bold mb-4">Support</h4>
+        <p>111 Kathmandu, +977Nepal</p>
+        <p>exclusive@gmail.com</p>
+        <p>+977 9812345678</p>
+      </div>
+      <div>                                       
+        <h4 class="font-bold mb-4">Account</h4>
+        <ul>
+          <li><a href="#" class="hover:underline">My Account</a></li>
+          <li><a href="#" class="hover:underline">Login / Register</a></li>
+          <li><a href="#" class="hover:underline">Cart</a></li>
+          <li><a href="#" class="hover:underline">Wishlist</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold mb-4">Quick Link</h4>
+        <ul>
+          <li><a href="#" class="hover:underline">Privacy Policy</a></li>
+          <li><a href="#" class="hover:underline">Terms Of Use</a></li>
+          
+          <li><a href="#" class="hover:underline">FAQ</a></li>
+          <li><a href="#" class="hover:underline">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="bg-gray-900 text-center py-4">
+      <p>&copy; 2025 DOko. All Rights Reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
