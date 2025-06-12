@@ -6,7 +6,7 @@ const Signup = () => {
     <>
       <header className="navbar">
         <div className="logo">
-          <img src="images/Doko Logo.png" alt="Doko Logo" />
+          <img src="/Doko Logo.png" alt="Doko Logo" />
         </div>
         <nav>
           <a href="#">Home</a>
@@ -39,7 +39,7 @@ const Signup = () => {
             <input type="password" placeholder="Password" required />
             <button type="submit" className="primary-btn">Create Account</button>
             <button type="button" className="google-btn">
-              <img src="google" alt="g" />
+              <img src="/googlelogo.png" alt="g" />
               Sign up with Google
             </button>
             <p className="login-text">
