@@ -1,12 +1,19 @@
-import React from 'react';
-import SignUp from './SignUp.jsx'; 
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Contact from "./Contact";
+import SignUp from "./SignUp";
+import MyAccount from "./MyAccount";
 
-function App() {
+const App = () => {
   return (
-    <div>
-      <SignUp />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<SignUp />} />     
+         <Route path="/my-account" element={<MyAccount />} />   
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;

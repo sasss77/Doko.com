@@ -1,4 +1,6 @@
+
 import React from "react";
+import { Link } from "react-router-dom";
 import "./signup.css";
 
 const Signup = () => {
@@ -10,7 +12,7 @@ const Signup = () => {
         </div>
         <nav>
           <a href="#">Home</a>
-          <a href="#">Contact</a>
+          <Link to="/contact">Contact</Link>
           <a href="#">About</a>
           <a href="#" className="active">Sign up</a>
         </nav>
@@ -43,7 +45,10 @@ const Signup = () => {
               Sign up with Google
             </button>
             <p className="login-text">
-              Already have an account? <a href="#"><u>Log in</u></a>
+              Already have an account?{" "}
+              <Link to="/my-account">
+                <u>My Account</u>
+              </Link>
             </p>
           </form>
         </section>
@@ -66,7 +71,7 @@ const Signup = () => {
 
         <div className="footer-section">
           <h4>Account</h4>
-          <a href="#">My Account</a><br /><br />
+          <Link to="/my-account">My Account</Link><br /><br />
           <a href="#">Cart</a><br /><br />
           <a href="#">Wishlist</a><br /><br />
           <a href="#">Shop</a>
@@ -77,7 +82,7 @@ const Signup = () => {
           <a href="#">Privacy Policy</a><br /><br />
           <a href="#">Terms of Use</a><br /><br />
           <a href="#">FAQ</a><br /><br />
-          <a href="#">Contact</a>
+          <Link to="/contact">Contact</Link>
         </div>
       </footer>
     </>
