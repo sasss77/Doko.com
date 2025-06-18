@@ -1,92 +1,389 @@
 
-import React from "react";
-import { Link } from "react-router-dom";
-import "./signup.css";
+// import React, { useState } from 'react';
+// import { Link } from 'react-router-dom';
+// import { Send, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 
-const Signup = () => {
+// export default function DokoSignup() {
+//   const [formData, setFormData] = useState({
+//     name: '',
+//     email: '',
+//     password: ''
+//   });
+
+//   const handleInputChange = (e) => {
+//     setFormData({ ...formData, [e.target.name]: e.target.value });
+//   };
+
+//   const handleSubmit = () => {
+//     console.log('Account created:', formData);
+//   };
+
+//   const handleGoogleSignup = () => {
+//     console.log('Sign up with Google');
+//   };
+
+//   return (
+//     <div className="min-h-screen flex flex-col bg-white">
+//       {/* Header */}
+//       <header className="bg-white border-b border-gray-100">
+//         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+//           <div className="flex flex-col md:flex-row items-center justify-between h-20">
+//             {/* Logo */}
+//             <div className="flex items-center">
+//               <img src="Doko Logo.png" alt="doko" className="h-20 w-auto mt-2" />
+//             </div>
+
+//             {/* Navigation */}
+//             <nav className="flex justify-center mt-4 md:mt-0 space-x-6 text-sm">
+//               <Link to="/" className="text-gray-600 hover:text-gray-900">Home</Link>
+//               <Link to="/contact" className="text-gray-600 hover:text-gray-900">Contact</Link>
+//               <Link to="/about" className="text-gray-600 hover:text-gray-900">About</Link>
+//               <Link to="/signup" className="text-gray-600 hover:text-gray-900">Sign up</Link>
+//               <Link to="/login" className="text-gray-900 underline">Log in</Link>
+//             </nav>
+//           </div>
+//         </div>
+//       </header>
+
+//       {/* Main Content */}
+//       <main className="flex flex-col md:flex-row flex-grow">
+//         {/* Left Side - Welcome */}
+//         <div className="w-full md:w-1/2 bg-yellow-50 flex items-center justify-center px-8 py-12 text-center md:text-left mt-15 mb-15 ">
+//           <div>
+//             <h1 className="text-4xl sm:text-5xl font-bold text-yellow-900 mb-4">
+//               Welcome<br />to doko
+//             </h1>
+//             <p className="text-lg text-yellow-800 max-w-md mx-auto md:mx-0">
+//               Discover the heart of Nepal through its local treasures.
+//             </p>
+//           </div>
+//         </div>
+
+//         {/* Right Side - Signup Form */}
+//         <div className="w-full md:w-1/2 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12">
+//           <div className="w-full max-w-sm space-y-6">
+//             <div>
+//               <h2 className="text-2xl font-semibold text-gray-900 mb-2">Create an account</h2>
+//               <p className="text-black text-sm">Enter your details below</p>
+//             </div>
+
+//             <div className="space-y-4">
+//               <input
+//                 type="text"
+//                 name="name"
+//                 placeholder="Name"
+//                 value={formData.name}
+//                 onChange={handleInputChange}
+//                 className="w-full border-b border-gray-300 focus:border-gray-500 focus:outline-none bg-transparent py-2 placeholder-gray-400 text-gray-900"
+//               />
+//               <input
+//                 type="text"
+//                 name="email"
+//                 placeholder="Email or Phone Number"
+//                 value={formData.email}
+//                 onChange={handleInputChange}
+//                 className="w-full border-b border-gray-300 focus:border-gray-500 focus:outline-none bg-transparent py-2 placeholder-gray-400 text-gray-900"
+//               />
+//               <input
+//                 type="password"
+//                 name="password"
+//                 placeholder="Password"
+//                 value={formData.password}
+//                 onChange={handleInputChange}
+//                 className="w-full border-b border-gray-300 focus:border-gray-500 focus:outline-none bg-transparent py-2 placeholder-gray-400 text-gray-900"
+//               />
+//             </div>
+
+//             <button
+//               onClick={handleSubmit}
+//               className="w-full bg-red-500 hover:bg-red-600 text-white font-medium py-3 rounded transition"
+//             >
+//               Create Account
+//             </button>
+
+//             <button
+//               onClick={handleGoogleSignup}
+//               className="w-full border border-gray-300 hover:bg-gray-50 text-gray-700 font-medium py-3 rounded flex items-center justify-center gap-2 transition"
+//             >
+//               <svg className="w-5 h-5" viewBox="0 0 24 24">
+//                 <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+//                 <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+//                 <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+//                 <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+//               </svg>
+//               Sign up with Google
+//             </button>
+
+//             <p className="text-center text-gray-500 text-sm">
+//               Already have account?{' '}
+//               <Link to="/login" className="text-gray-900 underline">Log in</Link>
+//             </p>
+//           </div>
+//         </div>
+//       </main>
+
+//       {/* Footer */}
+//       <footer className="bg-black text-white py-10 px-4 sm:px-6 lg:px-8">
+//         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+//           {/* DOKO */}
+//           <div>
+//             <h3 className="text-lg font-medium mb-4">DOKO</h3>
+//             <p className="text-sm mb-1">Subscribe</p>
+//             <p className="text-gray-400 text-sm mb-3">Get 10% off your first order</p>
+//             <div className="flex border border-gray-600 rounded overflow-hidden">
+//               <input
+//                 type="email"
+//                 placeholder="Enter your email"
+//                 className="flex-grow px-3 py-2 text-sm bg-transparent text-white placeholder-gray-400 focus:outline-none w-10"
+//               />
+//               <button className="px-3 py-2 hover:text-gray-300">
+//                 <Send className="w-2 h-2 " />
+//               </button>
+//             </div>
+//           </div>
+
+//           {/* Support */}
+//           <div>
+//             <h3 className="text-lg font-medium mb-4">Support</h3>
+//             <ul className="text-sm space-y-1 text-gray-400">
+//               <li>111 Kathmandu</li>
+//               <li>+977/Nepal</li>
+//               <li>exclusive@gmail.com</li>
+//               <li>+977 9812345678</li>
+//             </ul>
+//           </div>
+
+//           {/* Account */}
+//           <div>
+//             <h3 className="text-lg font-medium mb-4">Account</h3>
+//             <ul className="text-sm space-y-1 text-gray-400">
+//               <li><Link to="/my-account" className="hover:text-white">My Account</Link></li>
+//               <li><Link to="/login" className="hover:text-white">Login / Register</Link></li>
+//               <li><Link to="/cart" className="hover:text-white">Cart</Link></li>
+//               <li><Link to="/wishlist" className="hover:text-white">Wishlist</Link></li>
+//               <li><Link to="/shop" className="hover:text-white">Shop</Link></li>
+//             </ul>
+//           </div>
+
+//           {/* Quick Link */}
+//           <div>
+//             <h3 className="text-lg font-medium mb-4">Quick Link</h3>
+//             <ul className="text-sm space-y-1 text-gray-400">
+//               <li><Link to="/privacy" className="hover:text-white">Privacy Policy</Link></li>
+//               <li><Link to="/terms" className="hover:text-white">Terms Of Use</Link></li>
+//               <li><Link to="/faq" className="hover:text-white">FAQ</Link></li>
+//               <li><Link to="/contact" className="hover:text-white">Contact</Link></li>
+//             </ul>
+//           </div>
+
+//           {/* Socials */}
+//           <div>
+//             <p className="text-lg font-medium mb-4">Follow us</p>
+//             <div className="flex gap-4 pt-2">
+//               <Facebook className="w-5 h-5 text-gray-400 hover:text-white" />
+//               <Twitter className="w-5 h-5 text-gray-400 hover:text-white" />
+//               <Instagram className="w-5 h-5 text-gray-400 hover:text-white" />
+//               <Linkedin className="w-5 h-5 text-gray-400 hover:text-white" />
+//             </div>
+//           </div>
+//         </div>
+//       </footer>
+//     </div>
+//   );
+// }
+
+
+import React, { useState } from 'react';
+import { Send, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+export default function DokoSignup() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: ''
+  });
+
+  const handleInputChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = () => {
+    console.log('Account created:', formData);
+  };
+
+  const handleGoogleSignup = () => {
+    console.log('Sign up with Google');
+  };
+
   return (
-    <>
-      <header className="navbar">
-        <div className="logo">
-          <img src="/Doko Logo.png" alt="Doko Logo" />
+    <div className="min-h-screen bg-white flex flex-col">
+     <header className="relative bg-white border-b border-gray-100 h-20">
+  <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between relative">
+    
+    {/* Logo aligned left */}
+    <div className="flex items-center">
+      <img src="Doko Logo.png" alt="doko" className="h-25 pt-2 w-auto" />
+    </div>
+
+    {/* Centered nav */}
+    <nav className="absolute left-1/2 transform -translate-x-1/2 flex space-x-8 text-sm items-center pt-1 pb-1">
+      <Link to="/" className="text-gray-600 hover:text-gray-900">Home</Link>
+      <Link to="/contact" className="text-gray-600 hover:text-gray-900">Contact</Link>
+      <Link to="/about" className="text-gray-600 hover:text-gray-900">About</Link>
+      <Link to="/signup" className="text-gray-600 hover:text-gray-900 underline">Sign up</Link>
+      <Link to="/myaccount" className="text-gray-900 ">Log in</Link>
+    </nav>
+  </div>
+</header>
+
+      {/* Main Content */}
+      <main className="flex flex-col md:flex-row flex-1">
+        {/* Welcome Section */}
+        <div className="w-full md:w-1/2 bg-yellow-50 flex items-center justify-center px-8 py-12 mt-15 mb-15">
+          <div className="text-center">
+            <h1 className="text-xl sm:text-5xl font-serif font-semibold text-yellow-900 mb-4 leading-tight">
+              Welcome<br />to doko
+            </h1>
+            <p className="text-2xl sm:text-xl text-yellow-900 font-light  mx-auto"><b>
+              Discover the heart of Nepal<br/>through its local treasures.
+              </b>
+            </p>
+          </div>
         </div>
-        <nav>
-          <a href="#">Home</a>
-          <Link to="/contact">Contact</Link>
-          <a href="#">About</a>
-          <a href="#" className="active">Sign up</a>
-        </nav>
-      </header>
 
-      <main className="container">
-        <section className="welcome-section">
-          <h1>
-            Welcome
-            <br />
-            to doko
-          </h1>
-          <p>
-            Discover the heart of Nepal
-            <br />
-            through its local treasures.
-          </p>
-        </section>
+        {/* Signup Form Section */}
+        <div className="w-full md:w-1/2 flex items-center justify-center py-12 px-8">
+          <div className="w-full max-w-sm">
+            <div className="mb-8">
+              <h2 className="text-2xl font-semibold text-gray-900 mb-2">Create an account</h2>
+              <p className="text-black text-sm">Enter your details below</p>
+            </div>
 
-        <section className="form-section">
-          <h2>Create an account</h2>
-          <p>Enter your details below</p>
-          <form>
-            <input type="text" placeholder="Name" required />
-            <input type="email" placeholder="Email or Phone Number" required />
-            <input type="password" placeholder="Password" required />
-            <button type="submit" className="primary-btn">Create Account</button>
-            <button type="button" className="google-btn">
-              <img src="/googlelogo.png" alt="g" />
+            <div className="space-y-4 mb-6">
+              <input
+                type="text"
+                name="name"
+                placeholder="Name"
+                value={formData.name}
+                onChange={handleInputChange}
+                className="w-full px-0 py-3 border-0 border-b border-gray-300 bg-transparent focus:border-gray-500 focus:outline-none text-gray-900 placeholder-gray-400"
+              />
+              <input
+                type="text"
+                name="email"
+                placeholder="Email or Phone Number"
+                value={formData.email}
+                onChange={handleInputChange}
+                className="w-full px-0 py-3 border-0 border-b border-gray-300 bg-transparent focus:border-gray-500 focus:outline-none text-gray-900 placeholder-gray-400"
+              />
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                value={formData.password}
+                onChange={handleInputChange}
+                className="w-full px-0 py-3 border-0 border-b border-gray-300 bg-transparent focus:border-gray-500 focus:outline-none text-gray-900 placeholder-gray-400"
+              />
+            </div>
+
+            <button
+              onClick={handleSubmit}
+              className="w-full bg-red-500 hover:bg-red-600 text-white font-medium py-3 px-4 rounded mb-4 transition-colors"
+            >
+              Create Account
+            </button>
+
+            <button
+              onClick={handleGoogleSignup}
+              className="w-full border border-gray-300 hover:bg-gray-50 text-gray-700 font-medium py-3 px-4 rounded mb-6 transition-colors flex items-center justify-center gap-2"
+            >
+              <svg className="w-5 h-5" viewBox="0 0 24 24">
+                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+              </svg>
               Sign up with Google
             </button>
-            <p className="login-text">
-              Already have an account?{" "}
-              <Link to="/my-account">
-                <u>My Account</u>
-              </Link>
+
+            <p className="text-center text-gray-500 text-sm">
+              Already have an account?{' '}
+              <Link to="/myaccount" className="text-gray-900 underline">Log in</Link>
             </p>
-          </form>
-        </section>
+          </div>
+        </div>
       </main>
 
-      <footer className="footer">
-        <div className="footer-section">
-          <h4>DOKO</h4>
-          <p>Subscribe</p>
-          <p>Get 10% off your first order</p>
-          <input type="email" placeholder="Enter your email" />
-        </div>
+      {/* Footer */}
+      <footer className="bg-black text-white">
+        <div className="max-w-7xl mx-auto px-6 py-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+            {/* DOKO Section */}
+            <div>
+              <h3 className="text-white font-medium text-lg mb-4">DOKO</h3>
+              <div className="space-y-3">
+                <p className="text-white text-sm">Subscribe</p>
+                <p className="text-gray-300 text-sm">Get 10% off your first order</p>
+                <div className="flex border border-gray-600 rounded">
+                  <input
+                    type="email"
+                    placeholder="Enter your email"
+                    className="bg-transparent px-3 py-2 text-sm flex-1 text-white placeholder-gray-400 focus:outline-none"
+                  />
+                </div>
+              </div>
+            </div>
 
-        <div className="footer-section">
-          <h4>Support</h4>
-          <p>111 Kathmandu,<br />+977 Nepal</p>
-          <p>edu4nepal@gmail.com</p>
-          <p>+977 9823456789</p>
-        </div>
+            {/* Support */}
+            <div>
+              <h3 className="text-white font-medium text-lg mb-4">Support</h3>
+              <div className="space-y-2 text-gray-300 text-sm">
+                <p>111 Kathmandu, Nepal</p>
+                <p>exclusive@gmail.com</p>
+                <p>+977 9812345678</p>
+              </div>
+            </div>
 
-        <div className="footer-section">
-          <h4>Account</h4>
-          <Link to="/my-account">My Account</Link><br /><br />
-          <a href="#">Cart</a><br /><br />
-          <a href="#">Wishlist</a><br /><br />
-          <a href="#">Shop</a>
-        </div>
+            {/* Account */}
+            <div>
+              <h3 className="text-white font-medium text-lg mb-4">Account</h3>
+              <div className="space-y-2 text-gray-300 text-sm">
+                <Link to="/my-account" className="block hover:text-white">My Account</Link>
+                <Link to="/login" className="block hover:text-white">Login / Register</Link>
+                <a href="#" className="block hover:text-white">Cart</a>
+                <a href="#" className="block hover:text-white">Wishlist</a>
+                <a href="#" className="block hover:text-white">Shop</a>
+              </div>
+            </div>
 
-        <div className="footer-section">
-          <h4>Quick Link</h4>
-          <a href="#">Privacy Policy</a><br /><br />
-          <a href="#">Terms of Use</a><br /><br />
-          <a href="#">FAQ</a><br /><br />
-          <Link to="/contact">Contact</Link>
+            {/* Quick Links */}
+            <div>
+              <h3 className="text-white font-medium text-lg mb-4">Quick Link</h3>
+              <div className="space-y-2 text-gray-300 text-sm">
+                <a href="#" className="block hover:text-white">Privacy Policy</a>
+                <a href="#" className="block hover:text-white">Terms Of Use</a>
+                <a href="#" className="block hover:text-white">FAQ</a>
+                <Link to="/contact" className="block hover:text-white">Contact</Link>
+              </div>
+            </div>
+
+            {/* Social */}
+            <div>
+              <p className="text-white font-medium text-lg mb-4">Follow us on</p>
+              <div className="flex gap-4 pt-2">
+                <Facebook className="w-5 h-5 text-gray-400 hover:text-white cursor-pointer" />
+                <Twitter className="w-5 h-5 text-gray-400 hover:text-white cursor-pointer" />
+                <Instagram className="w-5 h-5 text-gray-400 hover:text-white cursor-pointer" />
+                <Linkedin className="w-5 h-5 text-gray-400 hover:text-white cursor-pointer" />
+              </div>
+            </div>
+          </div>
         </div>
       </footer>
-    </>
+    </div>
   );
-};
-
-export default Signup;
+}
