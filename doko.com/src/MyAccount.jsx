@@ -1,110 +1,263 @@
-import React from "react";
+import React, { useState } from 'react';
 
-const MyAccount = () => {
+export default function AccountManagement() {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: 'haha@gmail.com',
+    address: 'solaghat, 0236, shivakatpur',
+    currentPassword: '',
+    newPassword: '',
+    confirmPassword: ''
+  });
+
+  const [activeSection, setActiveSection] = useState('profile');
+
+  const handleInputChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSave = () => {
+    console.log('Saving changes...', formData);
+  };
+
+  const handleCancel = () => {
+    setFormData({
+      firstName: '',
+      lastName: '',
+      currentPassword: '',
+      newPassword: '',
+      confirmPassword: ''
+    });
+  };
+
   return (
-    <div className="bg-white font-sans text-sm text-gray-700 min-h-screen">
-      <div className="flex justify-between items-center p-4 text-xs text-gray-500">
-        <nav className="space-x-1">
-          <a href="#" className="hover:underline">Home</a> /
-          <span className="text-gray-700 hover:text-black"> My Account</span>
-        </nav>
+    <div className="min-h-screen bg-white">
+      {/* Header */}
+      <div className="bg-white  px-4 py-3">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center space-x-2 text-sm text-gray-600">
+            <span className="hover:text-gray-900 cursor-pointer transition-colors duration-200">Home</span>
+            <span>/</span>
+            <span className="text-gray-900">My Account</span>
+          </div>
+          <div className="text-sm text-gray-600">
+            Welcome! <span className="text-gray-900 font-medium">user</span>
+          </div>
+        </div>
       </div>
 
-      <div className="flex max-w-6xl mx-auto p-6">
-        <aside className="w-1/4 pr-6 border-r">
-          <div className="mb-6">
-            <h3 className="font-semibold text-black mb-2">Manage My Account</h3>
-            <ul className="space-y-1 text-sm text-gray-600 pr-12">
-              <li className="text-red-500 font-medium">My Profile</li>
-              <li><a href="#" className="hover:text-black">Address Book</a></li>
-              <li><a href="#" className="hover:text-black">My Payment Options</a></li>
-            </ul>
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        <div className="flex flex-col lg:flex-row gap-8">
+          {/* Sidebar */}
+          <div className="lg:w-64 flex-shrink-0">
+            <div className="bg-white   overflow-hidden">
+              <div className="p-4 ">
+                <h2 className="text-lg font-semibold text-gray-900">Manage My Account</h2>
+              </div>
+              
+              <div className="p-2">
+                <div 
+                  className={`p-3 rounded-md cursor-pointer transition-all duration-200 ${
+                    activeSection === 'profile' 
+                      ? 'bg-red-50 text-red-600 border-l-4 border-red-500' 
+                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                  }`}
+                  onClick={() => setActiveSection('profile')}
+                >
+                  My Profile
+                </div>
+                <div 
+                  className={`p-3 rounded-md cursor-pointer transition-all duration-200 ${
+                    activeSection === 'address' 
+                      ? 'bg-red-50 text-red-600 border-l-4 border-red-500' 
+                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                  }`}
+                  onClick={() => setActiveSection('address')}
+                >
+                  Address Book
+                </div>
+                <div 
+                  className={`p-3 rounded-md cursor-pointer transition-all duration-200 ${
+                    activeSection === 'payment' 
+                      ? 'bg-red-50 text-red-600 border-l-4 border-red-500' 
+                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                  }`}
+                  onClick={() => setActiveSection('payment')}
+                >
+                  My Payment Options
+                </div>
+              </div>
+
+              <div className="p-4  border-gray-200">
+                <h3 className="text-base font-medium text-gray-900 mb-2">My Orders</h3>
+                <div className="space-y-1">
+                  <div 
+                    className={`p-3 rounded-md cursor-pointer transition-all duration-200 ${
+                      activeSection === 'returns' 
+                        ? 'bg-red-50 text-red-600 border-l-4 border-red-500' 
+                        : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                    }`}
+                    onClick={() => setActiveSection('returns')}
+                  >
+                    My Returns
+                  </div>
+                  <div 
+                    className={`p-3 rounded-md cursor-pointer transition-all duration-200 ${
+                      activeSection === 'cancellations' 
+                        ? 'bg-red-50 text-red-600 border-l-4 border-red-500' 
+                        : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                    }`}
+                    onClick={() => setActiveSection('cancellations')}
+                  >
+                    My Cancellations
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-4   border-gray-200">
+                <div 
+                  className={`p-3 rounded-md cursor-pointer transition-all duration-200 ${
+                    activeSection === 'wishlist' 
+                      ? 'bg-red-50 text-red-600 border-l-4 border-red-500' 
+                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                  }`}
+                  onClick={() => setActiveSection('wishlist')}
+                >
+                  My Wishlist
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="mb-6">
-            <h3 className="font-semibold text-black mb-2">My Orders</h3>
-            <ul className="space-y-1 text-sm text-gray-600">
-              <li><a href="#" className="hover:text-black">My Returns</a></li>
-              <li><a href="#" className="hover:text-black">My Cancellations</a></li>
-            </ul>
+
+          {/* Main Content */}
+          <div className="flex-1">
+            <div className="bg-white   ">
+              <div className="p-6 ">
+                <h1 className="text-xl font-semibold text-red-500">Edit Your Profile</h1>
+              </div>
+
+              <div className="p-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                  {/* First Name */}
+                  <div className="transform transition-all duration-200 focus-within:scale-[1.02]">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      First Name
+                    </label>
+                    <input
+                      type="text"
+                      name="firstName"
+                      value={formData.firstName}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-200"
+                      placeholder="First Name"
+                    />
+                  </div>
+
+                  {/* Last Name */}
+                  <div className="transform transition-all duration-200 focus-within:scale-[1.02]">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Last Name
+                    </label>
+                    <input
+                      type="text"
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-200"
+                      placeholder="Last Name"
+                    />
+                  </div>
+
+                  {/* Email */}
+                  <div className="transform transition-all duration-200 focus-within:scale-[1.02]">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-200"
+                    />
+                  </div>
+
+                  {/* Address */}
+                  <div className="transform transition-all duration-200 focus-within:scale-[1.02]">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Address
+                    </label>
+                    <input
+                      type="text"
+                      name="address"
+                      value={formData.address}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-200"
+                    />
+                  </div>
+                </div>
+
+                {/* Password Changes Section */}
+                <div className="mb-8">
+                  <h3 className="text-lg font-medium text-gray-900 mb-4">Password Changes</h3>
+                  <div className="space-y-4">
+                    <div className="transform transition-all duration-200 focus-within:scale-[1.02]">
+                      <input
+                        type="password"
+                        name="currentPassword"
+                        value={formData.currentPassword}
+                        onChange={handleInputChange}
+                        placeholder="Current Password"
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-200"
+                      />
+                    </div>
+                    <div className="transform transition-all duration-200 focus-within:scale-[1.02]">
+                      <input
+                        type="password"
+                        name="newPassword"
+                        value={formData.newPassword}
+                        onChange={handleInputChange}
+                        placeholder="New Password"
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-200"
+                      />
+                    </div>
+                    <div className="transform transition-all duration-200 focus-within:scale-[1.02]">
+                      <input
+                        type="password"
+                        name="confirmPassword"
+                        value={formData.confirmPassword}
+                        onChange={handleInputChange}
+                        placeholder="Confirm New Password"
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-200"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4 justify-end">
+                  <button
+                    onClick={handleCancel}
+                    className="px-6 py-3 text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all duration-200 transform hover:scale-105"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleSave}
+                    className="px-6 py-3 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                  >
+                    Save Changes
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
-          <div>
-            <h3 className="font-semibold text-black mb-2">My Wishlist</h3>
-          </div>
-        </aside>
-
-        <main className="flex-1 pl-6">
-          <h2 className="text-lg font-semibold text-red-600 mb-4">Edit Your Profile</h2>
-
-          <form className="space-y-4">
-            <div className="flex space-x-4">
-              <div className="w-1/2">
-                <label className="block text-gray-700">First Name</label>
-                <input
-                  type="text"
-                  placeholder="....."
-                  className="w-full mt-1 px-3 py-2 border rounded bg-gray-100"
-                />
-              </div>
-              <div className="w-1/2">
-                <label className="block text-gray-700">Last Name</label>
-                <input
-                  type="text"
-                  placeholder="....."
-                  className="w-full mt-1 px-3 py-2 border rounded bg-gray-100"
-                />
-              </div>
-            </div>
-
-            <div className="flex space-x-4">
-              <div className="w-1/2">
-                <label className="block text-gray-700">Email</label>
-                <input
-                  type="email"
-                  className="w-full mt-1 px-3 py-2 border rounded bg-gray-100"
-                />
-              </div>
-              <div className="w-1/2">
-                <label className="block text-gray-700">Address</label>
-                <input
-                  type="text"
-                  className="w-full mt-1 px-3 py-2 border rounded bg-gray-100"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-gray-700 mb-1">Password Changes</label>
-              <input
-                type="password"
-                placeholder="Current Password"
-                className="w-full mb-2 px-3 py-2 border rounded bg-gray-100"
-              />
-              <input
-                type="password"
-                placeholder="New Password"
-                className="w-full mb-2 px-3 py-2 border rounded bg-gray-100"
-              />
-              <input
-                type="password"
-                placeholder="Confirm New Password"
-                className="w-full px-3 py-2 border rounded bg-gray-100"
-              />
-            </div>
-
-            <div className="flex justify-end space-x-2 pt-4">
-              <button type="button" className="px-4 py-2 rounded border hover:bg-gray-100">
-                Cancel
-              </button>
-              <button type="submit" className="px-5 py-2 rounded bg-red-500 text-white hover:bg-red-600">
-                Save Changes
-              </button>
-            </div>
-          </form>
-        </main>
+        </div>
       </div>
     </div>
   );
-};
-
-export default MyAccount;
-//My account 
+}
