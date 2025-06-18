@@ -27,22 +27,32 @@ export default function DokoSignup() {
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
-     <header className="relative bg-white border-b border-gray-100 h-20">
-  <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between relative">
+     <header className="header-blur bg-white sticky top-0 z-50 shadow-sm transition-all duration-300 h-20">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8  h-full flex items-center justify-between relative">
     
     {/* Logo aligned left */}
-    <div className="flex items-center">
+    <div className="text-2xl font-bold text-red-500 hover:scale-105 transition-transform cursor-pointer">
       <img src="Doko Logo.png" alt="doko" className="h-25 pt-2 w-auto" />
     </div>
 
     {/* Centered nav */}
-    <nav className="absolute left-1/2 transform -translate-x-1/2 flex space-x-8 text-sm items-center pt-1 pb-1">
-      <Link to="/" className="text-gray-600 hover:text-gray-900">Home</Link>
-      <Link to="/contact" className="text-gray-600 hover:text-gray-900">Contact</Link>
-      <Link to="/about" className="text-gray-600 hover:text-gray-900">About</Link>
-      <Link to="/signup" className="text-gray-600 hover:text-gray-900 underline">Sign up</Link>
-      <Link to="/myaccount" className="text-gray-900 ">Log in</Link>
-    </nav>
+     <div className="hidden md:flex space-x-8 items-center absolute left-1/2 transform -translate-x-1/2 flex pt-1 pb-1">
+      {[
+        { name: 'Home', href: '/Home' },
+        { name: 'Contact', href: '/contact' },
+        { name: 'About', href: '/about' },
+        { name: 'Sign Up', href: '/' },
+      ].map((item) => (
+        <Link
+          key={item.name}
+          to={item.href}
+          className="text-gray-700 hover:text-red-500 font-medium transition-colors relative group"
+        >
+          {item.name}
+          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
+        </Link>
+      ))}
+    </div>
   </div>
 </header>
 
@@ -125,71 +135,95 @@ export default function DokoSignup() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-black text-white">
-        <div className="max-w-7xl mx-auto px-6 py-12">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
-            {/* DOKO Section */}
-            <div>
-              <h3 className="text-white font-medium text-lg mb-4">DOKO</h3>
-              <div className="space-y-3">
-                <p className="text-white text-sm">Subscribe</p>
-                <p className="text-gray-300 text-sm">Get 10% off your first order</p>
-                <div className="flex border border-gray-600 rounded">
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    className="bg-transparent px-3 py-2 text-sm flex-1 text-white placeholder-gray-400 focus:outline-none"
-                  />
+      <footer className="bg-black text-white mt-16">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+                  {/* DOKO Section */}
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-semibold">DOKO</h3>
+                    <h4 className="font-medium">Subscribe</h4>
+                    <p className="text-gray-400 text-sm">Get 10% off your first order</p>
+                    <div className="flex">
+                      <input
+                        type="email"
+                        placeholder="Enter your email"
+                        className="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-l-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all text-sm"
+                      />
+      
+                    </div>
+                  </div>
+      
+                  {/* Support Section */}
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-semibold">Support</h3>
+                    <div className="space-y-2 text-sm text-gray-400">
+                      <p>111 Kathmandu<br />+977Nepal</p>
+                      <a href="#" className="hover:text-red-400 transition-colors block">
+                        exclusive@gmail.com
+                      </a>
+                      <a href="#" className="hover:text-red-400 transition-colors block">
+                        +977 88123456678
+                      </a>
+                    </div>
+                  </div>
+      
+                  {/* Account Section */}
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-semibold">Account</h3>
+                   <div className="space-y-2">
+        {[
+          { name: 'My Account', href: '/my-account' },
+          { name: 'Login / Register', href: '/' },
+          { name: 'Cart', href: '/cart' },
+          { name: 'Wishlist', href: '/wishlist' },
+          { name: 'Shop', href: '/shop' },
+        ].map((item) => (
+          <a
+            key={item.name}
+            href={item.href}
+            className="block text-sm text-gray-400 hover:text-red-400 transition-all hover:translate-x-1"
+          >
+            {item.name}
+          </a>
+        ))}
+      </div>
+      
+                  </div>
+      
+                  {/* Quick Link Section */}
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-semibold">Quick Link</h3>
+                    <div className="space-y-2">
+                      {['Privacy Policy', 'Terms Of Use', 'FAQ', 'Contact'].map((item) => (
+                        <a
+                          key={item}
+                          href="#"
+                          className="block text-sm text-gray-400 hover:text-red-400 transition-all hover:translate-x-1"
+                        >
+                          {item}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+      
+                  
+                  <div className="space-y-4">
+                     <h3 className="text-lg font-semibold">Follow on</h3>
+                    <div className="flex space-x-3 pt-2">
+                      {[Facebook, Twitter, Instagram, Linkedin].map((Icon, index) => (
+                        <a
+                          key={index}
+                          href="#"
+                          className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-red-500 transition-all hover:-translate-y-1"
+                        >
+                          <Icon size={16} />
+                        </a>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-
-            {/* Support */}
-            <div>
-              <h3 className="text-white font-medium text-lg mb-4">Support</h3>
-              <div className="space-y-2 text-gray-300 text-sm">
-                <p>111 Kathmandu, Nepal</p>
-                <p>exclusive@gmail.com</p>
-                <p>+977 9812345678</p>
-              </div>
-            </div>
-
-            {/* Account */}
-            <div>
-              <h3 className="text-white font-medium text-lg mb-4">Account</h3>
-              <div className="space-y-2 text-gray-300 text-sm">
-                <Link to="/my-account" className="block hover:text-white">My Account</Link>
-                <Link to="/login" className="block hover:text-white">Login / Register</Link>
-                 <Link to="/404error" className="block hover:text-white">Cart</Link>
-                <a href="#" className="block hover:text-white">Wishlist</a>
-                <a href="#" className="block hover:text-white">Shop</a>
-              </div>
-            </div>
-
-            {/* Quick Links */}
-            <div>
-              <h3 className="text-white font-medium text-lg mb-4">Quick Link</h3>
-              <div className="space-y-2 text-gray-300 text-sm">
-                <a href="#" className="block hover:text-white">Privacy Policy</a>
-                <a href="#" className="block hover:text-white">Terms Of Use</a>
-                <a href="#" className="block hover:text-white">FAQ</a>
-                <Link to="/contact" className="block hover:text-white">Contact</Link>
-              </div>
-            </div>
-
-            {/* Social */}
-            <div>
-              <p className="text-white font-medium text-lg mb-4">Follow us on</p>
-              <div className="flex gap-4 pt-2">
-                <Facebook className="w-5 h-5 text-gray-400 hover:text-white cursor-pointer" />
-                <Twitter className="w-5 h-5 text-gray-400 hover:text-white cursor-pointer" />
-                <Instagram className="w-5 h-5 text-gray-400 hover:text-white cursor-pointer" />
-                <Linkedin className="w-5 h-5 text-gray-400 hover:text-white cursor-pointer" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
+            </footer>
     </div>
   );
 }
