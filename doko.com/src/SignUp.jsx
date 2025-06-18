@@ -160,7 +160,7 @@ export default function DokoSignup() {
               <div className="space-y-2 text-gray-300 text-sm">
                 <Link to="/my-account" className="block hover:text-white">My Account</Link>
                 <Link to="/login" className="block hover:text-white">Login / Register</Link>
-                <a href="#" className="block hover:text-white">Cart</a>
+                 <Link to="/404error" className="block hover:text-white">Cart</Link>
                 <a href="#" className="block hover:text-white">Wishlist</a>
                 <a href="#" className="block hover:text-white">Shop</a>
               </div>
