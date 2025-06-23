@@ -125,7 +125,7 @@ export default function Login() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
                   {/* Logo Section */}
                   <div className="space-y-4 flex flex-col items-start">
-                    <img src="/src/assets/doko.png" alt="doko logo" className="h-16 w-auto mb-4" />
+                    {/* Removed doko logo image as requested */}
                     <h3 className="text-lg font-semibold">DOKO</h3>
                     <h4 className="font-medium">Subscribe</h4>
                     <p className="text-gray-400 text-sm">Get 10% off your first order</p>

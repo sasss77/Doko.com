@@ -227,91 +227,93 @@ export default function About() {
       </div>
 
       {/* Footer */}
-      <footer className="bg-black text-white">
+      <footer className="bg-black text-white mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-            {/* DOKO Section */}
-            <div className="lg:col-span-1">
-              <div className="text-2xl font-bold mb-4">
-                <span className="bg-red-600 text-white px-2 py-1 rounded-tl-lg rounded-br-lg">do</span>
-                <span className="ml-1">KO</span>
-              </div>
-              <div className="mb-4">
-                <h4 className="font-semibold mb-2">Subscribe</h4>
-                <p className="text-sm text-gray-400 mb-3">Get 10% off your first order</p>
-                <div className="flex">
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    className="flex-1 px-3 py-2 bg-transparent border border-gray-600 text-white placeholder-gray-400 rounded-l-md focus:ring-red-500 focus:border-red-500 focus:outline-none"
-                  />
-                  <button className="px-4 py-2 bg-red-600 hover:bg-red-700 rounded-r-md transition-colors">→</button>
-                </div>
+            {/* Logo Section */}
+            <div className="space-y-4 flex flex-col items-start">
+              {/* Removed doko logo image as requested */}
+              <h3 className="text-lg font-semibold">DOKO</h3>
+              <h4 className="font-medium">Subscribe</h4>
+              <p className="text-gray-400 text-sm">Get 10% off your first order</p>
+              <div className="flex">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-l-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all text-sm"
+                />
+
               </div>
             </div>
 
-            {/* Support */}
-            <div>
-              <h4 className="font-semibold mb-4">Support</h4>
+            {/* Support Section */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">Support</h3>
               <div className="space-y-2 text-sm text-gray-400">
-                <p>111 Bijoy sarani, Dhaka,</p>
-                <p>DH 1515, Bangladesh.</p>
-                <p>exclusive@gmail.com</p>
-                <p>+88015-88888-9999</p>
+                <p>111 Kathmandu<br />+977Nepal</p>
+                <a href="#" className="hover:text-red-400 transition-colors block">
+                  exclusive@gmail.com
+                </a>
+                <a href="#" className="hover:text-red-400 transition-colors block">
+                  +977 88123456678
+                </a>
               </div>
             </div>
 
-            {/* Account */}
-            <div>
-              <h4 className="font-semibold mb-4">Account</h4>
-              <div className="space-y-2 text-sm text-gray-400">
-                <p className="hover:text-white cursor-pointer transition-colors">My Account</p>
-                <p className="hover:text-white cursor-pointer transition-colors">Login / Register</p>
-                <p className="hover:text-white cursor-pointer transition-colors">Cart</p>
-                <p className="hover:text-white cursor-pointer transition-colors">Wishlist</p>
-                <p className="hover:text-white cursor-pointer transition-colors">Shop</p>
+            {/* Account Section */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">Account</h3>
+              <div className="space-y-2">
+                {[
+                  { name: 'My Account', href: '/my-account' },
+                  { name: 'Login / Register', href: '/' },
+                  { name: 'Cart', href: '/cart' },
+                  { name: 'Wishlist', href: '/wishlist' },
+                  { name: 'Shop', href: '/shop' },
+                ].map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className="block text-sm text-gray-400 hover:text-red-400 transition-all hover:translate-x-1"
+                  >
+                    {item.name}
+                  </a>
+                ))}
+              </div>
+
+            </div>
+
+            {/* Quick Link Section */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">Quick Link</h3>
+              <div className="space-y-2">
+                {['Privacy Policy', 'Terms Of Use', 'FAQ', 'Contact'].map((item) => (
+                  <a
+                    key={item}
+                    href="#"
+                    className="block text-sm text-gray-400 hover:text-red-400 transition-all hover:translate-x-1"
+                  >
+                    {item}
+                  </a>
+                ))}
               </div>
             </div>
 
-            {/* Quick Link */}
-            <div>
-              <h4 className="font-semibold mb-4">Quick Link</h4>
-              <div className="space-y-2 text-sm text-gray-400">
-                <p className="hover:text-white cursor-pointer transition-colors">Privacy Policy</p>
-                <p className="hover:text-white cursor-pointer transition-colors">Terms Of Use</p>
-                <p className="hover:text-white cursor-pointer transition-colors">FAQ</p>
-                <p className="hover:text-white cursor-pointer transition-colors">Contact</p>
+
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">Follow on</h3>
+              <div className="flex space-x-3 pt-2">
+                {[Facebook, Twitter, Instagram, Linkedin].map((Icon, index) => (
+                  <a
+                    key={index}
+                    href="#"
+                    className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-red-500 transition-all hover:-translate-y-1"
+                  >
+                    <Icon size={16} />
+                  </a>
+                ))}
               </div>
             </div>
-
-            {/* Download App */}
-            <div>
-              <h4 className="font-semibold mb-4">Download App</h4>
-              <p className="text-xs text-gray-400 mb-3">Save $3 with App New User Only</p>
-              <div className="flex space-x-2 mb-4">
-                <div className="w-20 h-20 bg-white rounded-lg flex items-center justify-center">
-                  <div className="w-16 h-16 bg-black rounded grid grid-cols-3 gap-1 p-2">
-                    {[...Array(9)].map((_, i) => (
-                      <div key={i} className="bg-white rounded-sm"></div>
-                    ))}
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <div className="bg-gray-800 rounded px-3 py-1 text-xs">Google Play</div>
-                  <div className="bg-gray-800 rounded px-3 py-1 text-xs">App Store</div>
-                </div>
-              </div>
-              <div className="flex space-x-4">
-                <Facebook className="h-5 w-5 text-gray-400 hover:text-white cursor-pointer transition-colors" />
-                <Twitter className="h-5 w-5 text-gray-400 hover:text-white cursor-pointer transition-colors" />
-                <Instagram className="h-5 w-5 text-gray-400 hover:text-white cursor-pointer transition-colors" />
-                <Linkedin className="h-5 w-5 text-gray-400 hover:text-white cursor-pointer transition-colors" />
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-            <p className="text-sm text-gray-400">© Copyright Rimel 2022. All right reserved</p>
           </div>
         </div>
       </footer>
