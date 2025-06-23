@@ -4,6 +4,7 @@ import Login from "./Login";
 import Cart from "./cart";
 import About from "./About";
 import Wishlist from "./Wishlist";
+import Product from "./Product";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/about" element={<About />} />
         <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/product" element={<Product />} />
       </Routes>
     </Router>
    
