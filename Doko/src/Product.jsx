@@ -37,20 +37,20 @@ const Product = () => {
             </div>
 
             {/* Navigation */}
-            <nav className="hidden md:flex space-x-8">
-              <a href="#" className="text-gray-900 hover:text-gray-600 transition-colors">
-                Home
-              </a>
-              <a href="#" className="text-gray-900 hover:text-gray-600 transition-colors">
-                Contact
-              </a>
-              <a href="#" className="text-gray-900 hover:text-gray-600 transition-colors">
-                About
-              </a>
-              <a href="#" className="text-gray-900 hover:text-gray-600 transition-colors">
-                Sign Up
-              </a>
-            </nav>
+<nav className="hidden md:flex space-x-8">
+  <a href="#" className="text-gray-900 hover:text-red-500 transition-colors">
+    Home
+  </a>
+  <a href="#" className="text-red-900 hover:text-red-500 transition-colors">
+    Contact
+  </a>
+  <a href="#" className="text-gray-900 hover:text-red-500 transition-colors">
+    About
+  </a>
+  <a href="#" className="text-gray-900 hover:text-red-500 transition-colors">
+    Sign Up
+  </a>
+</nav>
 
             {/* Search and Icons */}
             <div className="flex items-center space-x-4">

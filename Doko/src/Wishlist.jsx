@@ -114,16 +114,16 @@ export default function Wishlist() {
 
             {/* Navigation */}
             <nav className="hidden md:flex space-x-12">
-              <a href="#" className="text-gray-700 hover:text-red-600 transition-colors">
+              <a href="#" className="text-gray-700 hover:text-red-500 transition-colors hover:underline">
                 Home
               </a>
-              <a href="#" className="text-gray-700 hover:text-red-600 transition-colors">
+              <a href="#" className="text-gray-700 hover:text-red-500 transition-colors hover:underline">
                 Contact
               </a>
-              <a href="#" className="text-gray-700 hover:text-red-600 transition-colors">
+              <a href="#" className="text-gray-700 hover:text-red-500 transition-colors hover:underline">
                 About
               </a>
-              <a href="#" className="text-gray-700 hover:text-red-600 transition-colors">
+              <a href="#" className="text-gray-700 hover:text-red-500 transition-colors hover:underline">
                 Sign Up
               </a>
             </nav>
