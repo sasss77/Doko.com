@@ -174,7 +174,7 @@ export default function DokoSignup() {
         {[
           { name: 'My Account', href: '/my-account' },
           { name: 'Login / Register', href: '/' },
-          { name: 'Cart', href: '/cart' },
+          { name: 'Cart', href: '/404error' },
           { name: 'Wishlist', href: '/wishlist' },
           { name: 'Shop', href: '/shop' },
         ].map((item) => (
