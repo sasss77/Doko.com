@@ -1,0 +1,91 @@
+// Footer.jsx
+import React from 'react';
+import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+
+export default function Footer() {
+  return (
+    <footer className="bg-black text-white mt-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+          {/* DOKO Section */}
+          {/* <div className="space-y-4">
+            <h3 className="text-lg font-semibold">DOKO</h3>
+            <h4 className="font-medium">Subscribe</h4>
+            <p className="text-gray-400 text-sm">Get 10% off your first order</p>
+            <div className="flex">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-l-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all text-sm"
+              />
+            </div>
+          </div> */}
+
+          {/* Support Section */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Support</h3>
+            <div className="space-y-2 text-sm text-gray-400">
+              <p>111 Kathmandu<br />+977 Nepal</p>
+              <a href="#" className="hover:text-red-400 transition-colors block">exclusive@gmail.com</a>
+              <a href="#" className="hover:text-red-400 transition-colors block">+977 88123456678</a>
+            </div>
+          </div>
+
+          {/* Account Section */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Account</h3>
+            <div className="space-y-2">
+              {[
+                { name: 'My Account', href: '/my-account' },
+                { name: 'Login / Register', href: '/' },
+                { name: 'Cart', href: '/404error' },
+                { name: 'Wishlist', href: '/wishlist' },
+                { name: 'Shop', href: '/AddProduct' },
+              ].map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="block text-sm text-gray-400 hover:text-red-400 transition-all hover:translate-x-1"
+                >
+                  {item.name}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Quick Link Section */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Quick Link</h3>
+            <div className="space-y-2">
+              {['Privacy Policy', 'Terms Of Use', 'FAQ', 'Contact'].map((item) => (
+                <a
+                  key={item}
+                  href="#"
+                  className="block text-sm text-gray-400 hover:text-red-400 transition-all hover:translate-x-1"
+                >
+                  {item}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Social Icons */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Follow on</h3>
+            <div className="flex space-x-3 pt-2">
+              {[Facebook, Twitter, Instagram, Linkedin].map((Icon, index) => (
+                <a
+                  key={index}
+                  href="#"
+                  className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-red-500 transition-all hover:-translate-y-1"
+                >
+                  <Icon size={16} />
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
