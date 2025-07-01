@@ -36,9 +36,9 @@ export default function Footer() {
             <h3 className="text-lg font-semibold">Account</h3>
             <div className="space-y-2">
               {[
-                { name: 'My Account', href: '/my-account' },
+                { name: 'My Account', href: '/account' },
                 { name: 'Login / Register', href: '/' },
-                { name: 'Cart', href: '/404error' },
+                { name: 'Cart', href: '/cart' },
                 { name: 'Wishlist', href: '/wishlist' },
                 { name: 'Shop', href: '/AddProduct' },
               ].map((item) => (

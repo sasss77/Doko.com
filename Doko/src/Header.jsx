@@ -13,8 +13,8 @@ export default function Header() {
         {/* Centered nav */}
         <div className="hidden md:flex space-x-8 items-center absolute left-1/2 transform -translate-x-1/2 flex pt-1 pb-1">
           {[
-            { name: 'Home', href: '/Home' },
-            { name: 'Contact', href: '/contact' },
+            { name: 'Home', href: '/HomePage' },
+            { name: 'Contact', href: '/Contact' },
             { name: 'About', href: '/about' },
             { name: 'Sign Up', href: '/' },
           ].map((item) => (
