@@ -90,7 +90,7 @@ export default function Header() {
         <div className={`md:hidden transition-all duration-300 overflow-hidden ${isMenuOpen ? 'max-h-64 pb-4' : 'max-h-0'}`}>
           <div className="flex flex-col space-y-3 pt-4 border-t border-gray-200">
             {[
-              { name: 'Home', href: '/home' },
+              { name: 'Home', href: '/HomePage' },
               { name: 'Contact', href: '/contact' },
               { name: 'About', href: '/about' },
               { name: 'Sign Up', href: '/' },
