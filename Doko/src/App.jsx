@@ -8,6 +8,7 @@ import Product from "./Product";
 import HomePage from "./Homepage";
 import Contact  from "./Contact";
 import MyAccount from "./MyAccount";
+import NotFound from "./NotFound";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/product" element={<Product />} />
         <Route path="/HomePage" element={<HomePage />} />
         <Route path="/account" element={<MyAccount />} />  
+        <Route path="/NotFound" element={<NotFound />} />  
       </Routes>
     </Router>
    
