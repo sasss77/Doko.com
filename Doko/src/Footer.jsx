@@ -4,23 +4,10 @@ import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="bg-black text-white mt-16">
+    <footer className="bg-black text-white mt-16 pl-55">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-          {/* DOKO Section */}
-          {/* <div className="space-y-4">
-            <h3 className="text-lg font-semibold">DOKO</h3>
-            <h4 className="font-medium">Subscribe</h4>
-            <p className="text-gray-400 text-sm">Get 10% off your first order</p>
-            <div className="flex">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-l-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all text-sm"
-              />
-            </div>
-          </div> */}
-
+          
           {/* Support Section */}
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">Support</h3>
@@ -84,6 +71,11 @@ export default function Footer() {
               ))}
             </div>
           </div>
+        </div>
+
+        {/* Copyright */}
+        <div className="mt-12  pt-6 pr-68 text-center text-sm text-gray-500">
+          © Doko 2025. All rights reserved.
         </div>
       </div>
     </footer>
