@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Footer from './Footer.jsx';
+import Navbar from './Navbar.jsx';
 
 export default function AccountManagement() {
   const [formData, setFormData] = useState({
@@ -37,6 +38,7 @@ export default function AccountManagement() {
 
   return (
     <div className="min-h-screen bg-white">
+      <Navbar />
       {/* Header */}
       <div className="bg-white  px-4 py-3">
         <div className="max-w-7xl mx-auto flex items-center justify-between">

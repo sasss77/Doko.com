@@ -278,7 +278,8 @@ const DokoContactPage = () => {
           
           {/* Left Contact Info */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg shadow-lg p-6 h-full flex flex-col hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+            <div className="bg-white rounded-lg shadow-lg p-6 min-h-[450px] flex flex-col hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+
               
               {/* Call To Us */}
               <div className="flex items-start space-x-4 mb-6">
@@ -311,7 +312,8 @@ const DokoContactPage = () => {
 
           {/* Right Contact Form */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full">
+           <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 min-h-[450px] flex flex-col justify-between">
+
               <div className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <input

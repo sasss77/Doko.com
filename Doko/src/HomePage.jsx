@@ -12,6 +12,9 @@ import {
   Shield,
   ArrowUp,
 } from 'lucide-react';
+import Footer from './Footer.jsx';
+import Header from './Header.jsx';
+
 
 const HomePage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
