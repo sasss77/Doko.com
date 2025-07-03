@@ -22,17 +22,17 @@ export default function About() {
 
   const teamMembers = [
     {
-      name: "Rajiv Shrestha",
+      name: "Saugat Paneru",
       position: "Founder & Chairman",
       image: "/placeholder.svg?height=300&width=250",
     },
     {
-      name: "Awishworya Rai",
+      name: "Rajiv Ganeju",
       position: "Managing Director",
       image: "/placeholder.svg?height=300&width=250",
     },
     {
-      name: "Ayush KC",
+      name: "Aayush Yadav",
       position: "Product Manager",
       image: "/placeholder.svg?height=300&width=250",
     },
@@ -83,14 +83,15 @@ export default function About() {
               <h1 className="text-5xl font-bold text-black mb-8">Our Story</h1>
               <div className="space-y-6 text-gray-600 leading-relaxed">
                 <p>
-                  Launched in 2015, Exclusive is South Asia's premier online shopping marketplace with an active presence
-                  in Bangladesh. Supported by wide range of tailored marketing, data and service solutions, Exclusive has
-                  10,500 sellers and 300 brands and serves 3 millions customers across the region.
+                 Launched in 2025, Doko is Nepal’s premier online marketplace dedicated to showcasing and selling traditional Nepali products. With a strong focus on preserving and promoting authentic craftsmanship, Doko connects local artisans, small businesses, and heritage brands with customers across the region and beyond.
                 </p>
                 <p>
-                  Exclusive has more than 1 Million products to offer, growing at a very fast. Exclusive offers a diverse
-                  assortment in categories ranging from consumer.
+                  Supported by a wide range of tailored marketing, data, and service solutions, Doko empowers over 10,500 sellers and 300 brands, serving more than 3 million customers who value quality, tradition, and cultural authenticity.
                 </p>
+                <p>Doko offers a diverse assortment of over 1 million products spanning categories such as handcrafted textiles, artisanal home décor, traditional jewelry, organic wellness products, and much more—all growing at a rapid pace.</p>
+                <p>Our mission is to celebrate Nepal’s rich cultural heritage while creating sustainable economic opportunities for communities. Whether you’re rediscovering timeless artistry, supporting local makers, or bringing a touch of Nepal into your home, Doko makes it easier than ever to experience and share the beauty of Nepali tradition.</p>
+                <p>With secure payment options, reliable nationwide delivery, and dedicated customer support, Doko is your trusted destination for authentic Nepali products—all in one place. From browsing our carefully curated collections to enjoying seamless checkout and fast shipping, every step of your shopping journey is designed to be simple, safe, and satisfying. 
+</p>
               </div>
             </div>
             <div className="relative">
