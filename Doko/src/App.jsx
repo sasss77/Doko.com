@@ -9,6 +9,7 @@ import HomePage from "./Homepage";
 import Contact  from "./Contact";
 import MyAccount from "./MyAccount";
 import NotFound from "./NotFound";
+import Dashboard from "./Dashboard";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="/HomePage" element={<HomePage />} />
         <Route path="/account" element={<MyAccount />} />  
         <Route path="/NotFound" element={<NotFound />} />  
+         <Route path="/Dashboard" element={<Dashboard />} />  
       </Routes>
     </Router>
    

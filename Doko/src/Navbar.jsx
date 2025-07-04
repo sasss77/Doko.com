@@ -169,7 +169,7 @@ export default function Header() {
   }, []);
 
   const navItems = [
-    { name: 'Home', href: '/Home' },
+    { name: 'Home', href: '/Dashboard' },
     { name: 'Contact', href: '/contact' },
     { name: 'About', href: '/about' },
     { name: 'Sign Up', href: '/' },
