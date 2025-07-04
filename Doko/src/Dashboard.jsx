@@ -13,11 +13,11 @@ import {
   ArrowUp,
 } from 'lucide-react';
 import Navbar from './Navbar.jsx'
-import Header from './Header.jsx';
 import Herosection from './Herosection.jsx';
 import BestSellingProducts from './BestSellingProducts.jsx';
 import AllProducts from './AllProducts.jsx';
 import NewArrival from './NewArrival.jsx';
+import Footer from './Footer.jsx';
 
 
 const Dashboard = () => {
