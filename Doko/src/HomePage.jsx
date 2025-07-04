@@ -15,6 +15,7 @@ import {
 import Footer from './Footer.jsx';
 import Header from './Header.jsx';
 import Herosection from './Herosection.jsx';
+import BestSellingProducts from './BestSellingProducts.jsx';
 
 
 const HomePage = () => {
@@ -22,6 +23,7 @@ const HomePage = () => {
     <div className="min-h-screen bg-gray-50">
       <Header />
       <Herosection />
+      <BestSellingProducts />
       <Footer />
     </div>
   );
