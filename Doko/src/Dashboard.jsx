@@ -12,18 +12,18 @@ import {
   Shield,
   ArrowUp,
 } from 'lucide-react';
-import Footer from './Footer.jsx';
-import Header from './Header.jsx';
+import Navbar from './Navbar.jsx'
 import Herosection from './Herosection.jsx';
 import BestSellingProducts from './BestSellingProducts.jsx';
 import AllProducts from './AllProducts.jsx';
 import NewArrival from './NewArrival.jsx';
+import Footer from './Footer.jsx';
 
 
-const HomePage = () => {
+const Dashboard = () => {
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
+      <Navbar />
       <Herosection />
       <BestSellingProducts />
       <AllProducts />
@@ -33,4 +33,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default Dashboard;
