@@ -10,6 +10,8 @@ import Contact  from "./Contact";
 import MyAccount from "./MyAccount";
 import NotFound from "./NotFound";
 import Dashboard from "./Dashboard";
+import ProductAdmin from './ProductAdmin';
+import AddProduct from './AddProduct';
 
 const App = () => {
   return (
@@ -25,6 +27,8 @@ const App = () => {
         <Route path="/account" element={<MyAccount />} />  
         <Route path="/NotFound" element={<NotFound />} />  
          <Route path="/Dashboard" element={<Dashboard />} />  
+          <Route path="/ProductAdmin" element={<ProductAdmin />} />  
+          <Route path="/AddProduct" element={<AddProduct />} />  
       </Routes>
     </Router>
    
