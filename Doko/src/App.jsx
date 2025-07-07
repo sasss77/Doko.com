@@ -13,6 +13,7 @@ import Dashboard from "./Dashboard";
 import ProductAdmin from './ProductAdmin';
 import AddProduct from './AddProduct';
 import Customer from './Customer';
+import AddCustomer from './AddCustomer';
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
           <Route path="/ProductAdmin" element={<ProductAdmin />} />  
           <Route path="/AddProduct" element={<AddProduct />} />  
            <Route path="/Customer" element={<Customer />} />  
+           <Route path="/AddCustomer" element={<AddCustomer />} />  
       </Routes>
     </Router>
    
