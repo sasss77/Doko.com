@@ -1,361 +1,462 @@
 import React, { useState } from 'react';
-import { 
-  ChevronDown, 
-  ChevronRight, 
-  BarChart3, 
-  Users, 
-  ShoppingCart, 
-  CreditCard, 
-  Settings, 
-  Bell,
-  Calendar,
-  Eye,
-  EyeOff,
-  Check
-} from 'lucide-react';
+import { Search, Filter, Download, Plus, Eye, Edit, Trash2, ChevronDown, ChevronLeft, ChevronRight, Bell, Menu, X } from 'lucide-react';
 
-export default function SecurityPasswordPage() {
-  const [sidebarExpanded, setSidebarExpanded] = useState({
-    users: true,
-    sellers: false,
-    customers: false
-  });
-  
-  const [activeTab, setActiveTab] = useState('Security');
-  const [passwordVisibility, setPasswordVisibility] = useState({
-    old: false,
-    new: false,
-    confirm: false
-  });
-  
-  const [formData, setFormData] = useState({
-    oldPassword: '',
-    newPassword: '',
-    confirmPassword: '@uysdJj11h'
-  });
+const OrderManagement = () => {
+  const [activeTab, setActiveTab] = useState('all');
+  const [selectedOrders, setSelectedOrders] = useState([]);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const [passwordRequirements, setPasswordRequirements] = useState({
-    minLength: true,
-    upperLower: true,
-    specialChars: true
-  });
+  const orders = [
+    {
+      id: 'O1231',
+      product: 'Kanky Kitadakate (Green)',
+      customer: 'Leslie Alexander',
+      price: '$21.78',
+      date: '04/17/23',
+      payment: 'Paid',
+      status: 'Shipping',
+      image: '/api/placeholder/40/40'
+    },
+    {
+      id: 'O1231',
+      product: 'Kanky Kitadakate (Green)',
+      customer: 'Leslie Alexander',
+      price: '$21.78',
+      date: '04/17/23',
+      payment: 'Unpaid',
+      status: 'Cancelled',
+      image: '/api/placeholder/40/40'
+    },
+    {
+      id: 'O1231',
+      product: 'Kanky Kitadakate (Green)',
+      customer: 'Leslie Alexander',
+      price: '$21.78',
+      date: '04/17/23',
+      payment: 'Paid',
+      status: 'Shipping',
+      image: '/api/placeholder/40/40'
+    },
+    {
+      id: 'O1231',
+      product: 'Story Honzo (Cream)',
+      customer: 'Leslie Alexander',
+      price: '$21.78',
+      date: '04/17/23',
+      payment: 'Paid',
+      status: 'Shipping',
+      image: '/api/placeholder/40/40'
+    },
+    {
+      id: 'O1231',
+      product: 'Kanky Kitadakate (Green)',
+      customer: 'Leslie Alexander',
+      price: '$21.78',
+      date: '04/17/23',
+      payment: 'Unpaid',
+      status: 'Cancelled',
+      image: '/api/placeholder/40/40'
+    },
+    {
+      id: 'O1231',
+      product: 'Kanky Kitadakate (Green)',
+      customer: 'Leslie Alexander',
+      price: '$21.78',
+      date: '04/17/23',
+      payment: 'Paid',
+      status: 'Shipping',
+      image: '/api/placeholder/40/40'
+    },
+    {
+      id: 'O1231',
+      product: 'Berge Coffe (Navy)',
+      customer: 'Leslie Alexander',
+      price: '$21.78',
+      date: '04/17/23',
+      payment: 'Unpaid',
+      status: 'Cancelled',
+      image: '/api/placeholder/40/40'
+    },
+    {
+      id: 'O1231',
+      product: 'Story Honzo (Cream)',
+      customer: 'Leslie Alexander',
+      price: '$21.78',
+      date: '04/17/23',
+      payment: 'Unpaid',
+      status: 'Cancelled',
+      image: '/api/placeholder/40/40'
+    }
+  ];
 
-  const toggleSidebar = (item) => {
-    setSidebarExpanded(prev => ({
-      ...prev,
-      [item]: !prev[item]
-    }));
+  const tabs = [
+    { id: 'all', label: 'All Orders (441)', active: true },
+    { id: 'shipping', label: 'Shipping (100)', active: false },
+    { id: 'completed', label: 'Completed (300)', active: false },
+    { id: 'cancelled', label: 'Cancel (41)', active: false }
+  ];
+
+  const sidebarItems = [
+    { icon: '📊', label: 'Dashboard', active: false },
+    { icon: '👥', label: 'Users', active: false, hasSubmenu: true },
+    { icon: '🏪', label: 'Sellers', active: false },
+    { icon: '👤', label: 'Customers', active: false },
+    { icon: '📦', label: 'Transaction (441)', active: true },
+    { icon: '👥', label: 'Customers', active: false },
+    { icon: '📦', label: 'Product', active: false }
+  ];
+
+  const handleSelectOrder = (orderId) => {
+    setSelectedOrders(prev => 
+      prev.includes(orderId) 
+        ? prev.filter(id => id !== orderId)
+        : [...prev, orderId]
+    );
   };
 
-  const togglePasswordVisibility = (field) => {
-    setPasswordVisibility(prev => ({
-      ...prev,
-      [field]: !prev[field]
-    }));
+  const handleSelectAll = () => {
+    if (selectedOrders.length === orders.length) {
+      setSelectedOrders([]);
+    } else {
+      setSelectedOrders(orders.map((_, index) => index));
+    }
   };
 
-  const handleInputChange = (field, value) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: value
-    }));
+  const getStatusColor = (status) => {
+    switch (status) {
+      case 'Shipping': return 'bg-purple-100 text-purple-600';
+      case 'Cancelled': return 'bg-red-100 text-red-600';
+      case 'Completed': return 'bg-green-100 text-green-600';
+      default: return 'bg-gray-100 text-gray-600';
+    }
   };
 
-  const tabs = ['Account', 'Security', 'Notification'];
+  const getPaymentColor = (payment) => {
+    switch (payment) {
+      case 'Paid': return 'bg-green-100 text-green-600';
+      case 'Unpaid': return 'bg-yellow-100 text-yellow-600';
+      default: return 'bg-gray-100 text-gray-600';
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200 px-6 py-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-4">
+      {/* Mobile Sidebar Overlay */}
+      {sidebarOpen && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
+      {/* Sidebar */}
+      <div className={`fixed left-0 top-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-50 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}>
+        <div className="p-4 border-b border-gray-200">
+          <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">30</span>
+              <div className="w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-lg">3</span>
               </div>
-              <div className="flex flex-col">
-                <div className="flex items-center">
-                  <span className="font-bold text-gray-900">K</span>
-                  <span className="text-red-500 font-bold">O</span>
+              <span className="font-bold text-xl">KRO</span>
+            </div>
+            <button 
+              onClick={() => setSidebarOpen(false)}
+              className="lg:hidden p-1 hover:bg-gray-100 rounded"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+
+        <div className="p-4">
+          <div className="text-xs text-gray-500 uppercase tracking-wide mb-4">GENERAL</div>
+          <nav className="space-y-2">
+            {sidebarItems.map((item, index) => (
+              <div key={index} className="group">
+                <div className={`flex items-center justify-between p-3 rounded-lg cursor-pointer transition-all duration-200 ${
+                  item.active 
+                    ? 'bg-red-500 text-white shadow-lg' 
+                    : 'text-gray-700 hover:bg-gray-100'
+                }`}>
+                  <div className="flex items-center space-x-3">
+                    <span className="text-lg">{item.icon}</span>
+                    <span className="font-medium">{item.label}</span>
+                  </div>
+                  {item.hasSubmenu && (
+                    <ChevronDown className="w-4 h-4 transition-transform duration-200" />
+                  )}
+                </div>
+              </div>
+            ))}
+          </nav>
+        </div>
+
+        <div className="absolute bottom-4 left-4 right-4">
+          <div className="flex items-center space-x-3 p-3 bg-gray-100 rounded-lg">
+            <div className="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center">
+              <span className="text-sm font-medium">GH</span>
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="font-medium text-sm truncate">Guy Hawkins</div>
+              <div className="text-xs text-gray-500">Admin</div>
+            </div>
+            <ChevronDown className="w-4 h-4 text-gray-500" />
+          </div>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="lg:ml-64">
+        {/* Header */}
+        <header className="bg-white shadow-sm border-b border-gray-200">
+          <div className="flex items-center justify-between px-4 py-3">
+            <div className="flex items-center space-x-4">
+              <button 
+                onClick={() => setSidebarOpen(true)}
+                className="lg:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              >
+                <Menu className="w-5 h-5" />
+              </button>
+              <div className="hidden sm:flex items-center space-x-2 text-sm text-gray-600">
+                <span>Dashboard</span>
+                <span>›</span>
+                <span>Orders</span>
+                <span>›</span>
+                <span className="text-gray-900 font-medium">All Orders</span>
+              </div>
+            </div>
+            <div className="flex items-center space-x-4">
+              <div className="relative">
+                <Bell className="w-5 h-5 text-gray-600 cursor-pointer hover:text-gray-900 transition-colors" />
+                <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+              </div>
+              <div className="relative">
+                <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center cursor-pointer hover:bg-red-600 transition-colors">
+                  <span className="text-white text-sm font-medium">4</span>
+                </div>
+                <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full flex items-center justify-center">
+                  <span className="text-white text-xs">4</span>
+                </span>
+              </div>
+              <div className="hidden sm:flex items-center space-x-2">
+                <div className="w-8 h-8 bg-gray-300 rounded-full"></div>
+                <div>
+                  <div className="text-sm font-medium">Guy Hawkins</div>
+                  <div className="text-xs text-gray-500">Admin</div>
                 </div>
               </div>
             </div>
-            <div className="w-8 h-8 border-2 border-gray-300 rounded flex items-center justify-center">
-              <Calendar className="w-4 h-4 text-gray-400" />
-            </div>
           </div>
-          
-          <div className="flex items-center space-x-4">
-            <div className="relative">
-              <Bell className="w-6 h-6 text-gray-400 cursor-pointer hover:text-gray-600 transition-colors" />
-              <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full text-xs text-white flex items-center justify-center">2</span>
-            </div>
-            <div className="relative">
-              <Bell className="w-6 h-6 text-gray-400 cursor-pointer hover:text-gray-600 transition-colors" />
-              <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full text-xs text-white flex items-center justify-center">1</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 rounded-full bg-gray-300 overflow-hidden">
-                <img src="/api/placeholder/32/32" alt="Guy Hawkins" className="w-full h-full object-cover" />
+        </header>
+
+        {/* Page Content */}
+        <div className="p-4 lg:p-6">
+          <div className="mb-6">
+            <h1 className="text-2xl font-bold text-gray-900 mb-2">Orders</h1>
+            
+            {/* Search and Actions */}
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0 mb-6">
+              <div className="relative flex-1 max-w-md">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                <input
+                  type="text"
+                  placeholder="Search for id, name product..."
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-200"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
               </div>
-              <div className="flex flex-col">
-                <span className="text-sm font-medium text-gray-900">Guy Hawkins</span>
-                <span className="text-xs text-gray-500">Admin</span>
+              <div className="flex items-center space-x-3">
+                <button className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                  <Filter className="w-4 h-4" />
+                  <span>Filter</span>
+                </button>
+                <button className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                  <Download className="w-4 h-4" />
+                  <span>Export</span>
+                </button>
+                <button className="flex items-center space-x-2 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors shadow-lg">
+                  <Plus className="w-4 h-4" />
+                  <span>New Order</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Tabs */}
+            <div className="flex space-x-1 mb-6 overflow-x-auto">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 whitespace-nowrap ${
+                    tab.id === 'all' 
+                      ? 'bg-red-500 text-white shadow-lg' 
+                      : 'text-gray-600 hover:bg-gray-100'
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Orders Table */}
+            <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full min-w-full">
+                  <thead className="bg-gray-50 border-b border-gray-200">
+                    <tr>
+                      <th className="w-12 px-6 py-3 text-left">
+                        <input
+                          type="checkbox"
+                          className="w-4 h-4 text-red-500 bg-gray-100 border-gray-300 rounded focus:ring-red-500"
+                          checked={selectedOrders.length === orders.length}
+                          onChange={handleSelectAll}
+                        />
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <div className="flex items-center space-x-1">
+                          <span>Orders</span>
+                          <ChevronDown className="w-4 h-4" />
+                        </div>
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <div className="flex items-center space-x-1">
+                          <span>Customer</span>
+                          <ChevronDown className="w-4 h-4" />
+                        </div>
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <div className="flex items-center space-x-1">
+                          <span>Price</span>
+                          <ChevronDown className="w-4 h-4" />
+                        </div>
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <div className="flex items-center space-x-1">
+                          <span>Date</span>
+                          <ChevronDown className="w-4 h-4" />
+                        </div>
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <div className="flex items-center space-x-1">
+                          <span>Payment</span>
+                          <ChevronDown className="w-4 h-4" />
+                        </div>
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <div className="flex items-center space-x-1">
+                          <span>Status</span>
+                          <ChevronDown className="w-4 h-4" />
+                        </div>
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <div className="flex items-center space-x-1">
+                          <span>Action</span>
+                          <ChevronDown className="w-4 h-4" />
+                        </div>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    {orders.map((order, index) => (
+                      <tr key={index} className="hover:bg-gray-50 transition-colors group">
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <input
+                            type="checkbox"
+                            className="w-4 h-4 text-red-500 bg-gray-100 border-gray-300 rounded focus:ring-red-500"
+                            checked={selectedOrders.includes(index)}
+                            onChange={() => handleSelectOrder(index)}
+                          />
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="flex items-center">
+                            <div className="w-10 h-10 bg-gray-200 rounded-lg mr-3 flex-shrink-0"></div>
+                            <div>
+                              <div className="text-sm font-medium text-gray-900">{order.id}</div>
+                              <div className="text-sm text-gray-500">{order.product}</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm text-gray-900">{order.customer}</div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm text-gray-900">{order.price}</div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm text-gray-900">{order.date}</div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${getPaymentColor(order.payment)}`}>
+                            {order.payment}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(order.status)}`}>
+                            {order.status}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="flex items-center space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <button className="p-1 hover:bg-gray-100 rounded">
+                              <Eye className="w-4 h-4 text-gray-500" />
+                            </button>
+                            <button className="p-1 hover:bg-gray-100 rounded">
+                              <Edit className="w-4 h-4 text-gray-500" />
+                            </button>
+                            <button className="p-1 hover:bg-gray-100 rounded">
+                              <Trash2 className="w-4 h-4 text-gray-500" />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Pagination */}
+              <div className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+                <div className="flex-1 flex justify-between sm:hidden">
+                  <button className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                    Previous
+                  </button>
+                  <button className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                    Next
+                  </button>
+                </div>
+                <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                  <div>
+                    <p className="text-sm text-gray-700">
+                      1 - 10 of 15 Pages
+                    </p>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-sm text-gray-700">This page on</span>
+                    <select className="border border-gray-300 rounded px-2 py-1 text-sm">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                    </select>
+                    <div className="flex space-x-1">
+                      <button className="p-1 hover:bg-gray-100 rounded">
+                        <ChevronLeft className="w-4 h-4" />
+                      </button>
+                      <button className="p-1 hover:bg-gray-100 rounded">
+                        <ChevronRight className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </header>
-
-      <div className="flex">
-        {/* Sidebar */}
-        <aside className="w-64 bg-white shadow-sm h-screen overflow-y-auto">
-          <div className="p-6">
-            <div className="space-y-6">
-              {/* General Section */}
-              <div>
-                <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">General</h3>
-                <nav className="space-y-1">
-                  <a href="#" className="flex items-center px-3 py-2 text-sm text-gray-700 rounded-lg hover:bg-gray-100 transition-colors">
-                    <BarChart3 className="w-4 h-4 mr-3 text-gray-400" />
-                    Dashboard
-                  </a>
-                  
-                  <div>
-                    <button 
-                      onClick={() => toggleSidebar('users')}
-                      className="w-full flex items-center justify-between px-3 py-2 text-sm text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
-                    >
-                      <div className="flex items-center">
-                        <Users className="w-4 h-4 mr-3 text-gray-400" />
-                        Users
-                      </div>
-                      {sidebarExpanded.users ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
-                    </button>
-                    {sidebarExpanded.users && (
-                      <div className="ml-6 mt-1 space-y-1">
-                        <a href="#" className="block px-3 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100 transition-colors">
-                          Sellers
-                        </a>
-                        <a href="#" className="block px-3 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100 transition-colors">
-                          Customers
-                        </a>
-                      </div>
-                    )}
-                  </div>
-                  
-                  <a href="#" className="flex items-center px-3 py-2 text-sm text-gray-700 rounded-lg hover:bg-gray-100 transition-colors">
-                    <CreditCard className="w-4 h-4 mr-3 text-gray-400" />
-                    Transaction (441)
-                  </a>
-                  
-                  <a href="#" className="flex items-center px-3 py-2 text-sm text-gray-700 rounded-lg hover:bg-gray-100 transition-colors">
-                    <Users className="w-4 h-4 mr-3 text-gray-400" />
-                    Customers
-                  </a>
-                  
-                  <a href="#" className="flex items-center px-3 py-2 text-sm text-gray-700 rounded-lg hover:bg-gray-100 transition-colors">
-                    <ShoppingCart className="w-4 h-4 mr-3 text-gray-400" />
-                    Product
-                  </a>
-                </nav>
-              </div>
-              
-              {/* Tools Section */}
-              <div>
-                <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Tools</h3>
-                <nav className="space-y-1">
-                  <a href="#" className="flex items-center px-3 py-2 text-sm text-white bg-red-500 rounded-lg">
-                    <Settings className="w-4 h-4 mr-3 text-white" />
-                    Account & Settings
-                  </a>
-                </nav>
-              </div>
-            </div>
-          </div>
-          
-          {/* Bottom User Section */}
-          <div className="absolute bottom-0 w-64 p-4 border-t border-gray-200 bg-white">
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 rounded-full bg-gray-300 overflow-hidden">
-                <img src="/api/placeholder/32/32" alt="Guy Hawkins" className="w-full h-full object-cover" />
-              </div>
-              <div className="flex-1">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-medium text-gray-900">Guy Hawkins</p>
-                    <p className="text-xs text-gray-500">Admin</p>
-                  </div>
-                  <ChevronDown className="w-4 h-4 text-gray-400" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </aside>
-
-        {/* Main Content */}
-        <main className="flex-1 p-6">
-          {/* Breadcrumb */}
-          <nav className="mb-6">
-            <div className="flex items-center space-x-2 text-sm text-gray-500">
-              <span>Dashboard</span>
-              <span>•</span>
-              <span>Profile</span>
-            </div>
-          </nav>
-
-          <div className="bg-white rounded-lg shadow-sm">
-            <div className="p-6 border-b border-gray-200">
-              <h1 className="text-2xl font-bold text-gray-900">Profile</h1>
-            </div>
-
-            {/* Tabs */}
-            <div className="border-b border-gray-200">
-              <nav className="flex px-6">
-                {tabs.map((tab) => (
-                  <button
-                    key={tab}
-                    onClick={() => setActiveTab(tab)}
-                    className={`px-4 py-3 text-sm font-medium border-b-2 transition-colors ${
-                      activeTab === tab
-                        ? 'border-red-500 text-red-600 bg-red-50'
-                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                    }`}
-                  >
-                    {tab}
-                  </button>
-                ))}
-              </nav>
-            </div>
-
-            <div className="p-6">
-              {activeTab === 'Security' && (
-                <div>
-                  <h2 className="text-lg font-semibold text-gray-900 mb-6">Password</h2>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                    {/* Old Password */}
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Old Password</label>
-                      <div className="relative">
-                        <input
-                          type={passwordVisibility.old ? 'text' : 'password'}
-                          value={formData.oldPassword}
-                          onChange={(e) => handleInputChange('oldPassword', e.target.value)}
-                          placeholder="••••••••••••"
-                          className="w-full px-3 py-2 pr-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
-                        />
-                        <button
-                          type="button"
-                          onClick={() => togglePasswordVisibility('old')}
-                          className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
-                        >
-                          {passwordVisibility.old ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                        </button>
-                      </div>
-                    </div>
-                    
-                    {/* New Password */}
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">New Password</label>
-                      <div className="relative">
-                        <input
-                          type={passwordVisibility.new ? 'text' : 'password'}
-                          value={formData.newPassword}
-                          onChange={(e) => handleInputChange('newPassword', e.target.value)}
-                          placeholder="••••••••••••"
-                          className="w-full px-3 py-2 pr-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
-                        />
-                        <button
-                          type="button"
-                          onClick={() => togglePasswordVisibility('new')}
-                          className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
-                        >
-                          {passwordVisibility.new ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                        </button>
-                      </div>
-                    </div>
-                    
-                    {/* Confirm Password */}
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
-                      <div className="relative">
-                        <input
-                          type={passwordVisibility.confirm ? 'text' : 'password'}
-                          value={formData.confirmPassword}
-                          onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
-                          className="w-full px-3 py-2 pr-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
-                        />
-                        <button
-                          type="button"
-                          onClick={() => togglePasswordVisibility('confirm')}
-                          className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
-                        >
-                          {passwordVisibility.confirm ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Password Requirements */}
-                  <div className="space-y-3 mb-6">
-                    <div className="flex items-center space-x-2">
-                      <div className={`w-4 h-4 rounded-full flex items-center justify-center ${passwordRequirements.minLength ? 'bg-green-500' : 'bg-gray-300'}`}>
-                        {passwordRequirements.minLength && <Check className="w-3 h-3 text-white" />}
-                      </div>
-                      <span className={`text-sm ${passwordRequirements.minLength ? 'text-green-600' : 'text-gray-500'}`}>
-                        Minimum 8 characters.
-                      </span>
-                    </div>
-                    
-                    <div className="flex items-center space-x-2">
-                      <div className={`w-4 h-4 rounded-full flex items-center justify-center ${passwordRequirements.upperLower ? 'bg-green-500' : 'bg-gray-300'}`}>
-                        {passwordRequirements.upperLower && <Check className="w-3 h-3 text-white" />}
-                      </div>
-                      <span className={`text-sm ${passwordRequirements.upperLower ? 'text-green-600' : 'text-gray-500'}`}>
-                        Use combination of uppercase and lowercase letters.
-                      </span>
-                    </div>
-                    
-                    <div className="flex items-center space-x-2">
-                      <div className={`w-4 h-4 rounded-full flex items-center justify-center ${passwordRequirements.specialChars ? 'bg-green-500' : 'bg-gray-300'}`}>
-                        {passwordRequirements.specialChars && <Check className="w-3 h-3 text-white" />}
-                      </div>
-                      <span className={`text-sm ${passwordRequirements.specialChars ? 'text-green-600' : 'text-gray-500'}`}>
-                        Use of special characters (e.g., !, @, #, $, %).
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex space-x-4">
-                    <button className="px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors">
-                      Update Password
-                    </button>
-                    <button className="px-6 py-2 text-gray-700 hover:text-gray-900 transition-colors">
-                      Cancel
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              {activeTab === 'Account' && (
-                <div className="text-center py-12">
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">Account Settings</h3>
-                  <p className="text-gray-500">Configure your account preferences here.</p>
-                </div>
-              )}
-
-              {activeTab === 'Notification' && (
-                <div className="text-center py-12">
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">Notification Settings</h3>
-                  <p className="text-gray-500">Manage your notification preferences here.</p>
-                </div>
-              )}
-            </div>
-          </div>
-        </main>
       </div>
     </div>
   );
-}
+};
+
+export default OrderManagement;
