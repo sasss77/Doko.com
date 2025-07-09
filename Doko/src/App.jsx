@@ -14,6 +14,7 @@ import ProductAdmin from './ProductAdmin';
 import AddProduct from './AddProduct';
 import Customer from './Customer';
 import AddCustomer from './AddCustomer';
+import EditProduct from './EditProduct';
 
 const App = () => {
   return (
@@ -33,6 +34,8 @@ const App = () => {
           <Route path="/AddProduct" element={<AddProduct />} />  
            <Route path="/Customer" element={<Customer />} />  
            <Route path="/AddCustomer" element={<AddCustomer />} />  
+            <Route path="/EditProduct" element={<EditProduct />} />  
+
       </Routes>
     </Router>
    
