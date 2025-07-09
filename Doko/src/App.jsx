@@ -16,6 +16,7 @@ import Customer from './Customer';
 import AddCustomer from './AddCustomer';
 import EditProduct from './EditProduct';
 import PersonalAccount from './PersonalAccount';
+import Security from './Security';
 
 const App = () => {
   return (
@@ -37,6 +38,7 @@ const App = () => {
            <Route path="/AddCustomer" element={<AddCustomer />} />  
             <Route path="/EditProduct" element={<EditProduct />} />  
             <Route path="/PersonalAccount" element={<PersonalAccount />} />  
+            <Route path="/Security" element={<Security />} />  
 
       </Routes>
     </Router>
