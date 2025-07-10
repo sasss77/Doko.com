@@ -21,6 +21,7 @@ import Order from './Order';
 import Seller from './Seller';
 import AddSeller from './AddSeller';
 import AdminDashboard from './AdminDashboard';
+import PrivacyPolicy from './PrivacyPolicy';
 
 const App = () => {
   return (
@@ -47,6 +48,7 @@ const App = () => {
             <Route path="/Seller" element={<Seller />} />  
               <Route path="/AddSeller" element={<AddSeller />} /> 
                <Route path="/AdminDashboard" element={<AdminDashboard />} /> 
+                 <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} /> 
 
 
 
