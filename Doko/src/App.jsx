@@ -20,6 +20,7 @@ import Security from './Security';
 import Order from './Order';
 import Seller from './Seller';
 import AddSeller from './AddSeller';
+import AdminDashboard from './AdminDashboard';
 
 const App = () => {
   return (
@@ -45,6 +46,8 @@ const App = () => {
             <Route path="/Order" element={<Order />} />  
             <Route path="/Seller" element={<Seller />} />  
               <Route path="/AddSeller" element={<AddSeller />} /> 
+               <Route path="/AdminDashboard" element={<AdminDashboard />} /> 
+
 
 
       </Routes>
