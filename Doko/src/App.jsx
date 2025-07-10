@@ -22,6 +22,7 @@ import Seller from './Seller';
 import AddSeller from './AddSeller';
 import AdminDashboard from './AdminDashboard';
 import PrivacyPolicy from './PrivacyPolicy';
+import TermsOfUse from './TermsOfUse';
 
 const App = () => {
   return (
@@ -49,6 +50,8 @@ const App = () => {
               <Route path="/AddSeller" element={<AddSeller />} /> 
                <Route path="/AdminDashboard" element={<AdminDashboard />} /> 
                  <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} /> 
+                  <Route path="/TermsOfUse" element={<TermsOfUse />} /> 
+
 
 
 
