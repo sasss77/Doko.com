@@ -36,7 +36,7 @@ const App = () => {
         <Route path="/product" element={<Product />} />
         <Route path="/HomePage" element={<HomePage />} />
         <Route path="/account" element={<MyAccount />} />  
-        <Route path="/NotFound" element={<NotFound />} />  
+        <Route path="/*" element={<NotFound />} />  
          <Route path="/Dashboard" element={<Dashboard />} />  
           <Route path="/ProductAdmin" element={<ProductAdmin />} />  
           <Route path="/AddProduct" element={<AddProduct />} />  
@@ -51,10 +51,6 @@ const App = () => {
                <Route path="/AdminDashboard" element={<AdminDashboard />} /> 
                  <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} /> 
                   <Route path="/TermsOfUse" element={<TermsOfUse />} /> 
-
-
-
-
       </Routes>
     </Router>
    
