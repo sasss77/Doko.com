@@ -1,363 +1,704 @@
-import React, { useState } from 'react';
-import { Search, Filter, Download, Plus, Eye, Edit, Trash2, Bell, Menu, X, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
 
-const CustomerPage = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+// import React, { useState, useRef, useEffect } from 'react';
+// import Logo from './assets/Doko Logo.png';
+// import {
+//   Search, Filter, Download, Plus, Eye, Edit, Trash2,
+//   Bell, MessageSquare, ChevronLeftCircle, ChevronRightCircle, ChevronLeft, ChevronRight
+// } from 'lucide-react';
+// import { useNavigate } from 'react-router-dom';
+
+// const customers = [
+//   { id: 1, customerId: 'ID 12452', name: 'ayush lal shrestha', contact: 'ayush@examp.com', phone: '+977986543210', membership: 'Regular', role: 'Active', address: '44800 jagati.bhaktapur' },
+//   { id: 2, customerId: 'ID 12451', name: 'hanish shrestha', contact: 'hanish@examp.com', phone: '+9779812345678', membership: 'Regular', role: 'Active', address: '44600 sallaghari.kathmandu' },
+//   { id: 3, customerId: 'ID 12453', name: 'krish khatri', contact: 'krish@examp.com', phone: '+977986543219', membership: 'Regular', role: 'Active', address: '44811 thimi.bhaktapur' },
+//   { id: 4, customerId: 'ID 12453', name: 'aishworya tamang', contact: 'tamang@examp.com', phone: '+977987687687', membership: 'Regular', role: 'Deleted', address: '33700 jagati.pokhara' },
+//   { id: 5, customerId: 'ID 12452', name: 'sadikshya gurung', contact: 'sadik@examp.com', phone: '+977900876687', membership: 'VIP', role: 'Deleted', address: 'jagati.pokharatucky 39495' },
+//   { id: 6, customerId: 'ID 12451', name: 'Leslie pradhan', contact: 'leslie@examp.com', phone: '+977986545678', membership: 'VIP', role: 'Active', address: '33700 jagati.pokhara' },
+//   { id: 7, customerId: 'ID 12345', name: 'Kristin joshi', contact: 'kristin@examp.com', phone: '+977988877667', membership: 'VIP', role: 'Suspended', address: '44600 darbarmarg.kathmandu' },
+//   { id: 8, customerId: 'ID 12451', name: 'bishwo maharjan', contact: 'bishwo@examp.com', phone: '+977955647890', membership: 'Regular', role: 'Active', address: '44600 baneshwor.kathmandu' }
+// ];
+
+// export default function CustomerPage() {
+//   const [sidebarOpen, setSidebarOpen] = useState(true);
+//   const [activeSidebarItem, setActiveSidebarItem] = useState('customers'); // customers or sellers or dashboard etc
+//   const [usersExpanded, setUsersExpanded] = useState(true); // toggle Users submenu
+//   const [searchTerm, setSearchTerm] = useState('');
+//   const [selectedCustomers, setSelectedCustomers] = useState([]);
+//   const [itemsPerPage, setItemsPerPage] = useState(10);
+//   const [currentPage, setCurrentPage] = useState(1);
+//   const [adminDropdownOpen, setAdminDropdownOpen] = useState(false);
+
+//   const navigate = useNavigate();
+//   const adminDropdownRef = useRef(null);
+
+//   // Filtered customers for search
+//   const filteredCustomers = customers.filter(c =>
+//     c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+//     c.customerId.toLowerCase().includes(searchTerm.toLowerCase())
+//   );
+
+//   const totalPages = Math.ceil(filteredCustomers.length / itemsPerPage);
+
+//   const handleSelectCustomer = (id) => {
+//     setSelectedCustomers(prev =>
+//       prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
+//     );
+//   };
+
+//   const handleSelectAll = () => {
+//     setSelectedCustomers(
+//       selectedCustomers.length === filteredCustomers.length ? [] : filteredCustomers.map(c => c.id)
+//     );
+//   };
+
+//   // Close admin dropdown if clicked outside
+//   useEffect(() => {
+//     function handleClickOutside(event) {
+//       if (adminDropdownRef.current && !adminDropdownRef.current.contains(event.target)) {
+//         setAdminDropdownOpen(false);
+//       }
+//     }
+//     document.addEventListener('mousedown', handleClickOutside);
+//     return () => document.removeEventListener('mousedown', handleClickOutside);
+//   }, []);
+
+//   // Sidebar main items (except Users, which has submenu)
+//   const sidebarItems = [
+//     { key: 'dashboard', label: 'Dashboard', icon: '📊' },
+//     { key: 'users', label: 'Users', icon: '👥', hasSubmenu: true },
+//     { key: 'transactions', label: 'Transaction (441)', icon: '💳' },
+//     { key: 'product', label: 'Product', icon: '📦' },
+//     { key: 'settings', label: 'Account & Settings', icon: '⚙️' },
+//   ];
+
+//   return (
+//     <div className="min-h-screen flex">
+//       {/* Sidebar */}
+//       <div className={`
+//         fixed inset-y-0 left-0 w-64 bg-white shadow-lg
+//         transform transition-transform duration-300 ease-in-out
+//         ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+//         z-50 flex flex-col
+//       `}>
+//         {/* Logo */}
+//         <div className="flex items-center justify-center pt-4 pb-1">
+//           <img src={Logo} alt="Doko Logo" className="w-28 h-auto object-contain" />
+//         </div>
+
+//         {/* Sidebar Menu */}
+//         <div className="p-4 flex-1 overflow-auto pt-1">
+//           <div className="text-xs text-gray-400 uppercase tracking-wide mb-4">GENERAL</div>
+
+//           <nav className="space-y-2">
+//             {sidebarItems.map(item => {
+//               if (item.hasSubmenu) {
+//                 return (
+//                   <div key={item.key}>
+//                     {/* Users main item */}
+//                     <div
+//                       onClick={() => setUsersExpanded(!usersExpanded)}
+//                       className={`flex items-center justify-between p-3 rounded-lg cursor-pointer
+//                         ${['customers', 'sellers'].includes(activeSidebarItem) ? 'bg-red-500 text-white shadow' : 'text-gray-700 hover:bg-gray-100'}
+//                       `}
+//                     >
+//                       <div className="flex items-center space-x-3">
+//                         <span>{item.icon}</span>
+//                         <span className="text-sm font-medium">{item.label}</span>
+//                       </div>
+//                       <svg
+//                         className={`w-4 h-4 transition-transform duration-200 ${usersExpanded ? 'rotate-90' : ''}`}
+//                         fill="none" stroke="currentColor" strokeWidth="2"
+//                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+//                       >
+//                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"></path>
+//                       </svg>
+//                     </div>
+
+//                     {/* Users submenu */}
+//                     {usersExpanded && (
+//                       <div className="ml-8 mt-1 flex flex-col space-y-1">
+//                         <div
+//                           onClick={() => setActiveSidebarItem('customers')}
+//                           className={`cursor-pointer rounded px-3 py-2 text-sm
+//                             ${activeSidebarItem === 'customers' ? 'bg-red-500 text-white' : 'hover:bg-gray-100 text-gray-700'}
+//                           `}
+//                         >
+//                           Customers
+//                         </div>
+//                         <div
+//                           onClick={() => {
+//                             setActiveSidebarItem('sellers');
+//                             navigate('/Seller'); // navigate to sellers page
+//                           }}
+//                           className={`cursor-pointer rounded px-3 py-2 text-sm
+//                             ${activeSidebarItem === 'sellers' ? 'bg-red-500 text-white' : 'hover:bg-gray-100 text-gray-700'}
+//                           `}
+//                         >
+//                           Sellers
+//                         </div>
+//                       </div>
+//                     )}
+//                   </div>
+//                 );
+//               }
+
+//               return (
+//                 <div
+//                   key={item.key}
+//                   onClick={() => {
+//                     setActiveSidebarItem(item.key);
+//                     navigate(`/${item.key}`);
+//                   }}
+//                   className={`flex items-center p-3 rounded-lg cursor-pointer
+//                     ${activeSidebarItem === item.key ? 'bg-red-500 text-white shadow' : 'text-gray-700 hover:bg-gray-100'}
+//                   `}
+//                 >
+//                   <span className="mr-3">{item.icon}</span>
+//                   <span className="text-sm font-medium">{item.label}</span>
+//                 </div>
+//               );
+//             })}
+//           </nav>
+//         </div>
+//       </div>
+
+//       {/* Main content */}
+//       <div className={`flex-1 flex flex-col transition-all duration-300 ${sidebarOpen ? 'ml-64' : 'ml-0'} min-h-screen bg-gray-50`}>
+//         {/* Top Navbar */}
+//         <header className="bg-[#e9e9e9] px-6 py-3 flex justify-between items-center shadow-sm">
+//           <button
+//             onClick={() => setSidebarOpen(!sidebarOpen)}
+//             className="text-gray-600 p-2 rounded hover:bg-gray-200"
+//             aria-label={sidebarOpen ? 'Close sidebar' : 'Open sidebar'}
+//           >
+//             {sidebarOpen ? (
+//               <ChevronLeftCircle className="w-6 h-6" />
+//             ) : (
+//               <ChevronRightCircle className="w-6 h-6" />
+//             )}
+//           </button>
+
+//           <div className="flex items-center space-x-4">
+//             <Bell className="h-5 w-5 text-gray-600" />
+//             <MessageSquare className="h-5 w-5 text-gray-600" />
+
+//             {/* Admin Dropdown */}
+//             <div className="relative" ref={adminDropdownRef}>
+//               <button
+//                 onClick={() => setAdminDropdownOpen(!adminDropdownOpen)}
+//                 className="flex items-center space-x-2 focus:outline-none"
+//                 aria-haspopup="true"
+//                 aria-expanded={adminDropdownOpen}
+//               >
+//                 <div className="w-8 h-8 bg-gray-300 rounded-full" />
+//                 <div className="hidden sm:block">
+//                   <div className="text-sm font-medium text-gray-800">Guy Hawkins</div>
+//                   <div className="text-xs text-gray-500">Admin</div>
+//                 </div>
+//               </button>
+
+//               {adminDropdownOpen && (
+//                 <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-md shadow-lg z-50">
+//                   <button
+//                     onClick={() => {
+//                       setAdminDropdownOpen(false);
+//                       // Add your logout logic here
+//                       alert('Logged out!');
+//                       navigate('/login');
+//                     }}
+//                     className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50"
+//                   >
+//                     Logout
+//                   </button>
+//                 </div>
+//               )}
+//             </div>
+//           </div>
+//         </header>
+
+//         {/* Main Section */}
+//         <main className="p-6 flex flex-col flex-grow overflow-auto">
+//           {activeSidebarItem === 'customers' ? (
+//             <>
+//               {/* Title */}
+//               <div className="mb-6">
+//                 <h1 className="text-xl font-semibold text-gray-800">Customer Dashboard</h1>
+//                 <div className="text-sm text-gray-500">Dashboard ▶ Customers</div>
+//               </div>
+
+//               {/* Actions */}
+//               <div className="flex flex-col sm:flex-row items-center justify-between mb-6">
+//                 <div className="relative w-full sm:w-96 mb-4 sm:mb-0">
+//                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+//                   <input
+//                     type="text"
+//                     placeholder="Search for id, name Customer"
+//                     value={searchTerm}
+//                     onChange={(e) => setSearchTerm(e.target.value)}
+//                     className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500"
+//                   />
+//                 </div>
+//                 <div className="flex items-center space-x-3">
+//                   <button className="flex items-center px-4 py-2 border border-gray-300 rounded-lg">
+//                     <Filter className="h-4 w-4 mr-1" /> Filter
+//                   </button>
+//                   <button className="flex items-center px-4 py-2 border border-gray-300 rounded-lg">
+//                     <Download className="h-4 w-4 mr-1" /> Export
+//                   </button>
+//                   <button
+//                     onClick={() => navigate('AddCustomer')}
+//                     className="flex items-center px-4 py-2 bg-red-500 text-white rounded-lg"
+//                   >
+//                     <Plus className="h-4 w-4 mr-1" /> Add Customer
+//                   </button>
+//                 </div>
+//               </div>
+
+//               {/* Table */}
+//               <div className="bg-white rounded-lg shadow overflow-x-auto flex-grow">
+//                 <table className="min-w-full">
+//                   <thead className="bg-gray-50">
+//                     <tr>
+//                       <th className="px-6 py-3">
+//                         <input
+//                           type="checkbox"
+//                           checked={selectedCustomers.length === filteredCustomers.length && filteredCustomers.length > 0}
+//                           onChange={handleSelectAll}
+//                           className="text-red-500"
+//                         />
+//                       </th>
+//                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500">Name Customer</th>
+//                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500">Contact</th>
+//                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500">Membership Status</th>
+//                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500">Role</th>
+//                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500">Address</th>
+//                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500">Action</th>
+//                     </tr>
+//                   </thead>
+//                   <tbody className="divide-y divide-gray-200">
+//                     {filteredCustomers.slice(0, itemsPerPage).map(c => (
+//                       <tr key={c.id} className="hover:bg-gray-50">
+//                         <td className="px-6 py-4">
+//                           <input
+//                             type="checkbox"
+//                             checked={selectedCustomers.includes(c.id)}
+//                             onChange={() => handleSelectCustomer(c.id)}
+//                             className="text-red-500"
+//                           />
+//                         </td>
+//                         <td className="px-6 py-4 text-sm">
+//                           <div className="text-red-500 font-medium text-xs">{c.customerId}</div>
+//                           <div className="text-gray-900 font-medium">{c.name}</div>
+//                         </td>
+//                         <td className="px-6 py-4 text-sm">
+//                           <div>{c.contact}</div>
+//                           <div className="text-gray-500">{c.phone}</div>
+//                         </td>
+//                         <td className="px-6 py-4 text-sm">{c.membership}</td>
+//                         <td className="px-6 py-4 text-sm">{c.role}</td>
+//                         <td className="px-6 py-4 text-sm truncate max-w-xs">{c.address}</td>
+//                         <td className="px-6 py-4 text-sm">
+//                           <div className="flex space-x-2">
+//                             <button className="text-gray-500 hover:text-gray-700" aria-label="View"><Eye className="w-4 h-4" /></button>
+//                             <button className="text-gray-500 hover:text-gray-700" aria-label="Edit"><Edit className="w-4 h-4" /></button>
+//                             <button className="text-red-500 hover:text-red-700" aria-label="Delete"><Trash2 className="w-4 h-4" /></button>
+//                           </div>
+//                         </td>
+//                       </tr>
+//                     ))}
+//                   </tbody>
+//                 </table>
+//               </div>
+
+//               {/* Pagination */}
+//               <div className="flex items-center justify-between mt-4">
+//                 <div className="text-sm text-gray-500">
+//                   Showing {Math.min(itemsPerPage, filteredCustomers.length)} of {filteredCustomers.length} customers
+//                 </div>
+//                 <div className="flex items-center space-x-2">
+//                   <span className="text-sm">Items per page:</span>
+//                   <select
+//                     value={itemsPerPage}
+//                     onChange={(e) => setItemsPerPage(Number(e.target.value))}
+//                     className="border border-gray-300 rounded px-2 py-1 text-sm"
+//                   >
+//                     {[10, 25, 50].map(n => (
+//                       <option key={n} value={n}>{n}</option>
+//                     ))}
+//                   </select>
+//                   <button
+//                     onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+//                     disabled={currentPage === 1}
+//                     className="p-2 border rounded disabled:opacity-50"
+//                     aria-label="Previous page"
+//                   >
+//                     <ChevronLeft className="h-4 w-4" />
+//                   </button>
+//                   <button
+//                     onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+//                     disabled={currentPage === totalPages}
+//                     className="p-2 border rounded disabled:opacity-50"
+//                     aria-label="Next page"
+//                   >
+//                     <ChevronRight className="h-4 w-4" />
+//                   </button>
+//                 </div>
+//               </div>
+//             </>
+//           ) : (
+//             <div className="p-6 text-gray-700 text-center">
+//               {activeSidebarItem === 'sellers' ? 'Sellers page is separate. Navigate there to view sellers.' : 'Select an option from the sidebar.'}
+//             </div>
+//           )}
+//         </main>
+//       </div>
+//     </div>
+//   );
+// }
+
+
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Logo from './assets/Doko Logo.png';
+import {
+  Search, Filter, Download, Plus, Eye, Edit, Trash2,
+  Bell, MessageSquare, ChevronLeftCircle, ChevronRightCircle, ChevronLeft, ChevronRight
+} from 'lucide-react';
+
+const customers = [
+  { id: 1, customerId: 'ID 12452', name: 'ayush lal shrestha', contact: 'ayush@examp.com', phone: '+977986543210', membership: 'Regular', role: 'Active', address: '44800 jagati.bhaktapur' },
+  { id: 2, customerId: 'ID 12451', name: 'hanish shrestha', contact: 'hanish@examp.com', phone: '+9779812345678', membership: 'Regular', role: 'Active', address: '44600 sallaghari.kathmandu' },
+  { id: 3, customerId: 'ID 12453', name: 'krish khatri', contact: 'krish@examp.com', phone: '+977986543219', membership: 'Regular', role: 'Active', address: '44811 thimi.bhaktapur' },
+  { id: 4, customerId: 'ID 12453', name: 'aishworya tamang', contact: 'tamang@examp.com', phone: '+977987687687', membership: 'Regular', role: 'Deleted', address: '33700 jagati.pokhara' },
+  { id: 5, customerId: 'ID 12452', name: 'sadikshya gurung', contact: 'sadik@examp.com', phone: '+977900876687', membership: 'VIP', role: 'Deleted', address: 'jagati.pokharatucky 39495' },
+  { id: 6, customerId: 'ID 12451', name: 'Leslie pradhan', contact: 'leslie@examp.com', phone: '+977986545678', membership: 'VIP', role: 'Active', address: '33700 jagati.pokhara' },
+  { id: 7, customerId: 'ID 12345', name: 'Kristin joshi', contact: 'kristin@examp.com', phone: '+977988877667', membership: 'VIP', role: 'Suspended', address: '44600 darbarmarg.kathmandu' },
+  { id: 8, customerId: 'ID 12451', name: 'bishwo maharjan', contact: 'bishwo@examp.com', phone: '+977955647890', membership: 'Regular', role: 'Active', address: '44600 baneshwor.kathmandu' }
+];
+
+export default function CustomerPage() {
+  const navigate = useNavigate();
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [activeSidebarItem, setActiveSidebarItem] = useState('customers'); // customers or sellers or dashboard etc
+  const [usersExpanded, setUsersExpanded] = useState(true); // toggle Users submenu
+  const [searchTerm, setSearchTerm] = useState('');
   const [selectedCustomers, setSelectedCustomers] = useState([]);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  const customers = [
-    {
-      id: 1,
-      customerId: 'ID 12451',
-      name: 'Leslie Alexander',
-      contact: 'georgia@examp...',
-      phone: '+62 819 1314 1435',
-      purchases: '$21.78',
-      orders: '30 Order',
-      address: '2972 Westheimer Rd. Santa Ana, Illinois 85486'
-    },
-    {
-      id: 2,
-      customerId: 'ID 12452',
-      name: 'Guy Hawkins',
-      contact: 'guy@examp. com',
-      phone: '+62 819 1314 1435',
-      purchases: '$21.78',
-      orders: '30 Order',
-      address: '4517 Washington Ave. Manchester, Kentucky 39495'
-    },
-    {
-      id: 3,
-      customerId: 'ID 12453',
-      name: 'Kristin Watson',
-      contact: 'kristin@examp...',
-      phone: '+62 819 1314 1435',
-      purchases: '$21.78',
-      orders: '30 Order',
-      address: '2118 Thornridge Cir. Syracuse, Connecticut 35624'
-    },
-    {
-      id: 4,
-      customerId: 'ID 12453',
-      name: 'Kristin Watson',
-      contact: 'kristin@examp...',
-      phone: '+62 819 1314 1435',
-      purchases: '$21.78',
-      orders: '30 Order',
-      address: '2118 Thornridge Cir. Syracuse, Connecticut 35624'
-    },
-    {
-      id: 5,
-      customerId: 'ID 12452',
-      name: 'Guy Hawkins',
-      contact: 'guy@examp.com',
-      phone: '+62 819 1314 1435',
-      purchases: '$21.78',
-      orders: '30 Order',
-      address: '4517 Washington Ave. Manchester, Kentucky 39495'
-    },
-    {
-      id: 6,
-      customerId: 'ID 12451',
-      name: 'Leslie Alexander',
-      contact: 'georgia@examp...',
-      phone: '+62 819 1314 1435',
-      purchases: '$21.78',
-      orders: '30 Order',
-      address: '2972 Westheimer Rd. Santa Ana, Illinois 85486'
-    },
-    {
-      id: 7,
-      customerId: 'ID 12345',
-      name: 'Kristin Watson',
-      contact: 'kristin@examp...',
-      phone: '+62 819 1314 1435',
-      purchases: '$21.78',
-      orders: '30 Order',
-      address: '2118 Thornridge Cir. Syracuse, Connecticut 35624'
-    },
-    {
-      id: 8,
-      customerId: 'ID 12451',
-      name: 'Leslie Alexander',
-      contact: 'georgia@examp...',
-      phone: '+62 819 1314 1435',
-      purchases: '$21.78',
-      orders: '30 Order',
-      address: '2972 Westheimer Rd. Santa Ana, Illinois 85486'
-    }
-  ];
+  // Filtered customers for search
+  const filteredCustomers = customers.filter(c =>
+    c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    c.customerId.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-  const sidebarItems = [
-    { icon: '📊', label: 'Dashboard', active: false },
-    { icon: '👤', label: 'Users', active: false, hasSubmenu: true },
-    { icon: '🏪', label: 'Sellers', active: false, hasSubmenu: true },
-    { icon: '👥', label: 'Customers', active: true },
-    { icon: '💳', label: 'Transaction (441)', active: false },
-    { icon: '👥', label: 'Customer', active: false },
-    { icon: '📦', label: 'Product', active: false }
-  ];
+  const totalPages = Math.ceil(filteredCustomers.length / itemsPerPage);
 
-  const handleSelectCustomer = (customerId) => {
-    setSelectedCustomers(prev => 
-      prev.includes(customerId) 
-        ? prev.filter(id => id !== customerId)
-        : [...prev, customerId]
+  const handleSelectCustomer = (id) => {
+    setSelectedCustomers(prev =>
+      prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
     );
   };
 
   const handleSelectAll = () => {
     setSelectedCustomers(
-      selectedCustomers.length === customers.length ? [] : customers.map(c => c.id)
+      selectedCustomers.length === filteredCustomers.length ? [] : filteredCustomers.map(c => c.id)
     );
   };
 
-  const totalPages = Math.ceil(customers.length / itemsPerPage);
+  // Sidebar main items (except Users, which has submenu)
+  const sidebarItems = [
+    { key: 'dashboard', label: 'Dashboard', icon: '📊', path: '/AdminDashboard' },
+    { key: 'users', label: 'Users', icon: '👥', hasSubmenu: true },
+    { key: 'transactions', label: 'Transaction (441)', icon: '💳', path: '/Transaction' }, // if applicable
+    { key: 'product', label: 'Product', icon: '📦', path: '/ProductAdmin' },
+    { key: 'settings', label: 'Account & Settings', icon: '⚙️', path: '/PersonalAccount' },
+  ];
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="min-h-screen flex">
       {/* Sidebar */}
-      <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 lg:static lg:inset-0`}>
-        <div className="flex items-center justify-between p-4 border-b border-gray-200">
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">JO</span>
-            </div>
-            <span className="font-semibold text-gray-800">JOKO</span>
-          </div>
-          <button onClick={() => setSidebarOpen(false)} className="lg:hidden">
-            <X className="h-5 w-5 text-gray-500" />
-          </button>
+      <div className={`
+        fixed inset-y-0 left-0 w-64 bg-white shadow-lg
+        transform transition-transform duration-300 ease-in-out
+        ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+        z-50 flex flex-col
+      `}>
+        {/* Logo */}
+        <div className="flex items-center justify-center pt-4 pb-1">
+          <img src={Logo} alt="Doko Logo" className="w-28 h-auto object-contain" />
         </div>
-        
-        <div className="p-4">
-          <div className="text-xs text-gray-400 uppercase tracking-wide mb-4">General</div>
+
+        {/* Sidebar Menu */}
+        <div className="p-4 flex-1 overflow-auto pt-1">
+          <div className="text-xs text-gray-400 uppercase tracking-wide mb-4">GENERAL</div>
+
           <nav className="space-y-2">
-            {sidebarItems.map((item, index) => (
-              <div key={index} className="group">
-                <div className={`flex items-center justify-between p-3 rounded-lg cursor-pointer transition-all duration-200 ${
-                  item.active 
-                    ? 'bg-red-500 text-white shadow-lg' 
-                    : 'text-gray-600 hover:bg-gray-100'
-                }`}>
-                  <div className="flex items-center space-x-3">
-                    <span className="text-sm">{item.icon}</span>
-                    <span className="text-sm font-medium">{item.label}</span>
+            {sidebarItems.map(item => {
+              if (item.hasSubmenu) {
+                return (
+                  <div key={item.key}>
+                    {/* Users main item */}
+                    <div
+                      onClick={() => setUsersExpanded(!usersExpanded)}
+                      className={`flex items-center justify-between p-3 rounded-lg cursor-pointer
+                        ${['customers', 'sellers'].includes(activeSidebarItem) ? 'bg-red-500 text-white shadow' : 'text-gray-700 hover:bg-gray-100'}
+                      `}
+                    >
+                      <div className="flex items-center space-x-3">
+                        <span>{item.icon}</span>
+                        <span className="text-sm font-medium">{item.label}</span>
+                      </div>
+                      <svg
+                        className={`w-4 h-4 transition-transform duration-200 ${usersExpanded ? 'rotate-90' : ''}`}
+                        fill="none" stroke="currentColor" strokeWidth="2"
+                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"></path>
+                      </svg>
+                    </div>
+
+                    {/* Users submenu */}
+                    {usersExpanded && (
+                      <div className="ml-8 mt-1 flex flex-col space-y-1">
+                        <div
+                          onClick={() => {
+                            setActiveSidebarItem('customers');
+                            navigate('/CustomerPage');
+                          }}
+                          className={`cursor-pointer rounded px-3 py-2 text-sm
+                            ${activeSidebarItem === 'customers' ? 'bg-red-500 text-white' : 'hover:bg-gray-100 text-gray-700'}
+                          `}
+                        >
+                          Customers
+                        </div>
+                        <div
+                          onClick={() => {
+                            setActiveSidebarItem('sellers');
+                            navigate('/Seller');
+                          }}
+                          className={`cursor-pointer rounded px-3 py-2 text-sm
+                            ${activeSidebarItem === 'sellers' ? 'bg-red-500 text-white' : 'hover:bg-gray-100 text-gray-700'}
+                          `}
+                        >
+                          Sellers
+                        </div>
+                      </div>
+                    )}
                   </div>
-                  {item.hasSubmenu && (
-                    <ChevronDown className={`h-4 w-4 transition-transform ${item.active ? 'text-white' : 'text-gray-400'}`} />
-                  )}
+                );
+              }
+
+              return (
+                <div
+                  key={item.key}
+                  onClick={() => {
+                    setActiveSidebarItem(item.key);
+                    navigate(item.path);
+                  }}
+                  className={`flex items-center p-3 rounded-lg cursor-pointer
+                    ${activeSidebarItem === item.key ? 'bg-red-500 text-white shadow' : 'text-gray-700 hover:bg-gray-100'}
+                  `}
+                >
+                  <span className="mr-3">{item.icon}</span>
+                  <span className="text-sm font-medium">{item.label}</span>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </nav>
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="flex-1 lg:ml-0">
-        {/* Header */}
-        <header className="bg-white shadow-sm border-b border-gray-200 px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <button 
-                onClick={() => setSidebarOpen(true)}
-                className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+      {/* Main content */}
+      <div className={`flex-1 flex flex-col transition-all duration-300 ${sidebarOpen ? 'ml-64' : 'ml-0'} min-h-screen bg-gray-50`}>
+        {/* Top Navbar */}
+        <header className="bg-[#e9e9e9] px-6 py-3 flex justify-between items-center shadow-sm">
+          <button
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+            className="text-gray-600 p-2 rounded hover:bg-gray-200"
+            aria-label={sidebarOpen ? 'Close sidebar' : 'Open sidebar'}
+          >
+            {sidebarOpen ? (
+              <ChevronLeftCircle className="w-6 h-6" />
+            ) : (
+              <ChevronRightCircle className="w-6 h-6" />
+            )}
+          </button>
+
+          <div className="flex items-center space-x-4">
+            <Bell className="h-5 w-5 text-gray-600" />
+            <MessageSquare className="h-5 w-5 text-gray-600" />
+
+            {/* Admin dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+                className="flex items-center space-x-2 focus:outline-none"
+                aria-haspopup="true"
+                aria-expanded={dropdownOpen}
               >
-                <Menu className="h-5 w-5 text-gray-600" />
-              </button>
-              <div>
-                <h1 className="text-xl font-semibold text-gray-800">Customer</h1>
-                <div className="flex items-center space-x-2 text-sm text-gray-500">
-                  <span>Dashboard</span>
-                  <span>▶</span>
-                  <span className="text-gray-700">Customer</span>
-                </div>
-              </div>
-            </div>
-            
-            <div className="flex items-center space-x-4">
-              <div className="relative">
-                <Bell className="h-5 w-5 text-gray-600" />
-                <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></span>
-              </div>
-              <div className="relative">
-                <Bell className="h-5 w-5 text-gray-600" />
-                <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-gray-300 rounded-full"></div>
+                <div className="w-8 h-8 bg-gray-300 rounded-full" />
                 <div className="hidden sm:block">
                   <div className="text-sm font-medium text-gray-800">Guy Hawkins</div>
                   <div className="text-xs text-gray-500">Admin</div>
                 </div>
-              </div>
+              </button>
+
+              {dropdownOpen && (
+                <div className="absolute right-0 mt-2 w-32 bg-white border border-gray-200 rounded shadow-lg z-50">
+                  <button
+                    onClick={() => {
+                      setDropdownOpen(false);
+                      // handle logout here, e.g. navigate or logout function
+                      navigate('/Login');
+                    }}
+                    className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </header>
 
-        {/* Content */}
-        <div className="p-6">
-          {/* Search and Actions */}
-          <div className="flex flex-col sm:flex-row items-center justify-between mb-6 space-y-4 sm:space-y-0">
-            <div className="relative w-full sm:w-96">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-              <input 
-                type="text" 
-                placeholder="Search for id, name Customer"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200"
-              />
-            </div>
-            
-            <div className="flex items-center space-x-3">
-              <button className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-                <Filter className="h-4 w-4" />
-                <span className="text-sm">Filter</span>
-              </button>
-              <button className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-                <Download className="h-4 w-4" />
-                <span className="text-sm">Export</span>
-              </button>
-              <button className="flex items-center space-x-2 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors transform hover:scale-105">
-                <Plus className="h-4 w-4" />
-                <span className="text-sm">Add Customer</span>
-              </button>
-            </div>
-          </div>
+        {/* Main Section */}
+        <main className="p-6 flex flex-col flex-grow overflow-auto">
+          {activeSidebarItem === 'customers' ? (
+            <>
+              {/* Title */}
+              <div className="mb-6">
+                <h1 className="text-xl font-semibold text-gray-800">Customer Dashboard</h1>
+                <div className="text-sm text-gray-500">Dashboard ▶ Customers</div>
+              </div>
 
-          {/* Table */}
-          <div className="bg-white rounded-lg shadow-sm overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="px-6 py-3 text-left">
-                      <input 
-                        type="checkbox" 
-                        checked={selectedCustomers.length === customers.length}
-                        onChange={handleSelectAll}
-                        className="rounded border-gray-300 text-red-600 focus:ring-red-500"
-                      />
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Name Customer
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Contact
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Purchases
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Order QTY
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Address
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Action
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {customers.map((customer) => (
-                    <tr key={customer.id} className="hover:bg-gray-50 transition-colors">
-                      <td className="px-6 py-4">
-                        <input 
+              {/* Actions */}
+              <div className="flex flex-col sm:flex-row items-center justify-between mb-6">
+                <div className="relative w-full sm:w-96 mb-4 sm:mb-0">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                  <input
+                    type="text"
+                    placeholder="Search for id, name Customer"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500"
+                  />
+                </div>
+                <div className="flex items-center space-x-3">
+                  <button
+                    onClick={() => navigate('/AddCustomer')}
+                    className="flex items-center px-4 py-2 bg-red-500 text-white rounded-lg"
+                  >
+                    <Plus className="h-4 w-4 mr-1" /> Add Customer
+                  </button>
+                  <button className="flex items-center px-4 py-2 border border-gray-300 rounded-lg">
+                    <Filter className="h-4 w-4 mr-1" /> Filter
+                  </button>
+                  <button className="flex items-center px-4 py-2 border border-gray-300 rounded-lg">
+                    <Download className="h-4 w-4 mr-1" /> Export
+                  </button>
+                </div>
+              </div>
+
+              {/* Table */}
+              <div className="bg-white rounded-lg shadow overflow-x-auto flex-grow">
+                <table className="min-w-full">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="px-6 py-3">
+                        <input
                           type="checkbox"
-                          checked={selectedCustomers.includes(customer.id)}
-                          onChange={() => handleSelectCustomer(customer.id)}
-                          className="rounded border-gray-300 text-red-600 focus:ring-red-500"
+                          checked={selectedCustomers.length === filteredCustomers.length && filteredCustomers.length > 0}
+                          onChange={handleSelectAll}
+                          className="text-red-500"
                         />
-                      </td>
-                      <td className="px-6 py-4">
-                        <div>
-                          <div className="text-xs text-red-500 font-medium">{customer.customerId}</div>
-                          <div className="text-sm text-gray-900 font-medium">{customer.name}</div>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4">
-                        <div>
-                          <div className="text-sm text-gray-900">{customer.contact}</div>
-                          <div className="text-sm text-gray-500">{customer.phone}</div>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 text-sm text-gray-900">{customer.purchases}</td>
-                      <td className="px-6 py-4 text-sm text-gray-900">{customer.orders}</td>
-                      <td className="px-6 py-4 text-sm text-gray-900 max-w-xs truncate">{customer.address}</td>
-                      <td className="px-6 py-4">
-                        <div className="flex items-center space-x-2">
-                          <button className="p-2 text-gray-400 hover:text-gray-600 transition-colors">
-                            <Eye className="h-4 w-4" />
-                          </button>
-                          <button className="p-2 text-gray-400 hover:text-gray-600 transition-colors">
-                            <Edit className="h-4 w-4" />
-                          </button>
-                          <button className="p-2 text-gray-400 hover:text-red-600 transition-colors">
-                            <Trash2 className="h-4 w-4" />
-                          </button>
-                        </div>
-                      </td>
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500">Name Customer</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500">Contact</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500">Membership Status</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500">Role</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500">Address</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500">Action</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200">
+                    {filteredCustomers.slice(0, itemsPerPage).map(c => (
+                      <tr key={c.id} className="hover:bg-gray-50">
+                        <td className="px-6 py-4">
+                          <input
+                            type="checkbox"
+                            checked={selectedCustomers.includes(c.id)}
+                            onChange={() => handleSelectCustomer(c.id)}
+                            className="text-red-500"
+                          />
+                        </td>
+                        <td className="px-6 py-4 text-sm">
+                          <div className="text-red-500 font-medium text-xs">{c.customerId}</div>
+                          <div className="text-gray-900 font-medium">{c.name}</div>
+                        </td>
+                        <td className="px-6 py-4 text-sm">
+                          <div>{c.contact}</div>
+                          <div className="text-gray-500">{c.phone}</div>
+                        </td>
+                        <td className="px-6 py-4 text-sm">{c.membership}</td>
+                        <td className="px-6 py-4 text-sm">{c.role}</td>
+                        <td className="px-6 py-4 text-sm truncate max-w-xs">{c.address}</td>
+                        <td className="px-6 py-4 text-sm">
+                          <div className="flex space-x-2">
+                            <button className="text-gray-500 hover:text-gray-700" aria-label="View"><Eye className="w-4 h-4" /></button>
+                            <button className="text-gray-500 hover:text-gray-700" aria-label="Edit"><Edit className="w-4 h-4" /></button>
+                            <button className="text-red-500 hover:text-red-700" aria-label="Delete"><Trash2 className="w-4 h-4" /></button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
 
-          {/* Pagination */}
-          <div className="flex flex-col sm:flex-row items-center justify-between mt-6 space-y-4 sm:space-y-0">
-            <div className="text-sm text-gray-500">
-              1 - 10 of 13 Pages
-            </div>
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2">
-                <span className="text-sm text-gray-500">The page on</span>
-                <select 
-                  value={itemsPerPage}
-                  onChange={(e) => setItemsPerPage(Number(e.target.value))}
-                  className="border border-gray-300 rounded px-3 py-1 text-sm focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                >
-                  <option value={10}>10</option>
-                  <option value={25}>25</option>
-                  <option value={50}>50</option>
-                </select>
+              {/* Pagination */}
+              <div className="flex items-center justify-between mt-4">
+                <div className="text-sm text-gray-500">
+                  Showing {Math.min(itemsPerPage, filteredCustomers.length)} of {filteredCustomers.length} customers
+                </div>
+                <div className="flex items-center space-x-2">
+                  <span className="text-sm">Items per page:</span>
+                  <select
+                    value={itemsPerPage}
+                    onChange={(e) => setItemsPerPage(Number(e.target.value))}
+                    className="border border-gray-300 rounded px-2 py-1 text-sm"
+                  >
+                    {[10, 25, 50].map(n => (
+                      <option key={n} value={n}>{n}</option>
+                    ))}
+                  </select>
+                  <button
+                    onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                    disabled={currentPage === 1}
+                    className="p-2 border rounded disabled:opacity-50"
+                    aria-label="Previous page"
+                  >
+                    <ChevronLeft className="h-4 w-4" />
+                  </button>
+                  <button
+                    onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                    disabled={currentPage === totalPages}
+                    className="p-2 border rounded disabled:opacity-50"
+                    aria-label="Next page"
+                  >
+                    <ChevronRight className="h-4 w-4" />
+                  </button>
+                </div>
               </div>
-              <div className="flex items-center space-x-2">
-                <button 
-                  onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                  disabled={currentPage === 1}
-                  className="p-2 border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                >
-                  <ChevronLeft className="h-4 w-4" />
-                </button>
-                <button 
-                  onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-                  disabled={currentPage === totalPages}
-                  className="p-2 border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                >
-                  <ChevronRight className="h-4 w-4" />
-                </button>
-              </div>
+            </>
+          ) : (
+            <div className="p-6 text-gray-700 text-center">
+              {activeSidebarItem === 'sellers' ? 'Sellers page is separate. Navigate there to view sellers.' : 'Select an option from the sidebar.'}
             </div>
-          </div>
-        </div>
+          )}
+        </main>
       </div>
-
-      {/* Mobile Sidebar Overlay */}
-      {sidebarOpen && (
-        <div 
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
-          onClick={() => setSidebarOpen(false)}
-        />
-      )}
     </div>
   );
-};
-
-export default CustomerPage;
+}
