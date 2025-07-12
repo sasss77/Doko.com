@@ -120,9 +120,9 @@ const NewArrivalSection = () => {
   const currentSlideData = slides[currentSlide];
 
   return (
-    <div className="w-full max-w-6xl mx-auto p-4 space-y-16">
+    <div className="w-full max-w-6xl mx-auto p-4">
       {/* Header */}
-      <div className="space-y-4">
+      <div className="space-y-4 mb-6">
         <div className="flex items-center gap-3">
           <div className="w-5 h-10 bg-red-500 rounded-sm"></div>
           <h2 className="text-red-500 font-semibold text-lg">Featured</h2>
@@ -214,8 +214,8 @@ const NewArrivalSection = () => {
               key={index}
               onClick={() => goToSlide(index)}
               className={`w-3 h-3 rounded-full transition-all ${
-                index === currentSlide 
-                  ? 'bg-red-500 scale-110' 
+                index === currentSlide
+                  ? 'bg-red-500 scale-110'
                   : 'bg-gray-300 hover:bg-gray-400'
               }`}
             />
