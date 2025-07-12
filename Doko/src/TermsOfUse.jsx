@@ -1,5 +1,17 @@
 import React, { useState } from 'react';
-import { ChevronDown, ChevronUp, FileText, Shield, Users, CreditCard, Truck, RefreshCw, AlertTriangle, Eye, Mail, Phone, Globe } from 'lucide-react';
+import {
+  ChevronDown,
+  ChevronUp,
+  FileText,
+  Shield,
+  Users,
+  CreditCard,
+  Truck,
+  RefreshCw,
+  AlertTriangle,
+  Eye,
+  Mail
+} from 'lucide-react';
 import Footer from './Footer';
 import Navbar from './Navbar';
 
@@ -14,8 +26,8 @@ const TermsAndConditions = () => {
   };
 
   const SectionHeader = ({ icon: Icon, title, sectionKey, children }) => (
-    <div className="mb-6 bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-md">
-      <div 
+    <div className="mb-6 bg-white border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-md">
+      <div
         className="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-50 transition-colors duration-200"
         onClick={() => toggleSection(sectionKey)}
       >
@@ -23,8 +35,8 @@ const TermsAndConditions = () => {
           <Icon className="w-5 h-5 text-orange-500" />
           <h2 className="text-lg font-semibold text-gray-800">{title}</h2>
         </div>
-        {expandedSections[sectionKey] ? 
-          <ChevronUp className="w-5 h-5 text-gray-500" /> : 
+        {expandedSections[sectionKey] ?
+          <ChevronUp className="w-5 h-5 text-gray-500" /> :
           <ChevronDown className="w-5 h-5 text-gray-500" />
         }
       </div>
@@ -37,11 +49,12 @@ const TermsAndConditions = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-gray-50">
+      <div className="w-full">
         <Navbar />
+
         {/* Header */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-6 mb-8 transform hover:scale-105 transition-transform duration-300">
+        <div className="bg-white border border-gray-100 p-6 mb-8 transform hover:scale-105 transition-transform duration-300">
           <div className="flex items-center gap-3 mb-2">
             <FileText className="w-8 h-8 text-orange-500" />
             <h1 className="text-2xl md:text-3xl font-bold text-gray-800">Terms and Conditions - Doko</h1>
@@ -49,7 +62,7 @@ const TermsAndConditions = () => {
           <p className="text-gray-600">Please read these terms and conditions carefully before using our services</p>
         </div>
 
-        {/* About Doko */}
+        {/* Sections */}
         <SectionHeader icon={Shield} title="1. About Doko" sectionKey="about">
           <div className="space-y-4 text-gray-700 leading-relaxed">
             <p>
@@ -68,7 +81,6 @@ const TermsAndConditions = () => {
           </div>
         </SectionHeader>
 
-        {/* Eligibility */}
         <SectionHeader icon={Users} title="2. Eligibility" sectionKey="eligibility">
           <div className="space-y-3 text-gray-700">
             <p>• You must be at least 18 years old to use our website.</p>
@@ -77,7 +89,6 @@ const TermsAndConditions = () => {
           </div>
         </SectionHeader>
 
-        {/* Product Information */}
         <SectionHeader icon={FileText} title="3. Product Information" sectionKey="product">
           <div className="space-y-3 text-gray-700">
             <p>• We strive to provide accurate product descriptions, images, and prices.</p>
@@ -86,7 +97,6 @@ const TermsAndConditions = () => {
           </div>
         </SectionHeader>
 
-        {/* Orders & Acceptance */}
         <SectionHeader icon={Shield} title="4. Orders & Acceptance" sectionKey="orders">
           <div className="space-y-3 text-gray-700">
             <p>• All orders are subject to availability and confirmation of the order price.</p>
@@ -97,7 +107,6 @@ const TermsAndConditions = () => {
           </div>
         </SectionHeader>
 
-        {/* Payment Terms */}
         <SectionHeader icon={CreditCard} title="5. Payment Terms" sectionKey="payment">
           <div className="space-y-3 text-gray-700">
             <p>• Payment is due at the time of purchase.</p>
@@ -107,7 +116,6 @@ const TermsAndConditions = () => {
           </div>
         </SectionHeader>
 
-        {/* Shipping & Delivery */}
         <SectionHeader icon={Truck} title="6. Shipping & Delivery" sectionKey="shipping">
           <div className="space-y-3 text-gray-700">
             <p>• Delivery charges are calculated based on the shipping address.</p>
@@ -117,7 +125,6 @@ const TermsAndConditions = () => {
           </div>
         </SectionHeader>
 
-        {/* Returns & Exchanges */}
         <SectionHeader icon={RefreshCw} title="7. Returns & Exchanges" sectionKey="returns">
           <div className="space-y-3 text-gray-700">
             <p>• You may return or exchange items within 3 working days of receipt if:</p>
@@ -131,7 +138,6 @@ const TermsAndConditions = () => {
           </div>
         </SectionHeader>
 
-        {/* Refund Policy */}
         <SectionHeader icon={RefreshCw} title="8. Refund Policy" sectionKey="refund">
           <div className="space-y-3 text-gray-700">
             <p>• Refunds are applicable in the following cases:</p>
@@ -142,7 +148,6 @@ const TermsAndConditions = () => {
           </div>
         </SectionHeader>
 
-        {/* User Responsibilities */}
         <SectionHeader icon={AlertTriangle} title="9. User Responsibilities" sectionKey="responsibilities">
           <div className="space-y-3 text-gray-700">
             <p>• You are responsible for the following:</p>
@@ -153,7 +158,6 @@ const TermsAndConditions = () => {
           </div>
         </SectionHeader>
 
-        {/* Intellectual Property */}
         <SectionHeader icon={Shield} title="10. Intellectual Property" sectionKey="intellectual">
           <div className="space-y-3 text-gray-700">
             <p>
@@ -163,7 +167,6 @@ const TermsAndConditions = () => {
           </div>
         </SectionHeader>
 
-        {/* Privacy */}
         <SectionHeader icon={Eye} title="11. Privacy" sectionKey="privacy">
           <div className="space-y-3 text-gray-700">
             <p>Your use of personal data is governed by our Privacy Policy, which explains how we collect, use, and protect your information.</p>
@@ -173,7 +176,6 @@ const TermsAndConditions = () => {
           </div>
         </SectionHeader>
 
-        {/* Changes to Terms */}
         <SectionHeader icon={AlertTriangle} title="12. Changes to Terms" sectionKey="changes">
           <div className="space-y-3 text-gray-700">
             <p>We reserve the right to update or change these Terms of Service at any time. Updates will be posted on this page, and your continued use of the site indicates acceptance of any changes.</p>
@@ -181,23 +183,22 @@ const TermsAndConditions = () => {
           </div>
         </SectionHeader>
 
-        {/* Contact Us */}
         <SectionHeader icon={Mail} title="13. Contact Us" sectionKey="contact">
           <div className="space-y-3 text-gray-700">
             <p>For any questions or concerns regarding these Terms and Conditions, please contact:</p>
-            <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 mt-4">
-              <div className="space-y-2">
-                <p className="text-orange-700">📧 Email: <a href="mailto:support@doko.com.np" className="text-orange-600 hover:text-orange-800 transition-colors duration-200 underline">support@doko.com.np</a></p>
-                <p className="text-orange-700">📞 Phone: <a href="tel:+977-9801-099091" className="text-orange-600 hover:text-orange-800 transition-colors duration-200 underline">+977-9801-099091</a></p>
-                <p className="text-orange-700">🌐 Website: <a href="https://doko.com.np" className="text-orange-600 hover:text-orange-800 transition-colors duration-200 underline">doko.com.np</a></p>
-                <p className="text-orange-700">🏢 Address: [Insert Physical Address]</p>
+            <div className="bg-orange-50 border border-orange-200 p-4 mt-4">
+              <div className="space-y-2 text-orange-700">
+                <p>📧 Email: <a href="mailto:support@doko.com.np" className="text-orange-600 hover:text-orange-800 transition-colors duration-200 underline">support@doko.com.np</a></p>
+                <p>📞 Phone: <a href="tel:+977-9801-099091" className="text-orange-600 hover:text-orange-800 transition-colors duration-200 underline">+977-9801-099091</a></p>
+                <p>🌐 Website: <a href="https://doko.com.np" className="text-orange-600 hover:text-orange-800 transition-colors duration-200 underline">doko.com.np</a></p>
+                <p>🏢 Address: [Insert Physical Address]</p>
               </div>
             </div>
           </div>
         </SectionHeader>
 
         {/* Footer */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-6 text-center">
+        <div className="bg-white border border-gray-100 p-6 text-center">
           <p className="text-gray-600 mb-2">
             By using our website, you acknowledge that you have read and understood these Terms and Conditions.
           </p>
@@ -205,6 +206,7 @@ const TermsAndConditions = () => {
             Last updated: [Insert Date] | Thank you for choosing Doko
           </p>
         </div>
+
         <Footer />
       </div>
     </div>
