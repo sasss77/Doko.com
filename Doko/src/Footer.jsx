@@ -33,7 +33,7 @@ export default function Footer() {
                 { name: 'Login / Register', href: '/' },
                 { name: 'Cart', href: '/cart' },
                 { name: 'Wishlist', href: '/wishlist' },
-                { name: 'Shop', href: '/AddCustomer' },
+                { name: 'Shop', href: '/Product' },
               ].map((item) => (
                 <a
                   key={item.name}
