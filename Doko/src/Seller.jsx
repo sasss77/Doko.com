@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Logo from './assets/Doko Logo.png';
 import {
   Search, Filter, Download, Plus, Eye, Edit, Trash2,
-  Bell, MessageSquare, ChevronLeftCircle, ChevronRightCircle, ChevronLeft, ChevronRight
+  Bell, MessageSquare, ChevronLeftCircle, ChevronRightCircle, ChevronLeft, ChevronRight, ChevronDown
 } from 'lucide-react';
 
 const sellers = [
@@ -16,7 +16,6 @@ const sellers = [
   { id: 6, sellerId: 'ID 2006', name: 'Sophia Lee', contact: 'sophia@example.com', phone: '+977983334455', membership: 'Regular', role: 'Active', address: 'Dharan' },
   { id: 7, sellerId: 'ID 2007', name: 'David Kim', contact: 'david@example.com', phone: '+977984445566', membership: 'VIP', role: 'Suspended', address: 'Kathmandu' },
   { id: 8, sellerId: 'ID 2008', name: 'Olivia Martinez', contact: 'olivia@example.com', phone: '+977985556677', membership: 'Regular', role: 'Active', address: 'Bhaktapur' },
-  // Add more sellers as needed
 ];
 
 export default function SellerPage() {
@@ -185,6 +184,8 @@ export default function SellerPage() {
                   <div className="text-sm font-medium text-gray-800">Guy Hawkins</div>
                   <div className="text-xs text-gray-500">Admin</div>
                 </div>
+                {/* Added dropdown arrow here */}
+                <ChevronDown className="text-gray-600" size={16} />
               </button>
 
               {dropdownOpen && (
@@ -331,5 +332,3 @@ export default function SellerPage() {
     </div>
   );
 }
-
-
