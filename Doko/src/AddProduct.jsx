@@ -1,8 +1,21 @@
 import React, { useState } from 'react';
-import { Search, Filter, Download, Plus, Eye, Edit, Trash2, Bell, Menu, X, ChevronDown, ChevronLeft, ChevronRight, Upload, Image as ImageIcon } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import {
+  ChevronLeftCircle,
+  ChevronRightCircle,
+  Bell,
+  MessageSquare,
+  ChevronDown,
+  Image as ImageIcon
+} from 'lucide-react';
+import Logo from './assets/Doko Logo.png';
 
 const AddProductPage = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);  // same default as AddSellerForm
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const navigate = useNavigate();
+
+  // Your original form state (unchanged)
   const [formData, setFormData] = useState({
     sku: '',
     productName: '',
@@ -15,16 +28,6 @@ const AddProductPage = () => {
   });
   const [uploadedImages, setUploadedImages] = useState([]);
 
-  const sidebarItems = [
-    { icon: '📊', label: 'Dashboard', active: false },
-    { icon: '👤', label: 'Users', active: false, hasSubmenu: true },
-    { icon: '🏪', label: 'Sellers', active: false, hasSubmenu: true },
-    { icon: '👥', label: 'Customers', active: false, hasSubmenu: true },
-    { icon: '💳', label: 'Transaction (441)', active: false },
-    { icon: '👥', label: 'Customers', active: false },
-    { icon: '📦', label: 'Product', active: true }
-  ];
-
   const handleInputChange = (field, value) => {
     setFormData(prev => ({
       ...prev,
@@ -33,7 +36,6 @@ const AddProductPage = () => {
   };
 
   const handleImageUpload = (photoNumber) => {
-    // Simulate image upload
     const newImage = {
       id: photoNumber,
       name: `Photo ${photoNumber}`,
@@ -44,95 +46,137 @@ const AddProductPage = () => {
 
   const handleSaveProduct = () => {
     console.log('Saving product:', formData);
-    // Add save logic here
+    // Save logic here
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
-      {/* Sidebar */}
-      <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 lg:static lg:inset-0`}>
-        <div className="flex items-center justify-between p-4 border-b border-gray-200">
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">JO</span>
-            </div>
-            <span className="font-semibold text-gray-800">JOKO</span>
-          </div>
-          <button onClick={() => setSidebarOpen(false)} className="lg:hidden">
-            <X className="h-5 w-5 text-gray-500" />
-          </button>
+    <div className="min-h-screen flex">
+      {/* Sidebar from AddSellerForm */}
+      <div className={`fixed inset-y-0 left-0 w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} z-50 flex flex-col`}>
+        <div className="flex items-center justify-center pt-4 pb-1">
+          <img src={Logo} alt="Doko Logo" className="w-28 h-auto object-contain" />
         </div>
-        
-        <div className="p-4">
-          <div className="text-xs text-gray-400 uppercase tracking-wide mb-4">General</div>
+
+        <div className="p-4 flex-1 overflow-auto pt-1">
+          <div className="text-xs text-gray-400 uppercase tracking-wide mb-4">GENERAL</div>
           <nav className="space-y-2">
-            {sidebarItems.map((item, index) => (
-              <div key={index} className="group">
-                <div className={`flex items-center justify-between p-3 rounded-lg cursor-pointer transition-all duration-200 ${
-                  item.active 
-                    ? 'bg-red-500 text-white shadow-lg' 
-                    : 'text-gray-600 hover:bg-gray-100'
-                }`}>
-                  <div className="flex items-center space-x-3">
-                    <span className="text-sm">{item.icon}</span>
-                    <span className="text-sm font-medium">{item.label}</span>
-                  </div>
-                  {item.hasSubmenu && (
-                    <ChevronDown className={`h-4 w-4 transition-transform ${item.active ? 'text-white' : 'text-gray-400'}`} />
-                  )}
-                </div>
+            <div
+              onClick={() => navigate('/AdminDashboard')}
+              className="flex items-center p-3 rounded-lg cursor-pointer text-gray-700 hover:bg-gray-100"
+            >
+              <span className="mr-3">📊</span>
+              <span className="text-sm font-medium">Dashboard</span>
+            </div>
+            <div className="flex flex-col space-y-1">
+              <div className="flex items-center p-3 rounded-lg cursor-pointer bg-red-500 text-white shadow">
+                <span className="mr-3">👥</span>
+                <span className="text-sm font-medium">Users</span>
+                {/* Sidebar arrow */}
+                <svg
+                  className="w-4 h-4 ml-auto transition-transform duration-200 rotate-90"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"></path>
+                </svg>
               </div>
-            ))}
+              <div
+                onClick={() => navigate('/Customer')}
+                className="cursor-pointer rounded px-6 py-2 text-sm hover:bg-gray-100 text-gray-700"
+              >
+                Customers
+              </div>
+              <div
+                onClick={() => navigate('/Seller')}
+                className="cursor-pointer rounded px-6 py-2 text-sm hover:bg-gray-100 text-gray-700"
+              >
+                Sellers
+              </div>
+            </div>
+            <div
+              onClick={() => navigate('/Transaction')}
+              className="flex items-center p-3 rounded-lg cursor-pointer text-gray-700 hover:bg-gray-100"
+            >
+              <span className="mr-3">💳</span>
+              <span className="text-sm font-medium">Transaction (441)</span>
+            </div>
+            <div
+              onClick={() => navigate('/ProductAdmin')}
+              className="flex items-center p-3 rounded-lg cursor-pointer text-gray-700 hover:bg-gray-100"
+            >
+              <span className="mr-3">📦</span>
+              <span className="text-sm font-medium">Product</span>
+            </div>
+            <div
+              onClick={() => navigate('/PersonalAccount')}
+              className="flex items-center p-3 rounded-lg cursor-pointer text-gray-700 hover:bg-gray-100"
+            >
+              <span className="mr-3">⚙️</span>
+              <span className="text-sm font-medium">Account & Settings</span>
+            </div>
           </nav>
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="flex-1 lg:ml-0">
-        {/* Header */}
-        <header className="bg-white shadow-sm border-b border-gray-200 px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <button 
-                onClick={() => setSidebarOpen(true)}
-                className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+      {/* Main content wrapper with margin left based on sidebar open */}
+      <div className={`flex-1 flex flex-col transition-all duration-300 ${sidebarOpen ? 'ml-64' : 'ml-0'} min-h-screen bg-gray-50`}>
+
+        {/* Navbar from AddSellerForm */}
+        <header className="bg-[#e9e9e9] px-6 py-3 flex justify-between items-center shadow-sm">
+          <button
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+            className="text-gray-600 p-2 rounded hover:bg-gray-200"
+            aria-label={sidebarOpen ? 'Close sidebar' : 'Open sidebar'}
+          >
+            {sidebarOpen ? (
+              <ChevronLeftCircle className="w-6 h-6" />
+            ) : (
+              <ChevronRightCircle className="w-6 h-6" />
+            )}
+          </button>
+
+          <div className="flex items-center space-x-4">
+            <Bell className="h-5 w-5 text-gray-600" />
+            <MessageSquare className="h-5 w-5 text-gray-600" />
+            <div className="relative">
+              <button
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+                className="flex items-center space-x-2 focus:outline-none"
+                aria-haspopup="true"
+                aria-expanded={dropdownOpen}
               >
-                <Menu className="h-5 w-5 text-gray-600" />
+                <div className="w-8 h-8 bg-gray-300 rounded-full" />
+                <div className="hidden sm:flex items-center space-x-1">
+                  <div>
+                    <div className="text-sm font-medium text-gray-800">Guy Hawkins</div>
+                    <div className="text-xs text-gray-500">Admin</div>
+                  </div>
+                  <ChevronDown className="w-4 h-4 text-gray-600" />
+                </div>
               </button>
-              <div>
-                <h1 className="text-xl font-semibold text-gray-800">Product</h1>
-                <div className="flex items-center space-x-2 text-sm text-gray-500">
-                  <span>Dashboard</span>
-                  <span>▶</span>
-                  <span>Product</span>
-                  <span>▶</span>
-                  <span className="text-gray-700">Add Product</span>
+
+              {dropdownOpen && (
+                <div className="absolute right-0 mt-2 w-32 bg-white border border-gray-200 rounded shadow-lg z-50">
+                  <button
+                    onClick={() => {
+                      setDropdownOpen(false);
+                      navigate('/Login');
+                    }}
+                    className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >
+                    Logout
+                  </button>
                 </div>
-              </div>
-            </div>
-            
-            <div className="flex items-center space-x-4">
-              <div className="relative">
-                <Bell className="h-5 w-5 text-gray-600" />
-                <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></span>
-              </div>
-              <div className="relative">
-                <Bell className="h-5 w-5 text-gray-600" />
-                <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-gray-300 rounded-full"></div>
-                <div className="hidden sm:block">
-                  <div className="text-sm font-medium text-gray-800">Guy Hawkins</div>
-                  <div className="text-xs text-gray-500">Admin</div>
-                </div>
-              </div>
+              )}
             </div>
           </div>
         </header>
 
-        {/* Content */}
-        <div className="p-6">
+        {/* YOUR ORIGINAL MAIN CONTENT BELOW - NO CHANGE AT ALL */}
+        <main className="p-6">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Product Information */}
             <div className="lg:col-span-2">
@@ -295,16 +339,9 @@ const AddProductPage = () => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </main>
 
-      {/* Mobile Sidebar Overlay */}
-      {sidebarOpen && (
-        <div 
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
-          onClick={() => setSidebarOpen(false)}
-        />
-      )}
+      </div>
     </div>
   );
 };
