@@ -1,49 +1,7 @@
 
 
-// import React from 'react';
-// import { Link } from 'react-router-dom';
-// import Navbar from './Navbar.jsx';
-
-// const NotFound = () => {
-//   return (
-//     <div className="bg-white text-gray-800 font-sans min-h-screen flex flex-col">
-//       <Navbar />
-
-//       {/* Breadcrumb */}
-//       <div className="p-4 text-sm text-gray-500">
-//         <nav>
-//           <Link to="/" className="hover:underline transition-colors duration-200">
-//             Home
-//           </Link>{' '}
-//           / <span className="text-gray-700">404 Error</span>
-//         </nav>
-//       </div>
-
-//       {/* Centered Content */}
-//       <main className="flex-grow flex flex-col items-center justify-center text-center px-4">
-//         <h1 className="text-4xl md:text-6xl font-bold mb-4 text-black transition-all duration-300">
-//           404 Not Found
-//         </h1>
-//         <p className="text-sm md:text-base text-black mb-4 transition-colors duration-300">
-//           Your visited page not found. You may go home page.
-//         </p>
-//         <Link
-//           to="/"
-//           className="px-6 py-2 bg-[#db4444] text-white rounded hover:bg-red-600 transition-all duration-300 transform hover:scale-105"
-//         >
-//           Back to Home Page
-//         </Link>
-//       </main>
-//     </div>
-//   );
-// };
-
-// export default NotFound;
-
-
-
 import React, { useState, useEffect } from 'react';
-import { Home, Package } from 'lucide-react';
+import { Home } from 'lucide-react';
 
 const Doko404Page = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -91,44 +49,43 @@ const Doko404Page = () => {
       </div>
 
       {/* Main Content */}
-      <div className="flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
-        <div className={`text-center transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+      <div className="flex flex-col items-center justify-center min-h-screen px-6 sm:px-8 lg:px-10">
+        <div className={`text-center max-w-xl transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
           
           {/* Brand */}
-          <div className="mb-8">
-            <h1 className="text-5xl sm:text-6xl font-bold text-red-700 mb-2">
+          <div className="mb-6">
+            <h1 className="text-4xl sm:text-5xl font-bold text-red-700 mb-1">
               DOKO
             </h1>
-            <p className="text-red-600 text-lg font-medium">Traditional Nepali Treasures</p>
+            <p className="text-red-600 text-base sm:text-lg font-medium">Traditional Nepali Treasures</p>
           </div>
 
           {/* 404 Error */}
-          <div className="mb-8">
-            <h2 className="text-8xl sm:text-9xl lg:text-[12rem] font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-800 leading-none mb-4">
+          <div className="mb-6">
+            <h2 className="text-7xl sm:text-8xl lg:text-[8rem] font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-800 leading-none mb-3">
               404
             </h2>
-            <div className="w-32 h-1 bg-gradient-to-r from-red-600 to-red-800 mx-auto rounded-full mb-6"></div>
+            <div className="w-24 h-1 bg-gradient-to-r from-red-600 to-red-800 mx-auto rounded-full mb-5"></div>
           </div>
 
           {/* Message */}
-          <div className="mb-12 max-w-2xl mx-auto">
-            <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">
+          <div className="mb-10 mx-auto">
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-3">
               Oops! This treasure seems to be missing
             </h3>
-            <p className="text-gray-600 text-lg sm:text-xl leading-relaxed">
+            <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
               The page you're looking for might have been moved, deleted, or is temporarily unavailable. 
               Let's help you find your way back to our collection of beautiful traditional Nepali items.
             </p>
           </div>
 
           {/* Action Buttons */}
-          <div className="flex justify-center items-center mb-8">
-            <a href="/HomePage" className="group bg-gradient-to-r from-red-600 to-red-700 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-105 hover:from-red-700 hover:to-red-800 flex items-center gap-3 no-underline">
+          <div className="flex justify-center items-center">
+            <a href="/HomePage" className="group bg-gradient-to-r from-red-600 to-red-700 text-white px-7 py-3 rounded-full font-semibold text-base shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-105 hover:from-red-700 hover:to-red-800 flex items-center gap-3 no-underline">
               <Home className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
               Go Home
             </a>
           </div>
-
 
         </div>
       </div>

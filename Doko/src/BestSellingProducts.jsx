@@ -1,8 +1,12 @@
 
+
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Star, Heart, Eye, ShoppingCart } from 'lucide-react';
 
 const BestSellingProducts = () => {
+  const navigate = useNavigate();
+
   const products = [
     {
       id: 1,
@@ -87,7 +91,11 @@ const BestSellingProducts = () => {
         {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {products.map((product) => (
-            <div key={product.id} className="group cursor-pointer">
+            <div
+              key={product.id}
+              onClick={() => navigate('/Product')}
+              className="group cursor-pointer"
+            >
               <div className="relative bg-gray-50 rounded-lg overflow-hidden mb-4">
                 {/* Discount Badge */}
                 {product.discount && (
@@ -98,10 +106,16 @@ const BestSellingProducts = () => {
 
                 {/* Action Icons */}
                 <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity z-10">
-                  <button className="bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition-colors">
+                  <button
+                    onClick={(e) => e.stopPropagation()}
+                    className="bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition-colors"
+                  >
                     <Heart className="w-5 h-5 text-gray-600" />
                   </button>
-                  <button className="bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition-colors">
+                  <button
+                    onClick={(e) => e.stopPropagation()}
+                    className="bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition-colors"
+                  >
                     <Eye className="w-5 h-5 text-gray-600" />
                   </button>
                 </div>
@@ -117,7 +131,10 @@ const BestSellingProducts = () => {
 
                 {/* Add to Cart Button */}
                 <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-80 text-white p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                  <button className="w-full flex items-center justify-center gap-2 hover:bg-white hover:text-black transition-colors py-2 rounded">
+                  <button
+                    onClick={(e) => e.stopPropagation()}
+                    className="w-full flex items-center justify-center gap-2 hover:bg-white hover:text-black transition-colors py-2 rounded"
+                  >
                     <ShoppingCart className="w-5 h-5" />
                     Add To Cart
                   </button>

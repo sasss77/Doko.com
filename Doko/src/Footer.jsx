@@ -54,7 +54,6 @@ export default function Footer() {
                 { name: 'Privacy Policy', href: '/PrivacyPolicy' },
                 { name: 'Terms Of Use', href: '/TermsOfUse' },
                 { name: 'FAQ', href: '/contact' },
-                { name: 'Contact', href: '/contact' },
               ].map((item) => (
                 <a
                   key={item.name}
