@@ -10,6 +10,19 @@ import Contact  from "./Contact";
 import MyAccount from "./MyAccount";
 import NotFound from "./NotFound";
 import Dashboard from "./Dashboard";
+import ProductAdmin from './ProductAdmin';
+import AddProduct from './AddProduct';
+import Customer from './Customer';
+import AddCustomer from './AddCustomer';
+import EditProduct from './EditProduct';
+import PersonalAccount from './PersonalAccount';
+import Security from './Security';
+import Order from './Order';
+import Seller from './Seller';
+import AddSeller from './AddSeller';
+import AdminDashboard from './AdminDashboard';
+import PrivacyPolicy from './PrivacyPolicy';
+import TermsOfUse from './TermsOfUse';
 
 const App = () => {
   return (
@@ -20,11 +33,24 @@ const App = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/about" element={<About />} />
         <Route path="/wishlist" element={<Wishlist />} />
-        <Route path="/product" element={<Product />} />
+        <Route path="/Product" element={<Product />} />
         <Route path="/HomePage" element={<HomePage />} />
         <Route path="/account" element={<MyAccount />} />  
-        <Route path="/NotFound" element={<NotFound />} />  
+        <Route path="/*" element={<NotFound />} />  
          <Route path="/Dashboard" element={<Dashboard />} />  
+          <Route path="/ProductAdmin" element={<ProductAdmin />} />  
+          <Route path="/AddProduct" element={<AddProduct />} />  
+           <Route path="/Customer" element={<Customer />} />  
+           <Route path="/AddCustomer" element={<AddCustomer />} />  
+            <Route path="/EditProduct" element={<EditProduct />} />  
+            <Route path="/PersonalAccount" element={<PersonalAccount />} />  
+            <Route path="/Security" element={<Security />} />  
+            <Route path="/Order" element={<Order />} />  
+            <Route path="/Seller" element={<Seller />} />  
+              <Route path="/AddSeller" element={<AddSeller />} /> 
+               <Route path="/AdminDashboard" element={<AdminDashboard />} /> 
+                 <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} /> 
+                  <Route path="/TermsOfUse" element={<TermsOfUse />} /> 
       </Routes>
     </Router>
    

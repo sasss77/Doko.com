@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 
@@ -16,10 +15,10 @@ export default function Footer() {
                 <br />
                 +977 Nepal
               </p>
-              <a href="#" className="hover:text-red-400 transition-colors block">
+              <a href="mailto:exclusive@gmail.com" className="hover:text-red-400 transition-colors block">
                 exclusive@gmail.com
               </a>
-              <a href="#" className="hover:text-red-400 transition-colors block">
+              <a href="tel:+97788123456678" className="hover:text-red-400 transition-colors block">
                 +977 88123456678
               </a>
             </div>
@@ -34,7 +33,7 @@ export default function Footer() {
                 { name: 'Login / Register', href: '/' },
                 { name: 'Cart', href: '/cart' },
                 { name: 'Wishlist', href: '/wishlist' },
-                { name: 'Shop', href: '/NotFound' },
+                { name: 'Shop', href: '/Customer' },
               ].map((item) => (
                 <a
                   key={item.name}
@@ -51,13 +50,17 @@ export default function Footer() {
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">Quick Link</h3>
             <div className="space-y-2">
-              {['Privacy Policy', 'Terms Of Use', 'FAQ', 'Contact'].map((item) => (
+              {[
+                { name: 'Privacy Policy', href: '/PrivacyPolicy' },
+                { name: 'Terms Of Use', href: '/TermsOfUse' },
+                { name: 'FAQ', href: '/contact' },
+              ].map((item) => (
                 <a
-                  key={item}
-                  href="#"
+                  key={item.name}
+                  href={item.href}
                   className="block text-sm text-gray-400 hover:text-red-400 transition-all hover:translate-x-1"
                 >
-                  {item}
+                  {item.name}
                 </a>
               ))}
             </div>

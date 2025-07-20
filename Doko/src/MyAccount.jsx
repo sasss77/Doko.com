@@ -1,3 +1,5 @@
+
+
 import React, { useState } from 'react';
 import Footer from './Footer.jsx';
 import Navbar from './Navbar.jsx';
@@ -7,7 +9,7 @@ export default function AccountManagement() {
     firstName: '',
     lastName: '',
     email: 'haha@gmail.com',
-    address: 'solaghat, 0236, shivakatpur',
+    address: 'sallaghari, 5236, bhaktapur',
     currentPassword: '',
     newPassword: '',
     confirmPassword: ''
@@ -28,6 +30,7 @@ export default function AccountManagement() {
 
   const handleCancel = () => {
     setFormData({
+      ...formData,
       firstName: '',
       lastName: '',
       currentPassword: '',
@@ -39,30 +42,29 @@ export default function AccountManagement() {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
+
       {/* Header */}
-      <div className="bg-white  px-4 py-3">
+      <div className="bg-white px-4 py-3">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-2 text-sm text-gray-600">
             <span className="hover:text-gray-900 cursor-pointer transition-colors duration-200">Home</span>
             <span>/</span>
             <span className="text-gray-900">My Account</span>
           </div>
-          <div className="text-sm text-gray-600">
-            Welcome! <span className="text-gray-900 font-medium">user</span>
-          </div>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
+          
           {/* Sidebar */}
           <div className="lg:w-64 flex-shrink-0">
-            <div className="bg-white   overflow-hidden">
-              <div className="p-4 ">
+            <div className="bg-white overflow-hidden">
+              <div className="p-4">
                 <h2 className="text-lg font-semibold text-gray-900">Manage My Account</h2>
               </div>
               
-              <div className="p-2">
+              <div className="p-2 space-y-1">
                 <div 
                   className={`p-3 rounded-md cursor-pointer transition-all duration-200 ${
                     activeSection === 'profile' 
@@ -75,62 +77,23 @@ export default function AccountManagement() {
                 </div>
                 <div 
                   className={`p-3 rounded-md cursor-pointer transition-all duration-200 ${
-                    activeSection === 'address' 
+                    activeSection === 'userType' 
                       ? 'bg-red-50 text-red-600 border-l-4 border-red-500' 
                       : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                   }`}
-                  onClick={() => setActiveSection('address')}
+                  onClick={() => setActiveSection('userType')}
                 >
-                  Address Book
+                  Change user type
                 </div>
                 <div 
                   className={`p-3 rounded-md cursor-pointer transition-all duration-200 ${
-                    activeSection === 'payment' 
+                    activeSection === 'orders' 
                       ? 'bg-red-50 text-red-600 border-l-4 border-red-500' 
                       : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                   }`}
-                  onClick={() => setActiveSection('payment')}
+                  onClick={() => setActiveSection('orders')}
                 >
-                  My Payment Options
-                </div>
-              </div>
-
-              <div className="p-4  border-gray-200">
-                <h3 className="text-base font-medium text-gray-900 mb-2">My Orders</h3>
-                <div className="space-y-1">
-                  <div 
-                    className={`p-3 rounded-md cursor-pointer transition-all duration-200 ${
-                      activeSection === 'returns' 
-                        ? 'bg-red-50 text-red-600 border-l-4 border-red-500' 
-                        : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
-                    }`}
-                    onClick={() => setActiveSection('returns')}
-                  >
-                    My Returns
-                  </div>
-                  <div 
-                    className={`p-3 rounded-md cursor-pointer transition-all duration-200 ${
-                      activeSection === 'cancellations' 
-                        ? 'bg-red-50 text-red-600 border-l-4 border-red-500' 
-                        : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
-                    }`}
-                    onClick={() => setActiveSection('cancellations')}
-                  >
-                    My Cancellations
-                  </div>
-                </div>
-              </div>
-
-              <div className="p-4   border-gray-200">
-                <div 
-                  className={`p-3 rounded-md cursor-pointer transition-all duration-200 ${
-                    activeSection === 'wishlist' 
-                      ? 'bg-red-50 text-red-600 border-l-4 border-red-500' 
-                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
-                  }`}
-                  onClick={() => setActiveSection('wishlist')}
-                >
-                  My Wishlist
+                  Total Orders
                 </div>
               </div>
             </div>
@@ -138,13 +101,13 @@ export default function AccountManagement() {
 
           {/* Main Content */}
           <div className="flex-1">
-            <div className="bg-white   ">
-              <div className="p-6 ">
+            <div className="bg-white">
+              <div className="p-6">
                 <h1 className="text-xl font-semibold text-[#db4444]">Edit Your Profile</h1>
               </div>
 
               <div className="p-6 pt-0">
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
 
                   {/* First Name */}
                   <div className="transform transition-all duration-200 focus-within:scale-[1.02]">
@@ -246,7 +209,7 @@ export default function AccountManagement() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-end">
                   <button
                     onClick={handleCancel}
-                    className="px-6 py-3 text-black bg-white  rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all duration-200 transform hover:scale-105"
+                    className="px-6 py-3 text-black bg-white rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all duration-200 transform hover:scale-105"
                   >
                     Cancel
                   </button>
@@ -262,9 +225,7 @@ export default function AccountManagement() {
           </div>
         </div>
       </div>
-       <Footer />
+      <Footer />
     </div>
-
- 
   );
 }
