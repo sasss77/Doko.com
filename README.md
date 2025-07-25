@@ -140,14 +140,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-## 📞 Contact
-
-- **Email**: your-email@example.com
-- **LinkedIn**: [Your LinkedIn Profile](your-linkedin-url)
-- **GitHub**: [@sasss77](https://github.com/sasss77)
-
----
-
 <div align="center">
   <p><strong>Built with ❤️ for Nepali artisans and cultural preservation</strong></p>
   <p>Made in 🇳🇵 Nepal</p>
