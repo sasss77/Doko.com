@@ -7,7 +7,9 @@
     "start": "node server.js",
     "dev": "bun --hot server.js",
     "seed": "node scripts/seedData.js",
-    "create-admin": "node scripts/createAdmin.js"
+    "create-admin": "node scripts/createAdmin.js",
+    "test": "jest"
+   
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -36,6 +38,10 @@
     "nodemon": "^3.0.1",
     "supertest": "^7.1.4"
   },
+  "jest": {
+  "testEnvironment": "node",
+  "setupFiles": ["dotenv/config"]
+},
   "keywords": [
     "ecommerce",
     "api",
@@ -46,3 +52,4 @@
   "author": "Doko Team",
   "license": "MIT"
 }
+
