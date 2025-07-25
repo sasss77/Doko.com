@@ -10,6 +10,7 @@ import {
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/24/solid';
 import { CartContext } from '../../context/CartContext';
 import { AuthContext } from '../../context/AuthContext';
+import doko from "../../assets/doko.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -81,10 +82,10 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 group">
             <div className="bg-gradient-to-r from-red-600 to-blue-600 p-2 rounded-full transform group-hover:scale-110 transition-transform duration-300">
-              <span className="text-white font-bold text-xl">🧺</span>
+              <span className="text-white font-bold text-xl"><img src={ doko} alt="" /></span>
             </div>
             <div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-red-600 to-blue-600 bg-clip-text text-transparent">
+              <h1 className="text-1xl font-bold ">
                 Doko
               </h1>
               <p className="text-xs text-gray-600">Authentic Nepal</p>
