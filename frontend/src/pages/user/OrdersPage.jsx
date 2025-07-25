@@ -297,18 +297,7 @@ const OrdersPage = () => {
 
                   {/* Action Buttons */}
                   <div className="mt-6 lg:mt-0 lg:ml-6 flex flex-col space-y-2 lg:w-48">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => {
-                        // Navigate to order details
-                        navigate(`/order/${order._id}`);
-                      }}
-                      className="flex items-center justify-center space-x-2"
-                    >
-                      <EyeIcon className="h-4 w-4" />
-                      <span>View Details</span>
-                    </Button>
+            
                     
                     {order.orderStatus === 'delivered' && (
                       <Button

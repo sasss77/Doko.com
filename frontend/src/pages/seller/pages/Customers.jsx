@@ -521,13 +521,7 @@ const Customers = () => {
                   <Eye size={16} className="inline mr-1" />
                   View Orders
                 </button>
-                <button 
-                  onClick={() => handleContact(customer)}
-                  className="flex-1 border border-gray-300 text-gray-700 py-2 px-4 rounded-xl hover:bg-gray-50 transition-colors text-sm font-medium"
-                >
-                  <MessageCircle size={16} className="inline mr-1" />
-                  Contact
-                </button>
+             
               </div>
             </div>
           );

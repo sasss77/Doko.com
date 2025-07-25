@@ -43,7 +43,7 @@ const SideBar = () => {
   const menuItems = [
     { path: '/admin/dashboard', label: 'Overview', icon: <TrendingUp className="w-5 h-5" /> },
     { path: '/admin/usermanagement', label: 'User Management', icon: <Users className="w-5 h-5" /> },
-    { path: '/admin/sellermanagement', label: 'Seller Management', icon: <Store className="w-5 h-5" />, badge: 2 },
+    { path: '/admin/sellermanagement', label: 'Seller Management', icon: <Store className="w-5 h-5" /> },
     { path: '/admin/ordermanagement', label: 'Orders', icon: <ShoppingBag className="w-5 h-5" /> },
     { path: '/admin/productmanagements', label: 'Products', icon: <Package className="w-5 h-5" /> },
   ];

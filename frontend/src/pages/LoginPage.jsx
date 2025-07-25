@@ -342,30 +342,7 @@ const LoginPage = () => {
               </Button>
             </form>
 
-            {/* Demo Credentials */}
-            <div className="mt-6 p-4 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-lg border border-yellow-200">
-              <h4 className="text-sm font-medium text-gray-900 mb-2">
-                🚀 Demo Credentials for {currentRole.name}:
-              </h4>
-              <button
-                onClick={() => handleDemoLogin(currentRole.demoCredentials)}
-                className="w-full text-left p-3 bg-white rounded border border-gray-200 hover:border-yellow-300 transition-colors"
-              >
-                <div className="flex justify-between items-center">
-                  <div>
-                    <p className="text-sm font-medium text-gray-900">
-                      {currentRole.name} Demo Account
-                    </p>
-                    <p className="text-xs text-gray-500">
-                      {currentRole.demoCredentials.email}
-                    </p>
-                  </div>
-                  <Badge variant="success" size="sm">
-                    Click to use
-                  </Badge>
-                </div>
-              </button>
-            </div>
+
 
             {/* Register Link */}
             <div className="mt-8 text-center">

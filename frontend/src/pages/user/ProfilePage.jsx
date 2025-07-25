@@ -253,12 +253,7 @@ const ProfilePage = () => {
                     <UserIconSolid className="h-16 w-16 text-white" />
                   )}
                 </div>
-                <button
-                  onClick={() => setIsAvatarModalOpen(true)}
-                  className="absolute bottom-0 right-0 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 shadow-lg transition-all duration-300 transform hover:scale-110"
-                >
-                  <CameraIcon className="h-4 w-4 text-gray-700" />
-                </button>
+          
               </div>
 
               {/* User Info */}
@@ -391,7 +386,7 @@ const ProfilePage = () => {
                         onChange={(e) => handleInputChange('email', e.target.value)}
                         error={errors.email}
                         icon={EnvelopeIcon}
-                        disabled={!isEditing}
+                        disabled={isEditing}
                         required
                       />
                       <Input
@@ -432,18 +427,7 @@ const ProfilePage = () => {
                     </Button>
                   </div>
                   
-                  <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                    <div className="flex items-center space-x-3">
-                      <ShieldCheckIcon className="h-5 w-5 text-green-600" />
-                      <div>
-                        <p className="font-medium text-gray-900">Two-Factor Authentication</p>
-                        <p className="text-sm text-gray-600">Add an extra layer of security</p>
-                      </div>
-                    </div>
-                    <Button variant="outline" size="sm">
-                      Enable
-                    </Button>
-                  </div>
+             
                 </div>
               </Card>
             </div>

@@ -173,7 +173,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
               {/* Quick Links */}
               <div className="flex justify-center space-x-4 mt-3 pt-3 border-t border-gray-200">
                 <Link
-                  to="/categories"
+                  to="/products/musical-instruments"
                   onClick={onClose}
                   className="text-sm text-gray-600 hover:text-red-600 transition-colors"
                 >
