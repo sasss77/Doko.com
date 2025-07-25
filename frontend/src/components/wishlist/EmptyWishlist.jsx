@@ -62,10 +62,7 @@ const EmptyWishlist = ({ showSuggestions = true }) => {
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
           <Link to="/categories">
-            <Button variant="nepal" size="lg" className="flex items-center space-x-2">
-              <SparklesIcon className="h-5 w-5" />
-              <span>Explore Categories</span>
-            </Button>
+           
           </Link>
           <Link to="/">
             <Button variant="outline" size="lg" className="flex items-center space-x-2">
@@ -96,62 +93,8 @@ const EmptyWishlist = ({ showSuggestions = true }) => {
           </div>
         </div>
 
-        {/* Featured Categories */}
-        {showSuggestions && (
-          <div className="mb-8">
-            <h3 className="text-xl font-semibold text-gray-900 mb-6">
-              🎯 Popular Categories
-            </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {featuredCategories.map((category) => (
-                <Link
-                  key={category.name}
-                  to={category.path}
-                  className="group p-4 bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md hover:border-red-300 transition-all duration-300 transform hover:-translate-y-1"
-                >
-                  <div className="text-center">
-                    <div className="text-4xl mb-2 group-hover:scale-110 transition-transform duration-300">
-                      {category.icon}
-                    </div>
-                    <h4 className="font-medium text-gray-900 mb-1 text-sm">
-                      {category.name}
-                    </h4>
-                    <p className="text-xs text-gray-500">
-                      {category.description}
-                    </p>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
+       
 
-        {/* Popular Products */}
-        {showSuggestions && (
-          <div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-6">
-              🌟 Popular Products
-            </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {popularProducts.map((product, index) => (
-                <div
-                  key={index}
-                  className="p-4 bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md hover:border-red-300 transition-all duration-300 transform hover:-translate-y-1"
-                >
-                  <div className="text-center">
-                    <div className="text-4xl mb-2">{product.emoji}</div>
-                    <h4 className="font-medium text-gray-900 mb-1 text-sm">
-                      {product.name}
-                    </h4>
-                    <p className="text-red-600 font-semibold text-sm">
-                      {product.price}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
 
         {/* Cultural Quote */}
         <div className="mt-12 text-center">

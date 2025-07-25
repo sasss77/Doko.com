@@ -50,7 +50,7 @@ const HomePage = () => {
       description: "Explore the rich cultural heritage of Nepal through our carefully curated collection of authentic handmade products, traditional instruments, and cultural treasures.",
       image: Hero2,
       cta: "Shop Now",
-      ctaLink: "/categories",
+      ctaLink: "/products/musical-instruments",
       overlay: "bg-gradient-to-r from-red-900/80 to-blue-900/60"
     },
     {
@@ -335,7 +335,7 @@ const HomePage = () => {
                       <ArrowRightIcon className="h-5 w-5 ml-2" />
                     </Button>
                   </Link>
-                 
+
                 </div>
               </div>
             </div>
@@ -466,40 +466,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Featured Products Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Featured Products
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Hand-picked authentic Nepali products that showcase the finest craftsmanship and cultural heritage.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {featuredProducts.map((product) => (
-              <div key={product.id} className="group">
-                <ProductCard
-                  product={product}
-                  onQuickView={() => { }}
-                  className="h-full"
-                />
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <Link to="/products">
-              <Button variant="nepal" size="lg" className="transform hover:scale-105 transition-transform">
-                View All Products
-                <ArrowRightIcon className="h-5 w-5 ml-2" />
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
 
       {/* Cultural Heritage Section */}
       <section className="py-20 bg-gradient-to-r from-red-900 to-blue-900 text-white relative overflow-hidden">
@@ -532,13 +498,7 @@ const HomePage = () => {
               </div>
             </div>
             <Link to="/about">
-              <Button
-                variant="outline"
-                size="lg"
-                className="bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30"
-              >
-                Learn Our Story
-              </Button>
+
             </Link>
           </div>
         </div>
@@ -590,32 +550,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Newsletter Section */}
-      <section className="py-16 bg-gradient-to-r from-red-600 to-blue-600 text-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-4">
-              Stay Updated with Doko
-            </h2>
-            <p className="text-xl mb-8">
-              Get notified about new authentic products, special offers, and cultural stories from Nepal.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white/50"
-              />
-              <Button
-                variant="outline"
-                className="bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30"
-              >
-                Subscribe
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };

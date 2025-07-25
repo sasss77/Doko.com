@@ -55,23 +55,7 @@ const DeliveryInfo = ({ deliveryAddress, estimatedDelivery }) => {
       </div>
 
       <div className="p-4 space-y-6">
-        {/* Delivery Address */}
-        <div className="bg-gray-50 rounded-lg p-4">
-          <div className="flex items-start space-x-3">
-            <MapPinIcon className="h-5 w-5 text-gray-600 mt-0.5 flex-shrink-0" />
-            <div className="flex-1">
-              <h4 className="font-medium text-gray-900 mb-1">Delivery Address</h4>
-              <div className="text-sm text-gray-600 space-y-1">
-                <p>{deliveryAddress?.address}</p>
-                <p>{deliveryAddress?.city}, {deliveryAddress?.district}</p>
-                <p>{deliveryAddress?.zone} Zone, Nepal</p>
-                {deliveryAddress?.landmark && (
-                  <p className="text-gray-500">Near: {deliveryAddress.landmark}</p>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
+  
 
         {/* Estimated Delivery */}
         <div className="bg-blue-50 rounded-lg p-4">
@@ -94,65 +78,8 @@ const DeliveryInfo = ({ deliveryAddress, estimatedDelivery }) => {
           </div>
         </div>
 
-        {/* Delivery Time Preferences */}
-        <div>
-          <h4 className="font-medium text-gray-900 mb-3">Preferred Delivery Time</h4>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {deliveryTimeSlots.map((slot) => (
-              <label
-                key={slot.id}
-                className={`
-                  flex items-start space-x-3 p-3 border rounded-lg cursor-pointer transition-all duration-300
-                  ${selectedDeliveryTime === slot.id 
-                    ? 'border-red-500 bg-red-50' 
-                    : 'border-gray-200 hover:border-gray-300'
-                  }
-                `}
-              >
-                <input
-                  type="radio"
-                  name="deliveryTime"
-                  value={slot.id}
-                  checked={selectedDeliveryTime === slot.id}
-                  onChange={(e) => setSelectedDeliveryTime(e.target.value)}
-                  className="w-4 h-4 text-red-600 border-gray-300 focus:ring-red-500 mt-0.5"
-                />
-                <div className="flex-1">
-                  <p className="text-sm font-medium text-gray-900">{slot.label}</p>
-                  <p className="text-xs text-gray-500">{slot.description}</p>
-                </div>
-              </label>
-            ))}
-          </div>
-        </div>
+  
 
-        {/* Delivery Guidelines */}
-        <div className="bg-yellow-50 rounded-lg p-4">
-          <div className="flex items-start space-x-3">
-            <InformationCircleIcon className="h-5 w-5 text-yellow-600 mt-0.5 flex-shrink-0" />
-            <div className="flex-1">
-              <h4 className="font-medium text-gray-900 mb-2">Delivery Guidelines</h4>
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li className="flex items-start space-x-2">
-                  <CheckCircleIcon className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
-                  <span>Please ensure someone is available to receive the package</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <CheckCircleIcon className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
-                  <span>Valid ID required for cash on delivery orders</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <CheckCircleIcon className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
-                  <span>Fragile items are handled with extra care</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <CheckCircleIcon className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
-                  <span>Contact our support for delivery modifications</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
 
         {/* Contact Information */}
         <div className="bg-gray-50 rounded-lg p-4">

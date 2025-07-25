@@ -141,26 +141,6 @@ const Dashboard = ({ onTabChange }) => {
                 </div>
               </div>
               
-              <div className="flex flex-col sm:flex-row gap-4">
-                <button
-                  onClick={handleAddProduct}
-                  className="bg-gradient-to-r from-white to-gray-50 text-purple-700 px-8 py-4 rounded-2xl font-bold flex items-center space-x-3 hover:from-gray-50 hover:to-white hover:scale-105 transition-all duration-300 shadow-2xl border border-white/50"
-                >
-                  <div className="w-6 h-6 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
-                    <Plus size={16} className="text-white" />
-                  </div>
-                  <span>Add Product</span>
-                </button>
-                <button
-                  onClick={handleViewAnalytics}
-                  className="bg-gradient-to-r from-white/20 to-white/10 backdrop-blur-md text-white px-8 py-4 rounded-2xl font-bold flex items-center space-x-3 hover:from-white/30 hover:to-white/20 hover:scale-105 transition-all duration-300 border border-white/30 shadow-xl"
-                >
-                  <div className="w-6 h-6 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-lg flex items-center justify-center">
-                    <BarChart3 size={16} className="text-white" />
-                  </div>
-                  <span>Analytics</span>
-                </button>
-              </div>
             </div>
           </div>
         </div>
@@ -455,75 +435,7 @@ const Dashboard = ({ onTabChange }) => {
           </div>
         </div>
       )}
-      {/* Quick Actions - Enhanced */}
-      {!loading && !error && dashboardData && (
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
-          <div className="flex items-center justify-between mb-6">
-            <div>
-              <h3 className="text-xl font-bold text-gray-900">Quick Actions</h3>
-              <p className="text-sm text-gray-500">Manage your store efficiently</p>
-            </div>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {/* Add Product */}
-            <button 
-              onClick={() => setShowProductForm(true)}
-              className="group bg-gradient-to-br from-blue-500 to-blue-600 text-white p-6 rounded-2xl hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-            >
-              <div className="flex flex-col items-center text-center">
-                <div className="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mb-3 group-hover:bg-opacity-30 transition-all">
-                  <Plus size={24} />
-                </div>
-                <h4 className="font-semibold mb-1">Add Product</h4>
-                <p className="text-xs text-blue-100">Create new listing</p>
-              </div>
-            </button>
-
-            {/* View Analytics */}
-            <button 
-              onClick={handleViewAnalytics}
-              className="group bg-gradient-to-br from-green-500 to-green-600 text-white p-6 rounded-2xl hover:from-green-600 hover:to-green-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-            >
-              <div className="flex flex-col items-center text-center">
-                <div className="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mb-3 group-hover:bg-opacity-30 transition-all">
-                  <BarChart3 size={24} />
-                </div>
-                <h4 className="font-semibold mb-1">Analytics</h4>
-                <p className="text-xs text-green-100">View insights</p>
-              </div>
-            </button>
-
-            {/* Manage Orders */}
-            <button 
-              onClick={handleViewAllOrders}
-              className="group bg-gradient-to-br from-purple-500 to-purple-600 text-white p-6 rounded-2xl hover:from-purple-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-            >
-              <div className="flex flex-col items-center text-center">
-                <div className="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mb-3 group-hover:bg-opacity-30 transition-all">
-                  <ShoppingCart size={24} />
-                </div>
-                <h4 className="font-semibold mb-1">Orders</h4>
-                <p className="text-xs text-purple-100">Manage orders</p>
-              </div>
-            </button>
-
-            {/* Store Settings */}
-            <button 
-              className="group bg-gradient-to-br from-orange-500 to-orange-600 text-white p-6 rounded-2xl hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-            >
-              <div className="flex flex-col items-center text-center">
-                <div className="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mb-3 group-hover:bg-opacity-30 transition-all">
-                  <Award size={24} />
-                </div>
-                <h4 className="font-semibold mb-1">Settings</h4>
-                <p className="text-xs text-orange-100">Store profile</p>
-              </div>
-            </button>
-          </div>
-        </div>
-      )}
-
+     
       {/* Product Form Modal */}
       {showProductForm && (
         <ProductForm

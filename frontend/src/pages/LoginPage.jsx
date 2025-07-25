@@ -16,6 +16,7 @@ import Input from '../components/ui/Input';
 import Button from '../components/ui/Button';
 import Badge from '../components/ui/Badge';
 import LoadingSpinner from '../components/common/LoadingSpinner';
+import doko from "../assets/doko.png"
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -160,14 +161,9 @@ const LoginPage = () => {
           <div className="text-center">
             <Link to="/" className="flex items-center justify-center space-x-3 mb-6">
               <div className="bg-gradient-to-r from-red-600 to-blue-600 p-3 rounded-full">
-                <span className="text-white font-bold text-2xl">🧺</span>
+                <span className="text-white font-bold text-2xl"><img src={ doko} alt="" /></span>
               </div>
-              <div>
-                <h1 className="text-3xl font-bold bg-gradient-to-r from-red-600 to-blue-600 bg-clip-text text-transparent">
-                  Doko
-                </h1>
-                <p className="text-sm text-gray-600">Authentic Nepal</p>
-              </div>
+            
             </Link>
             
             <h2 className="text-3xl font-bold text-gray-900 mb-2">
@@ -342,30 +338,7 @@ const LoginPage = () => {
               </Button>
             </form>
 
-            {/* Demo Credentials */}
-            <div className="mt-6 p-4 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-lg border border-yellow-200">
-              <h4 className="text-sm font-medium text-gray-900 mb-2">
-                🚀 Demo Credentials for {currentRole.name}:
-              </h4>
-              <button
-                onClick={() => handleDemoLogin(currentRole.demoCredentials)}
-                className="w-full text-left p-3 bg-white rounded border border-gray-200 hover:border-yellow-300 transition-colors"
-              >
-                <div className="flex justify-between items-center">
-                  <div>
-                    <p className="text-sm font-medium text-gray-900">
-                      {currentRole.name} Demo Account
-                    </p>
-                    <p className="text-xs text-gray-500">
-                      {currentRole.demoCredentials.email}
-                    </p>
-                  </div>
-                  <Badge variant="success" size="sm">
-                    Click to use
-                  </Badge>
-                </div>
-              </button>
-            </div>
+
 
             {/* Register Link */}
             <div className="mt-8 text-center">

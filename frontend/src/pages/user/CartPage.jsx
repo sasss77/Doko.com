@@ -121,15 +121,13 @@ const CartPage = () => {
               <Button
                 variant="nepal"
                 size="lg"
-                onClick={() => navigate('/categories')}
+                onClick={() => navigate('/products/musical-instruments')}
                 className="px-8"
               >
                 Start Shopping
               </Button>
               <div className="flex justify-center space-x-6 text-sm text-gray-500">
-                <Link to="/categories" className="hover:text-red-600 transition-colors">
-                  Browse Categories
-                </Link>
+               
                 <Link to="/user/wishlist" className="hover:text-red-600 transition-colors flex items-center space-x-1">
                   <HeartIcon className="h-4 w-4" />
                   <span>View Wishlist</span>
