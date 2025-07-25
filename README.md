@@ -18,8 +18,6 @@
 - [Features](#-features)
 - [Tech Stack](#-tech-stack)
 - [Quick Start](#-quick-start)
-- [Project Structure](#-project-structure)
-- [API Documentation](#-api-documentation)
 - [Security](#-security)
 - [Contributing](#-contributing)
 - [License](#-license)
