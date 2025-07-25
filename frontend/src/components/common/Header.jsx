@@ -4,18 +4,16 @@ import {
   ShoppingCartIcon, 
   HeartIcon, 
   UserIcon, 
-  MagnifyingGlassIcon,
   Bars3Icon,
   XMarkIcon
 } from '@heroicons/react/24/outline';
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/24/solid';
 import { CartContext } from '../../context/CartContext';
 import { AuthContext } from '../../context/AuthContext';
-import SearchBar from './SearchBar';
+import doko from "../../assets/doko.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const { cartItems } = useContext(CartContext);
   const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -23,11 +21,36 @@ const Header = () => {
   const cartItemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   const categories = [
-    { name: 'Musical Instruments', path: '/products/musical-instruments' },
-    { name: 'Handicrafts', path: '/products/handicrafts' },
-    { name: 'Grocery', path: '/products/grocery' },
-    { name: 'Tools & Crafts', path: '/products/tools-crafts' },
-    { name: 'Clothing', path: '/products/clothing' }
+    { 
+      name: 'Musical Instruments', 
+      path: '/products/musical-instruments',
+      icon: '🎵',
+      gradient: 'from-purple-500 to-pink-500'
+    },
+    { 
+      name: 'Handicrafts', 
+      path: '/products/handicrafts',
+      icon: '🎨',
+      gradient: 'from-orange-500 to-red-500'
+    },
+    { 
+      name: 'Grocery', 
+      path: '/products/grocery',
+      icon: '🥘',
+      gradient: 'from-green-500 to-teal-500'
+    },
+    { 
+      name: 'Tools & Crafts', 
+      path: '/products/tools-crafts',
+      icon: '🛠️',
+      gradient: 'from-blue-500 to-indigo-500'
+    },
+    { 
+      name: 'Clothing', 
+      path: '/products/clothing',
+      icon: '👘',
+      gradient: 'from-pink-500 to-rose-500'
+    }
   ];
 
   const handleLogout = () => {
@@ -59,19 +82,31 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 group">
             <div className="bg-gradient-to-r from-red-600 to-blue-600 p-2 rounded-full transform group-hover:scale-110 transition-transform duration-300">
-              <span className="text-white font-bold text-xl">🧺</span>
+              <span className="text-white font-bold text-xl"><img src={ doko} alt="" /></span>
             </div>
             <div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-red-600 to-blue-600 bg-clip-text text-transparent">
+              <h1 className="text-1xl font-bold ">
                 Doko
               </h1>
               <p className="text-xs text-gray-600">Authentic Nepal</p>
             </div>
           </Link>
 
-          {/* Desktop Search */}
-          <div className="hidden lg:flex flex-1 max-w-xl mx-8">
-            <SearchBar />
+          {/* Desktop Categories - Centered */}
+          <div className="hidden lg:flex items-center space-x-2 flex-1 justify-center mx-8">
+            {categories.map((category) => (
+              <Link
+                key={category.name}
+                to={category.path}
+                className="group relative"
+              >
+                <div className={`bg-gradient-to-r ${category.gradient} text-white px-4 py-2 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 flex items-center space-x-2 min-w-max`}>
+                  <span className="text-lg">{category.icon}</span>
+                  <span className="font-medium text-sm">{category.name}</span>
+                </div>
+                <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-white rounded-full transition-all duration-300 group-hover:w-full opacity-0 group-hover:opacity-100"></div>
+              </Link>
+            ))}
           </div>
 
           {/* Desktop Navigation Icons */}
@@ -120,13 +155,7 @@ const Header = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="lg:hidden flex items-center space-x-4">
-            <button
-              onClick={() => setIsSearchOpen(!isSearchOpen)}
-              className="text-gray-700 hover:text-red-600 transition-colors"
-            >
-              <MagnifyingGlassIcon className="h-6 w-6" />
-            </button>
+          <div className="lg:hidden flex items-center">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="text-gray-700 hover:text-red-600 transition-colors"
@@ -140,25 +169,22 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Mobile Search */}
-        {isSearchOpen && (
-          <div className="lg:hidden mt-4 animate-slideDown">
-            <SearchBar />
+        {/* Mobile Categories Row */}
+        <div className="lg:hidden mt-4 overflow-x-auto scrollbar-hide">
+          <div className="flex space-x-2 pb-2" style={{ minWidth: 'max-content' }}>
+            {categories.map((category) => (
+              <Link
+                key={category.name}
+                to={category.path}
+                className="group flex-shrink-0"
+              >
+                <div className={`bg-gradient-to-r ${category.gradient} text-white px-3 py-2 rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 flex items-center space-x-2`}>
+                  <span className="text-sm">{category.icon}</span>
+                  <span className="font-medium text-xs whitespace-nowrap">{category.name}</span>
+                </div>
+              </Link>
+            ))}
           </div>
-        )}
-
-        {/* Desktop Categories */}
-        <div className="hidden lg:flex items-center justify-center space-x-8 mt-4 py-2 border-t">
-          {categories.map((category) => (
-            <Link
-              key={category.name}
-              to={category.path}
-              className="text-gray-700 hover:text-red-600 font-medium transition-colors relative group"
-            >
-              {category.name}
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-600 transition-all duration-300 group-hover:w-full"></span>
-            </Link>
-          ))}
         </div>
       </nav>
 
@@ -166,17 +192,6 @@ const Header = () => {
       {isMenuOpen && (
         <div className="lg:hidden bg-white border-t animate-slideDown">
           <div className="px-4 py-2 space-y-2">
-            {categories.map((category) => (
-              <Link
-                key={category.name}
-                to={category.path}
-                className="block py-2 text-gray-700 hover:text-red-600 font-medium transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {category.name}
-              </Link>
-            ))}
-            <hr className="my-2" />
             <Link
               to="/wishlist"
               className="block py-2 text-gray-700 hover:text-red-600 font-medium transition-colors"
@@ -199,6 +214,13 @@ const Header = () => {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Profile
+                </Link>
+                <Link
+                  to="/orders"
+                  className="block py-2 text-gray-700 hover:text-red-600 font-medium transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Orders
                 </Link>
                 <button
                   onClick={() => {

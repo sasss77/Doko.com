@@ -73,16 +73,13 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Company Info */}
           <div className="space-y-4">
+           <div></div>
             <div className="flex items-center space-x-3">
               <div className="bg-gradient-to-r from-red-600 to-blue-600 p-2 rounded-full">
-                <span className="text-white font-bold text-xl">🧺</span>
+                <span className="text-white font-bold text-xl">Doko</span>
               </div>
-              <div>
-                <h2 className="text-2xl font-bold bg-gradient-to-r from-red-400 to-blue-400 bg-clip-text text-transparent">
-                  Doko
-                </h2>
-                <p className="text-sm text-gray-300">Authentic Nepal</p>
-              </div>
+              
+           
             </div>
             
             <p className="text-gray-300 text-sm leading-relaxed">

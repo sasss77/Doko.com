@@ -799,13 +799,7 @@ const Products = () => {
                   </div>
 
                   <div className="flex items-center space-x-2">
-                    <button
-                      onClick={() => handleViewProduct(product)}
-                      className="flex-1 flex items-center justify-center space-x-1 text-blue-600 hover:bg-blue-50 py-2 px-3 rounded-lg transition-colors"
-                    >
-                      <Eye size={16} />
-                      <span className="text-sm">View</span>
-                    </button>
+                   
                     <button
                       onClick={() => handleEditProduct(product)}
                       className="flex-1 flex items-center justify-center space-x-1 text-green-600 hover:bg-green-50 py-2 px-3 rounded-lg transition-colors"

@@ -141,17 +141,7 @@ const Header = ({ activeTab, searchQuery, setSearchQuery, setSidebarOpen }) => {
         </div>
         
         <div className="flex items-center space-x-2 sm:space-x-4 lg:space-x-6">
-          {/* Search - Hidden on mobile, visible on larger screens */}
-          <div className="relative hidden sm:block">
-            <Search size={16} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent w-32 sm:w-48 lg:w-64"
-            />
-          </div>
+       
           
           {/* Notification Button */}
           <div className="relative" ref={notificationRef}>
@@ -336,13 +326,7 @@ const Header = ({ activeTab, searchQuery, setSearchQuery, setSidebarOpen }) => {
                 {/* Profile Actions */}
                 <div className="p-4">
                   <div className="space-y-2">
-                    <button
-                      onClick={handleViewProfile}
-                      className="w-full flex items-center space-x-3 p-3 text-left hover:bg-gray-50 rounded-lg transition-colors"
-                    >
-                      <Eye size={16} className="text-gray-500" />
-                      <span className="text-sm text-gray-700">View Profile</span>
-                    </button>
+                 
                     <button
                       onClick={handleLogoutClick}
                       className="w-full flex items-center space-x-3 p-3 text-left hover:bg-red-50 rounded-lg transition-colors text-red-600"

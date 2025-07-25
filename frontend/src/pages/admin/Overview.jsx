@@ -262,13 +262,7 @@ const OverviewPage = () => {
               <Store className="w-5 h-5" />
               <span>Review Sellers</span>
             </button>
-            <button 
-              onClick={handleGenerateReport}
-              className="flex items-center space-x-2 p-3 bg-red-50 text-red-700 rounded-lg hover:bg-red-100 transition-colors"
-            >
-              <DollarSign className="w-5 h-5" />
-              <span>Generate Report</span>
-            </button>
+         
           </div>
         </div>
       </div>

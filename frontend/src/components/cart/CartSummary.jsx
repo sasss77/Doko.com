@@ -70,7 +70,7 @@ const CartSummary = ({ showCheckoutButton = true, compact = false }) => {
         <div className="text-6xl mb-4 opacity-50">🧺</div>
         <h3 className="text-lg font-semibold text-gray-900 mb-2">Your cart is empty</h3>
         <p className="text-gray-600 mb-6">Add some authentic Nepali products to get started!</p>
-        <Link to="/categories">
+        <Link to="/categories/musical-instruments">
           <Button variant="nepal" size="lg">
             Start Shopping
           </Button>
@@ -191,7 +191,7 @@ const CartSummary = ({ showCheckoutButton = true, compact = false }) => {
                 Proceed to Checkout
               </Button>
             </Link>
-            <Link to="/categories">
+            <Link to="/products/musical-instruments">
               <Button variant="outline" size="md" fullWidth>
                 Continue Shopping
               </Button>

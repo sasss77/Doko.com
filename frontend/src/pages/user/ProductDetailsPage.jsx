@@ -468,111 +468,8 @@ const ProductDetailsPage = () => {
           </div>
         </div>
 
-        {/* Product Details Tabs */}
-        <div className="mt-16">
-          <div className="border-b border-gray-200">
-            <nav className="flex space-x-8">
-              {['description', 'specifications', 'reviews', 'artisan'].map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`py-4 px-1 border-b-2 font-medium text-sm capitalize transition-colors ${
-                    activeTab === tab
-                      ? 'border-red-500 text-red-600'
-                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                  }`}
-                >
-                  {tab === 'artisan' ? 'Artisan Info' : tab}
-                </button>
-              ))}
-            </nav>
-          </div>
-
-          <div className="py-8">
-            {activeTab === 'description' && (
-              <div className="max-w-4xl">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Product Description</h3>
-                <div className="prose prose-lg max-w-none">
-                  <p className="text-gray-700 leading-relaxed mb-6">
-                    {product.longDescription}
-                  </p>
-                  
-                  {product.features && product.features.length > 0 && (
-                    <>
-                      <h4 className="text-xl font-semibold text-gray-900 mb-4">Key Features:</h4>
-                      <ul className="space-y-2">
-                        {product.features.map((feature, index) => (
-                          <li key={index} className="flex items-start space-x-2">
-                            <CheckCircleIcon className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
-                            <span className="text-gray-700">{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </>
-                  )}
-                </div>
-              </div>
-            )}
-
-            {activeTab === 'specifications' && (
-              <div className="max-w-4xl">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Specifications</h3>
-                {product.specifications && Object.keys(product.specifications).length > 0 ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {Object.entries(product.specifications).map(([key, value]) => (
-                      <div key={key} className="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
-                        <span className="font-medium text-gray-900">{key}:</span>
-                        <span className="text-gray-700">{value}</span>
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <p className="text-gray-600">No specifications available for this product.</p>
-                )}
-              </div>
-            )}
-
-            {activeTab === 'reviews' && (
-              <ProductReviews
-                productId={product._id}
-                reviews={product.reviews}
-                rating={product.rating}
-                reviewCount={product.reviewCount}
-              />
-            )}
-
-            {activeTab === 'artisan' && (
-              <div className="max-w-4xl">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Meet the Artisan</h3>
-                {product.artisanInfo ? (
-                  <div className="bg-gradient-to-r from-red-50 to-blue-50 rounded-lg p-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
-                        {product.artisanInfo.name?.charAt(0) || 'A'}
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="text-xl font-semibold text-gray-900 mb-2">
-                          {product.artisanInfo.name || 'Unknown Artisan'}
-                        </h4>
-                        <p className="text-gray-600 mb-2">
-                          📍 {product.artisanInfo.location || 'Nepal'} | 🎯 {product.artisanInfo.specialty || 'Traditional Craft'}
-                        </p>
-                        <p className="text-sm text-gray-500 mb-4">
-                          Experience: {product.artisanInfo.experience || 'Not specified'}
-                        </p>
-                        <p className="text-gray-700 leading-relaxed">
-                          {product.artisanInfo.bio || 'No bio available for this artisan.'}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <p className="text-gray-600">No artisan information available for this product.</p>
-                )}
-              </div>
-            )}
-          </div>
-        </div>
+      
+     
 
         {/* Cultural Heritage Section */}
         {product.culturalInfo && (
@@ -588,19 +485,7 @@ const ProductDetailsPage = () => {
           </div>
         )}
 
-        {/* Related Products */}
-        <div className="mt-16">
-          <h3 className="text-2xl font-bold text-gray-900 mb-8">Related Products</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {relatedProducts.map((relatedProduct) => (
-              <ProductCard
-                key={relatedProduct._id}
-                product={relatedProduct}
-                onQuickView={() => {}}
-              />
-            ))}
-          </div>
-        </div>
+    
       </div>
 
       {/* Share Modal */}

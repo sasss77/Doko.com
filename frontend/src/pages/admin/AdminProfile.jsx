@@ -237,19 +237,7 @@ const AdminProfile = () => {
           </div>
         </div>
 
-        {/* Security */}
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Security</h3>
-          <div className="space-y-4">
-            <button className="flex items-center space-x-3 w-full p-3 text-left bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-              <Key className="w-5 h-5 text-gray-500" />
-              <div>
-                <p className="font-medium text-gray-900">Change Password</p>
-                <p className="text-sm text-gray-500">Update your password for better security</p>
-              </div>
-            </button>
-          </div>
-        </div>
+ 
       </div>
   );
 };
